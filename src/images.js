@@ -1,6 +1,23 @@
 import problem from "./assets/problem.png";
 import bg from "./assets/bg.png";
 import logo from "./assets/smartcoach360.svg";
+import program from './assets/feature/program.jpg';
+import nutrition from './assets/feature/nutrition.jpg';
+import automation from './assets/feature/automation.jpg';
+import client from './assets/feature/client.jpg';
+import pay from './assets/feature/payments1.jpg';
+import dashboard from './assets/feature/dashboard.jpg';
+import team from './assets/feature/team.jpg';
+import app from './assets/feature/mobile.jpg';
+import security from './assets/feature/security.jpg';
+import pt from './assets/who it for/pt.jpg';
+import nutritionist from './assets/who it for/nutritionist.jpg';
+import org from './assets/who it for/org.jpg';
+import gym from './assets/who it for/gymowners.jpg';
+
+
+
+
 export const IMAGES = {
   // Hero & large banners
   logo: logo,
@@ -9,14 +26,15 @@ export const IMAGES = {
   heroGym: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1200&q=80&fit=crop",
   coachAndClient: "https://images.unsplash.com/photo-1599058945522-28d584b6f0ff?w=900&q=80&fit=crop",
   nutritionCoach: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=900&q=80&fit=crop",
-  groupClass: "https://images.unsplash.com/photo-1571388208497-71bedc66e932?w=900&q=80&fit=crop",
+  groupClass: program,
   gymOwner: "https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=900&q=80&fit=crop",
   largeOrg: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=900&q=80&fit=crop",
 
   // People / coaches
-  ptFemale: "https://images.unsplash.com/photo-1594381898411-846e7d193883?w=600&q=80&fit=crop",
-  ptMale: "https://images.unsplash.com/photo-1609899537878-48970f408e3d?w=600&q=80&fit=crop",
-  nutritionist: "https://images.unsplash.com/photo-1559757175-5700dde675bc?w=600&q=80&fit=crop",
+
+  ptFemale: pt,
+  ptMale: pt,
+  nutritionist: nutritionist,
   gymTeam: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80&fit=crop",
 
   // Lifestyle / activity
@@ -32,4 +50,14 @@ export const IMAGES = {
   cs2: "https://images.unsplash.com/photo-1567013127542-490d757e51fc?w=400&q=80&fit=crop&crop=face",
   cs3: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80&fit=crop&crop=face",
   cs4: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&q=80&fit=crop&crop=face",
+  nutrition:nutrition,
+  automation:automation,
+  client:client,
+  pay:pay,
+  dashboard:dashboard,
+  team:team,
+  app:app,
+  security:security,
+  org:org,
+  gym:gym,
 };
