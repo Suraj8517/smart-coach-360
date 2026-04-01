@@ -36,19 +36,44 @@ export function CTASection({ navigate }) {
 
 export function SectionHeader({ tag, title, subtitle, light = false }) {
   return (
-    <div className="text-center mb-14">
-      <span className={`section-tag ${light ? "!text-brand-lilac-200" : ""}`} style={light ? { backgroundColor: "rgba(71,41,76,0.5)", color: "#e8d9ee" } : {}}>
-        {tag}
-      </span>
-      <h2 className={`font-display text-3xl sm:text-4xl lg:text-5xl font-600 mb-5 leading-tight ${light ? "text-brand-lilac" : "text-brand-black"}`}>
-        {title}
-      </h2>
-      {subtitle && (
-        <p className={`max-w-2xl mx-auto leading-relaxed text-lg ${light ? "text-brand-silver" : "text-brand-fedora"}`}>
-          {subtitle}
-        </p>
-      )}
-    </div>
+   <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-16">
+
+  {/* LEFT */}
+  <div className="max-w-xl">
+    <span
+      className={`section-tag mb-4 inline-block ${
+        light ? "!text-brand-lilac-200" : ""
+      }`}
+      style={
+        light
+          ? { backgroundColor: "rgba(71,41,76,0.5)", color: "#e8d9ee" }
+          : {}
+      }
+    >
+      {tag}
+    </span>
+
+    <h2
+      className={`font-display text-3xl sm:text-4xl lg:text-5xl font-semibold leading-[1.1] tracking-tight ${
+        light ? "text-brand-lilac" : "text-brand-black"
+      }`}
+    >
+      {title}
+    </h2>
+  </div>
+
+  {/* RIGHT */}
+  {subtitle && (
+    <p
+      className={`max-w-sm text-sm leading-relaxed sm:text-right ${
+        light ? "text-brand-silver" : "text-brand-fedora"
+      }`}
+    >
+      {subtitle}
+    </p>
+  )}
+
+</div>
   );
 }
 
