@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Brand palette */
+  --black:         #010101;
+  --silver-rust:   #c3b9b7;
+  --silver-light:  #ddd6d4;
+  --silver-xlight: #ede8e7;
+  --fedora:        #816f7d;
+  --fedora-light:  #a593a1;
+  --fedora-dark:   #5e4f5a;
+  --bossanova:     #47294c;
+  --bossanova-mid: #5c3663;
+  --bossanova-dark:#2e1a32;
+  --bossanova-deep:#1c0f1f;
+  --lilac:         #faf4fc;
+  --lilac-100:     #f3eaf6;
+  --lilac-200:     #e8d9ee;
+  --lilac-300:     #d5bade;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background-color: var(--lilac);
+    color: var(--black);
+  }
+  h1, h2, h3 {
+    font-family: 'Fraunces', serif;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center gap-2 font-semibold px-7 py-3.5 rounded-2xl transition-all duration-200;
+    background-color: var(--bossanova);
+    color: var(--lilac);
+  }
+  .btn-primary:hover {
+    background-color: var(--bossanova-mid);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(71,41,76,0.35);
+  }
+  .btn-outline {
+    @apply inline-flex items-center gap-2 font-semibold px-7 py-3.5 rounded-2xl border-2 transition-all duration-200;
+    border-color: var(--bossanova);
+    color: var(--bossanova);
+    background: transparent;
+  }
+  .btn-outline:hover {
+    background-color: var(--bossanova);
+    color: var(--lilac);
+  }
+  .btn-cream {
+    @apply inline-flex items-center gap-2 font-semibold px-7 py-3.5 rounded-2xl transition-all duration-200;
+    background-color: var(--lilac);
+    color: var(--bossanova);
+  }
+  .btn-cream:hover {
+    background-color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+  }
+  .card {
+    @apply rounded-3xl border transition-all duration-300;
+    background-color: var(--lilac);
+    border-color: var(--silver-xlight);
+  }
+  .card:hover {
+    border-color: var(--lilac-200);
+    box-shadow: 0 12px 40px rgba(71,41,76,0.10);
+    transform: translateY(-2px);
+  }
+  .section-tag {
+    @apply inline-block text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full mb-4;
+    background-color: var(--lilac-200);
+    color: var(--bossanova);
+  }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up {
+  animation: fadeUp 0.7s ease both;
+}
+.fade-up-1 { animation-delay: 0.1s; }
+.fade-up-2 { animation-delay: 0.2s; }
+.fade-up-3 { animation-delay: 0.3s; }
+.fade-up-4 { animation-delay: 0.4s; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-10px); }
+}
+.float { animation: float 4s ease-in-out infinite; }
+.float-slow { animation: float 6s ease-in-out infinite; }
