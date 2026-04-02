@@ -8,10 +8,10 @@ const INTEGRATION_IMAGES = {
   WhatsApp: IMAGES.whatsapp,
   Zoom: IMAGES.zoom,
   "Microsoft Teams": IMAGES.teams,
-  Telephony: IMAGES.telephony,
+  "Telephony": IMAGES.telephony,
   "Google Sheets": IMAGES.gsheets,
   "Google Forms": IMAGES.gforms,
-  "Zoho Forms & Surveys": IMAGES.zoho,
+  "Zoho Forms": IMAGES.zoho,
   "Apple Health": IMAGES.apple,
   "Google Fit / Health Connect": IMAGES.gfit,
   "Lab Integration": IMAGES.lab,
@@ -28,7 +28,7 @@ const groups = [
   { label:"Data & Forms", icon:"📊", accent:"#e3f2fd", accentDark:"#1565c0", items:[
     { name:"Google Sheets", desc:"Live access to your SmartCoach360 data in Google Sheets for custom reporting and team collaboration.", features:["Automatically export client data","Build custom dashboards and reports","Real-time data sync always current","Share with your team for collaborative access"]},
     { name:"Google Forms", desc:"Leads and client intake from Google Forms flow straight into SmartCoach360—no copy-pasting.", features:["Automatic lead capture from any Google Form","Client intake forms feed directly into profiles","Feedback and satisfaction surveys","Real-time sync the moment someone submits"]},
-    { name:"Zoho Forms & Surveys", desc:"Your forms, surveys, and assessments connect directly, keeping all client data centralised.", features:["Lead capture and client intake via Zoho Forms","Survey and assessment tools","Automatic data sync to client records","Custom form workflows and trigger-based automation"]},
+    { name:"Zoho Forms", desc:"Your forms, surveys, and assessments connect directly, keeping all client data centralised.", features:["Lead capture and client intake via Zoho Forms","Survey and assessment tools","Automatic data sync to client records","Custom form workflows and trigger-based automation"]},
   ]},
   { label:"Health & Activity", icon:"❤️", accent:"#fce4ec", accentDark:"#c62828", items:[
     { name:"Apple Health", desc:"Steps, sleep, heart rate, and calorie data pulled directly into your coaching dashboard.", features:["Automatic sync of steps, activity, and heart rate","Sleep tracking and recovery data","Calorie and nutrition data alongside meal tracking","Real-time health dashboard for evidence-based coaching"]},
