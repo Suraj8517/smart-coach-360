@@ -30,70 +30,127 @@ const compRows=[
 export default function UseCasesPage({ navigate }) {
   return (
     <div className="pt-16">
-      <section className="relative py-32 overflow-hidden">
-        <div className="absolute inset-0" style={{ backgroundImage:`url(${IMAGES.groupClass})`, backgroundSize:"cover", backgroundPosition:"center" }} />
-        <div className="absolute inset-0" style={{ background:"linear-gradient(135deg,rgba(28,15,31,0.92) 0%,rgba(71,41,76,0.75) 100%)" }} />
-        <div className="relative z-10 max-w-3xl mx-auto px-4 text-center">
-          <span className="section-tag" style={{ backgroundColor:"rgba(71,41,76,0.5)", color:"#e8d9ee" }}>Solutions</span>
-          <h1 className="font-display text-5xl sm:text-6xl text-brand-lilac mb-5 leading-tight">Built for Every Kind of Fitness Professional</h1>
-          <p className="text-brand-silver text-lg leading-relaxed">Whether you coach one-on-one, run a gym, deliver online nutrition programmes, or manage a national organisation—SmartCoach360 fits the way you operate.</p>
+
+      {/* ── HERO: plain, no background image ── */}
+      <section className="py-24 bg-brand-lilac border-b border-brand-silver-xl">
+        <div className="max-w-3xl mx-auto px-4 text-center">
+          <span className="inline-block text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-6"
+            style={{ backgroundColor:"rgba(71,41,76,0.1)", color:"#47294c" }}>
+            Solutions
+          </span>
+          <h1 className="font-display text-5xl sm:text-6xl text-brand-black mb-5 leading-tight">
+            Built for Every Kind of<br />
+            <span style={{ color:"#47294c" }}>Fitness Professional</span>
+          </h1>
+          <p className="text-brand-fedora text-lg leading-relaxed max-w-2xl mx-auto">
+            Whether you coach one-on-one, run a gym, deliver online nutrition programmes, or manage a national organisation—SmartCoach360 fits the way you operate.
+          </p>
+          {/* Audience pills */}
+          <div className="flex flex-wrap justify-center gap-2.5 mt-8">
+            {["Personal Trainers","Gym Owners & Studios","Nutrition Coaches","Large Organisations"].map((label) => (
+              <span key={label}
+                className="text-xs font-semibold px-4 py-2 rounded-full border border-brand-silver-xl text-brand-fedora-dk"
+                style={{ backgroundColor:"#fff" }}>
+                {label}
+              </span>
+            ))}
+          </div>
         </div>
       </section>
 
-      <section className="bg-brand-lilac">
-        {audiences.map((a, idx) => (
-          <div key={idx} className={`py-20 ${idx % 2 === 0 ? "bg-brand-lilac" : "bg-brand-lilac-100"}`}>
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className={`grid lg:grid-cols-2 gap-14 items-start ${idx % 2 !== 0 ? "lg:grid-flow-col-dense" : ""}`}>
-                <div className={`relative ${idx % 2 !== 0 ? "lg:col-start-2" : ""}`}>
-                  <div className="relative rounded-3xl overflow-hidden aspect-[4/3]">
-                    <img src={a.img} alt={a.title} className="w-full h-full object-cover" />
-                    <div className="absolute inset-0" style={{ background:"linear-gradient(to top,rgba(46,26,50,0.75) 0%,transparent 60%)" }} />
-                    <div className="absolute top-5 left-5"><span className="text-3xl">{a.emoji}</span></div>
-                    <div className="absolute bottom-0 left-0 right-0 p-6">
-                      <h3 className="font-display text-2xl text-brand-lilac">{a.title}</h3>
+      {/* ── AUDIENCE SECTIONS ── */}
+      <section>
+        {audiences.map((a, idx) => {
+          const isEven = idx % 2 === 0;
+          return (
+            <div key={idx} className={`py-20 ${isEven ? "bg-brand-lilac" : ""}`}
+              style={isEven ? {} : { backgroundColor:"#f7f3f8" }}>
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className={`grid lg:grid-cols-2 gap-12 items-start ${!isEven ? "lg:grid-flow-col-dense" : ""}`}>
+
+                  {/* ── LEFT / IMAGE COLUMN ── */}
+                  <div className={`flex flex-col gap-5 ${!isEven ? "lg:col-start-2" : ""}`}>
+
+                    {/* Image card */}
+                    <div className="relative rounded-3xl overflow-hidden aspect-[4/3] shadow-xl">
+                      <img src={a.img} alt={a.title} className="w-full h-full object-cover" />
+                      <div className="absolute inset-0" style={{ background:"linear-gradient(to top,rgba(46,26,50,0.80) 0%,transparent 55%)" }} />
+                      <div className="absolute top-5 left-5">
+                        <span className="text-3xl drop-shadow">{a.emoji}</span>
+                      </div>
+                      <div className="absolute bottom-0 left-0 right-0 p-6">
+                        <span className="text-xs font-bold uppercase tracking-widest text-brand-lilac-200 opacity-80 mb-1 block">
+                          For
+                        </span>
+                        <h3 className="font-display text-2xl text-brand-lilac leading-tight">{a.title}</h3>
+                      </div>
+                    </div>
+
+                    {/* Common Challenges — lives below image */}
+                    <div className="rounded-2xl border border-rose-100 overflow-hidden"
+                      style={{ backgroundColor:"#fff8f8" }}>
+                      <div className="flex items-center gap-2.5 px-5 py-3.5 border-b border-rose-100"
+                        style={{ backgroundColor:"#fff1f1" }}>
+                        <svg className="w-4 h-4 text-rose-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
+                        </svg>
+                        <h3 className="text-xs font-bold text-rose-500 uppercase tracking-widest">Common Challenges</h3>
+                      </div>
+                      <div className="divide-y divide-rose-50">
+                        {a.challenges.map((c, i) => (
+                          <div key={i} className="flex items-start gap-3 px-5 py-3">
+                            <svg className="w-3.5 h-3.5 text-rose-300 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12"/>
+                            </svg>
+                            <p className="text-sm text-rose-700 leading-snug">{c}</p>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className={idx % 2 !== 0 ? "lg:col-start-1" : ""}>
-                  <h2 className="font-display text-3xl sm:text-4xl text-brand-black mb-4 leading-tight">{a.tagline}</h2>
-                  <p className="text-brand-fedora leading-relaxed mb-8">{a.desc}</p>
-                  <div className="mb-8">
-                    <h3 className="text-xs font-bold text-brand-boss uppercase tracking-widest mb-4">Common Challenges</h3>
-                    <div className="space-y-2">
-                      {a.challenges.map((c,i) => (
-                        <div key={i} className="flex items-start gap-2.5 bg-rose-50 border border-rose-100 rounded-xl px-4 py-2.5">
-                          <svg className="w-4 h-4 text-rose-400 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12"/></svg>
-                          <p className="text-brand-fedora-dk text-sm leading-snug">{c}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                  <div>
-                    <h3 className="text-xs font-bold text-brand-boss uppercase tracking-widest mb-4">How SmartCoach360 Helps</h3>
-                    <div className="grid sm:grid-cols-2 gap-3">
-                      {a.solutions.map((s,i) => (
-                        <div key={i} className="bg-brand-lilac border border-brand-silver-xl rounded-2xl p-4 hover:border-brand-lilac-300 transition-colors">
-                          <div className="flex items-start gap-2.5">
-                            <div className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style={MID_BG}>
-                              <CheckIcon className="w-3 h-3 text-brand-lilac" />
-                            </div>
-                            <div>
-                              <h4 className="font-semibold text-brand-black text-xs mb-0.5">{s.title}</h4>
-                              <p className="text-brand-fedora text-xs leading-relaxed">{s.desc}</p>
+
+                  {/* ── RIGHT / CONTENT COLUMN ── */}
+                  <div className={`flex flex-col justify-start ${!isEven ? "lg:col-start-1" : ""}`}>
+                    <h2 className="font-display text-3xl sm:text-4xl text-brand-black mb-3 leading-tight">
+                      {a.tagline}
+                    </h2>
+                    <p className="text-brand-fedora leading-relaxed mb-8 text-base">{a.desc}</p>
+
+                    {/* Solutions grid */}
+                    <div>
+                      <h3 className="text-xs font-bold uppercase tracking-widest mb-4"
+                        style={{ color:"#47294c" }}>
+                        How SmartCoach360 Helps
+                      </h3>
+                      <div className="grid sm:grid-cols-2 gap-3">
+                        {a.solutions.map((s, i) => (
+                          <div key={i}
+                            className="rounded-2xl p-4 border transition-all hover:shadow-md hover:-translate-y-0.5"
+                            style={{ backgroundColor:"#fff", borderColor:"#e8dced" }}>
+                            <div className="flex items-start gap-3">
+                              <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 shadow-sm"
+                                style={MID_BG}>
+                                <CheckIcon className="w-3 h-3 text-white" />
+                              </div>
+                              <div>
+                                <h4 className="font-semibold text-brand-black text-xs mb-0.5 leading-snug">{s.title}</h4>
+                                <p className="text-brand-fedora text-xs leading-relaxed">{s.desc}</p>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      ))}
+                        ))}
+                      </div>
                     </div>
                   </div>
+
                 </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </section>
 
+      {/* ── COMPARISON TABLE ── */}
       <section className="py-20" style={DARK_BG}>
         <div className="max-w-5xl mx-auto px-4">
           <SectionHeader tag="Plan Comparison" title="Which Plan Is Right for You?" light />
@@ -102,19 +159,21 @@ export default function UseCasesPage({ navigate }) {
               <thead>
                 <tr className="border-b border-brand-boss/50">
                   <th className="text-left p-4 text-sm font-semibold text-brand-silver">Feature</th>
-                  {["Personal Trainer","Gym / Studio","Nutrition Coach","Large Org"].map(h=>(
+                  {["Personal Trainer","Gym / Studio","Nutrition Coach","Large Org"].map(h => (
                     <th key={h} className="p-4 text-center text-xs font-bold text-brand-lilac-200">{h}</th>
                   ))}
                 </tr>
               </thead>
               <tbody>
-                {compRows.map((row,i)=>(
+                {compRows.map((row, i) => (
                   <tr key={i} className="border-b border-brand-boss/30 hover:bg-brand-boss/20 transition-colors">
                     <td className="p-4 text-sm text-brand-lilac-100">{row.f}</td>
-                    {[row.pt,row.gym,row.nut,row.ent].map((v,j)=>(
+                    {[row.pt, row.gym, row.nut, row.ent].map((v, j) => (
                       <td key={j} className="p-4 text-center">
                         {v
-                          ? <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-brand-boss-mid"><CheckIcon className="w-3.5 h-3.5 text-brand-lilac"/></span>
+                          ? <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-brand-boss-mid">
+                              <CheckIcon className="w-3.5 h-3.5 text-brand-lilac" />
+                            </span>
                           : <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-brand-boss/20 text-brand-fedora text-xs">—</span>}
                       </td>
                     ))}
@@ -125,6 +184,7 @@ export default function UseCasesPage({ navigate }) {
           </div>
         </div>
       </section>
+
       <CTASection navigate={navigate} />
     </div>
   );
