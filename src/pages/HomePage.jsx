@@ -3,8 +3,10 @@ import { IMAGES } from "../images";
 import React from "react";
 import Hero from "../components/home/hero";
 import Problem from "../components/home/problem";
-
+import Features from "../components/home/features";
+import Integration from "../components/home/integration"; 
 import {Trophy,ClipboardList,Salad,MessageSquare,Bolt,CreditCard,BarChart,Users,Smartphone,ShieldCheck,Dumbbell,Building2 } from "lucide-react";
+import Support from "../components/home/support";
 const stats = [
   { value: "10,000+", label: "Clients Managed" },
   { value: "50+",     label: "Platform Features" },
@@ -12,18 +14,6 @@ const stats = [
   { value: "99%",     label: "Payment Collection" },
 ];
 
-
-const features =[
-  { num:'001', icon:<ClipboardList />, img: IMAGES.groupClass , title:'Program Management', desc:'Build your master library once. Assign fully customised plans to individual clients in seconds. Clients get workouts on the app — no PDFs, no confusion.', tags:['Master Programs','Video Library','Auto Notifications','Custom Exercises'] },
-  { num:'002', icon:<Salad />,img: IMAGES.nutrition , title:'Nutrition & Activity', desc:'Create personalised meal plans, set macro targets, track daily compliance. Includes a dedicated female health and hormonal cycle tracker.', tags:['Meal Tracking','Macro Goals','Compliance Monitor','Female Health'] },
-  { num:'003', icon:<Bolt />,img: IMAGES.automation , title:'Business Automation', desc:'Lead allocation, client onboarding, payment flows, and communication sequences — completely automated and running in the background.', tags:['Lead Allocation','Auto Onboarding','Payment Flows','Message Sequences'] },
-  { num:'004', icon:<MessageSquare />,img: IMAGES.client , title:'Client Engagement', desc:'Automated check-ins, in-app messaging, video calls, group challenges, and digital high-fives. Keep every client engaged between sessions.', tags:['In-App Messaging','Video Calls','Group Challenges','Auto Check-ins'] },
-  { num:'005', icon:<CreditCard />,img: IMAGES.pay , title:'Payments & Revenue', desc:'No more chasing. Accept online payments, set up recurring session packs, configure discounts, and handle partial payments — all built in.', tags:['Online Payments','Session Packs','Discount Codes','Instalments'] },
-  { num:'006', icon:<BarChart />,img: IMAGES.dashboard , title:'Dashboards & Reports', desc:'Real-time view of client compliance, progress, and business health. Custom surveys, pre-assessment forms, performance dashboards.', tags:['Live Reports','Business Insights','Custom Surveys','Health Intake'] },
-  { num:'007', icon:<Users />,img: IMAGES.team , title:'Team & Organisation Management', desc:'Whether you are a solo coach or managing a multi-branch fitness organisation, scale effortlessly. Control teams, assign roles, and oversee operations from one central dashboard.', tags:['Team & Branch Management','Role-Based Access','Coach Allocation Limits','Bulk Upload Tools'] },
-  { num:'008', icon:<Smartphone />,img: IMAGES.app , title:'Mobile App iOS & Android', desc:'Run your entire coaching business from your pocket. Coaches and clients get a seamless mobile experience with real-time updates and integrated health tracking.', tags:['iOS & Android Apps','Client Self-Service','Push Notifications','Health Data Sync'] },
-  { num:'009', icon:<ShieldCheck />,img: IMAGES.security , title:'Security & Compliance', desc:'Enterprise-grade security built into every plan. Protect sensitive client data with advanced authentication, secure payments, and compliance tools.', tags:['SSO Support','Access Control','PCI-DSS Payments','GDPR Tools'] },
-]
 const audiences = [
   {
     icon: <Dumbbell />,
@@ -72,35 +62,7 @@ export default function HomePage({ navigate }) {
     <div className="pt-16">
 <Hero DARK_BG={DARK_BG} IMAGES={IMAGES} />
      <Problem/>
-
-      {/* FEATURES */}
-      <section className="py-24 bg-brand-lilac">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeader tag="Platform Features" title="Everything You Need to Coach, Grow & Automate" subtitle="SmartCoach360 is built specifically for fitness coaching designed around how coaches run sessions, track progress, and manage client communication day to day." />
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {features.map((f, i) => (
-              <div key={i} className="card group overflow-hidden">
-                <div className="relative h-44 overflow-hidden bg-white">
-                  <img src={f.img} alt={f.title} className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" />
-                  <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(46,26,50,0.75) 0%, rgba(71,41,76,0.1) 60%, transparent 100%)" }} />
-                  <div className="absolute bottom-4 left-4"><span className="text-2xl " style={{color:'var(--bossanova-mid)'}}>{f.icon}</span></div>
-                </div>
-                <div className="p-5">
-                  <h3 className="font-display text-lg text-brand-black mb-2">{f.title}</h3>
-                  <p className="text-brand-fedora text-sm leading-relaxed">{f.desc}</p>
-                  <div className="flex flex-wrap gap-1.5 mt-6">
-          {f.tags.map((t) => (
-            <span key={t} className=" text-[9px] md:text-[8px] tracking-[0.1em] uppercase px-3 py-1 border transition-colors duration-200 rounded-xl" style={{ color: 'var(--silver-xlight)', borderColor: 'var(--silver-xlight)', background: 'var(--bossanova-mid)' }}>
-              {t}
-            </span>
-          ))}
-        </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+     <Features/>
 
       {/* WHO IT'S FOR */}
       <section className="py-24" style={DARK_BG}>
@@ -128,8 +90,8 @@ export default function HomePage({ navigate }) {
       </section>
 
   {/* HOW IT WORKS */}
-<section className="py-24 bg-brand-lilac-100">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<section className="py-24 bg-brand-lilac">
+  <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 
     {/* Header */}
     <div className="grid lg:grid-cols-2 gap-8 items-end mb-14">
@@ -143,12 +105,7 @@ export default function HomePage({ navigate }) {
         <p className="text-brand-fedora text-lg leading-relaxed">
           From your first demo to fully automated operations—our onboarding team is with you every step of the way.
         </p>
-        <button className="btn-primary mt-8">
-          Book a Free Demo
-          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
-        </button>
+       
       </div>
     </div>
 
@@ -156,7 +113,6 @@ export default function HomePage({ navigate }) {
     <div className="flex items-start mb-8">
       {steps.map((s, i) => (
         <React.Fragment key={i}>
-          {/* Circle + label */}
           <div className="flex flex-col items-center">
             <div
               className="w-11 h-11 rounded-full flex items-center justify-center border-2 z-10"
@@ -169,7 +125,6 @@ export default function HomePage({ navigate }) {
             </span>
           </div>
 
-          {/* Connector with animated shimmer */}
           {i < steps.length - 1 && (
             <div className="flex-1 mt-[22px] mx-1 rounded-full relative overflow-hidden" style={{ height: "3px", background: "rgba(71,41,76,0.15)" }}>
               <div
@@ -201,7 +156,7 @@ export default function HomePage({ navigate }) {
       {steps.map((s, i) => (
         <div
           key={i}
-          className="bg-brand-lilac rounded-2xl border border-brand-silver-xl p-5 flex flex-col gap-3 hover:border-brand-boss/40 hover:shadow-md transition-all duration-200 hover:-translate-y-0.5"
+          className="bg-brand-lilac-100 rounded-2xl border border-brand-silver-xl p-5 flex flex-col gap-3 hover:border-brand-boss/40 hover:shadow-md transition-all duration-200 hover:-translate-y-0.5"
         >
           <div
             className="w-9 h-9 rounded-xl flex items-center justify-center text-brand-lilac font-display text-sm font-semibold flex-shrink-0"
@@ -230,22 +185,8 @@ export default function HomePage({ navigate }) {
   </div>
 </section>
 
-      {/* INTEGRATIONS STRIP */}
-      <section className="py-16 bg-brand-lilac border-y border-brand-silver-xl">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-brand-fedora text-sm font-semibold mb-8 uppercase tracking-widest">Works With the Tools You Already Use</p>
-          <div className="flex flex-wrap items-center justify-center gap-3 mb-6">
-            {integrations.map(t => (
-              <span key={t} className="bg-brand-lilac border border-brand-silver-lt text-brand-fedora-dk text-sm font-medium px-4 py-2.5 rounded-xl shadow-sm hover:border-brand-boss/40 hover:text-brand-boss transition-colors cursor-default">
-                {t}
-              </span>
-            ))}
-          </div>
-          <button onClick={() => navigate("integrations")} className="text-brand-boss font-semibold text-sm hover:text-brand-boss-mid underline underline-offset-4">View all integrations →</button>
-        </div>
-      </section>
-
-      {/* TESTIMONIALS */}
+<Integration />
+      {/* TESTIMONIALS 
       <section className="py-24 bg-brand-lilac">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader tag="Real Results" title="What Coaches Are Saying" subtitle="From solo trainers to large fitness organisations—hear it in their words." />
@@ -257,7 +198,7 @@ export default function HomePage({ navigate }) {
             ].map((t, i) => (
               <div key={i} className="card p-0 overflow-hidden flex flex-col">
                 <div className="relative h-48">
-                  <img src={t.img} alt={t.name} className="w-full h-full object-cover object-top" />
+                  <img src={t.img} alt={t.name} className="w-full h-full object-cover object-center" />
                   <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(46,26,50,0.8) 0%, transparent 60%)" }} />
                   <div className="absolute bottom-4 left-4">
                     <span className="text-brand-lilac text-xs font-bold px-3 py-1.5 rounded-xl" style={MID_BG}>{t.metric}</span>
@@ -279,31 +220,9 @@ export default function HomePage({ navigate }) {
           </div>
         </div>
       </section>
+      */}
 
-      {/* SUPPORT */}
-      <section className="py-20 bg-brand-lilac-100 border-t border-brand-silver-xl">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeader tag="Support" title="We're With You Every Step of the Way" />
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {[
-              { icon: "📖", title: "Help Centre",             desc: "Step-by-step guides and FAQs, available 24/7." },
-              { icon: "💬", title: "Live Chat",               desc: "Fast answers from real people during business hours." },
-              { icon: "📞", title: "Phone Support",           desc: "Speak to a specialist for immediate, personal help." },
-              { icon: "🎓", title: "Live Masterclasses",      desc: "Join live sessions covering features and growth strategies." },
-              { icon: "🚀", title: "Personalised Onboarding", desc: "A dedicated specialist configures your setup with you." },
-              { icon: "⭐", title: "Dedicated CSM",           desc: "A Customer Success Manager focused entirely on your growth." },
-            ].map((s, i) => (
-              <div key={i} className="flex items-start gap-4 bg-brand-lilac rounded-2xl border border-brand-silver-xl p-5 hover:border-brand-lilac-300 transition-colors">
-                <span className="text-2xl">{s.icon}</span>
-                <div>
-                  <h4 className="font-semibold text-brand-black text-sm mb-1">{s.title}</h4>
-                  <p className="text-brand-fedora text-xs leading-relaxed">{s.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <Support />
 
       <CTASection navigate={navigate} />
     </div>

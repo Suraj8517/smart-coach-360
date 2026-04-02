@@ -14,7 +14,17 @@ import pt from './assets/who it for/pt.jpg';
 import nutritionist from './assets/who it for/nutritionist.jpg';
 import org from './assets/who it for/org.jpg';
 import gym from './assets/who it for/gymowners.jpg';
-
+import whatsapp from './assets/integrations/whatsapp.png';
+import zoom from './assets/integrations/zoom.png'
+import teams from './assets/integrations/teams.png'
+import gsheets from './assets/integrations/sheets.png'
+import gforms from './assets/integrations/google-forms.png'
+import zoho from './assets/integrations/zoho.png'
+import apple from './assets/integrations/apple.png'
+import gfit from './assets/integrations/gfit.png'
+import telephony from './assets/integrations/call.png'
+import lab from './assets/integrations/lab.png'
+import web from './assets/integrations/web.png'
 
 
 
@@ -60,4 +70,15 @@ export const IMAGES = {
   security:security,
   org:org,
   gym:gym,
+  whatsapp:whatsapp,
+  zoom:zoom,
+  teams:teams,
+  gsheets:gsheets,
+  gforms:gforms,
+  zoho:zoho,
+  apple:apple,
+  gfit:gfit,
+  telephony:telephony,
+  lab:lab,
+  web:web,
 };
