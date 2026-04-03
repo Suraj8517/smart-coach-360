@@ -69,7 +69,7 @@ export default function ComparisonPage({ navigate }) {
       </section>
 
       {/* ── FEATURE TABLE ── */}
-      <section className="py-20" style={{ backgroundColor: "#fff" }}>
+      <section className="py-20" style={{ backgroundColor: "#f7f3f8" }}>
         <div className="max-w-6xl mx-auto px-4">
           <div className="mb-10">
             <span className="inline-block text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-3" style={{ backgroundColor: "rgba(71,41,76,0.08)", color: "#47294c" }}>Feature Comparison</span>
@@ -221,7 +221,7 @@ export default function ComparisonPage({ navigate }) {
           <div className="text-center mb-14">
             <span
               className="inline-block text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-4"
-              style={{ backgroundColor: "rgba(255,255,255,0.07)", color: "#1c0f1f" }}
+              style={{ backgroundColor: "rgba(255,255,255,0.07)", color: "#faf4fc" }}
             >
               Head-to-Head
             </span>

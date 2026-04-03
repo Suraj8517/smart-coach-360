@@ -25,6 +25,8 @@ import gfit from './assets/integrations/gfit.png'
 import telephony from './assets/integrations/call.png'
 import lab from './assets/integrations/lab.png'
 import web from './assets/integrations/web.png'
+import largeorg from './assets/who it for/large-org.jpg';
+
 
 
 
@@ -38,7 +40,7 @@ export const IMAGES = {
   nutritionCoach: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=900&q=80&fit=crop",
   groupClass: program,
   gymOwner: "https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=900&q=80&fit=crop",
-  largeOrg: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=900&q=80&fit=crop",
+  largeOrg: largeorg,
 
   // People / coaches
 

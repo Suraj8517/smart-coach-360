@@ -5,7 +5,7 @@ import { IMAGES } from "../images";
 const NAV = [
   { label: "Solutions", path: "/usecases" },
   { label: "Integrations", path: "/integrations" },
-  { label: "Case Studies", path: "/casestudies" },
+  { label: "Case Studies", path: "/case-studies" },
   { label: "Compare", path: "/comparison" },
   { label: "Blogs", path: "/blogs" },
 ];

@@ -18,7 +18,7 @@ const studies = [
   { type:"Nutrition Coach", emoji:"🥗", quote:"My Clients Are Hitting Their Macro Goals 3× More Consistently", subheading:"Online Nutrition & Wellness Coach — 60+ Remote Clients",
     challenge:"Manually tracking macro compliance for 60+ clients across WhatsApp and spreadsheets was messy, error-prone, and unsustainable. Between check-in calls, clients had no system keeping them on track.",
     change:"With SmartCoach360, nutrition data moved into one central platform. Automated daily check-ins created consistent accountability, the female health tracker supported more nuanced coaching, and compliance data stayed visible in real time.",
-    img:IMAGES.nutritionCoach, avatarImg:IMAGES.cs3,
+    img:IMAGES.nutritionist, avatarImg:IMAGES.cs3,
     results:[{label:"Compliance",value:"79%",sub:"up from 38%"},{label:"Manual Tracking",value:"−90%",sub:"time saved"},{label:"Programme Completion",value:"+55%",sub:"improvement"},{label:"Referral Rate",value:"2×",sub:"doubled in 4 months"},{label:"MRR Growth",value:"+45%",sub:"increase"}]},
   { type:"Large Organisation", emoji:"🏆", quote:"We Finally Have One System That Works Across Our Entire Organisation", subheading:"National Fitness Organisation — 20+ Branches, 50+ Coaches",
     challenge:"With more than 20 branches and 50+ coaches operating across the country, disconnected tools meant inconsistent client experiences, poor visibility into performance, and slow lead response times.",
@@ -31,7 +31,7 @@ export default function CaseStudiesPage({ navigate }) {
   return (
     <div className="pt-16">
       <section className="relative py-32 overflow-hidden">
-        <div className="absolute inset-0" style={{ backgroundImage:`url(${IMAGES.coachAndClient})`, backgroundSize:"cover", backgroundPosition:"center top" }} />
+        <div className="absolute inset-0" style={{ backgroundImage:`url(${IMAGES.gymOwner})`, backgroundSize:"cover", backgroundPosition:"center center" }} />
         <div className="absolute inset-0" style={{ background:"linear-gradient(100deg,rgba(28,15,31,0.94) 0%,rgba(46,26,50,0.82) 60%,rgba(71,41,76,0.4) 100%)" }} />
         <div className="relative z-10 max-w-3xl mx-auto px-4 text-center">
           <span className="section-tag" style={{ backgroundColor:"rgba(71,41,76,0.5)", color:"#e8d9ee" }}>Success Stories</span>
@@ -47,7 +47,7 @@ export default function CaseStudiesPage({ navigate }) {
               <div className={`grid lg:grid-cols-2 gap-14 items-start ${i % 2 !== 0 ? "lg:grid-flow-col-dense" : ""}`}>
                 <div className={`${i % 2 !== 0 ? "lg:col-start-2" : ""} space-y-4`}>
                   <div className="relative rounded-3xl overflow-hidden aspect-[4/3]">
-                    <img src={cs.img} alt={cs.type} className="w-full h-full object-cover" />
+                    <img src={cs.img} alt={cs.type} className="w-full h-full object-cover object-top" />
                     <div className="absolute inset-0" style={{ background:"linear-gradient(to top,rgba(46,26,50,0.85) 0%,rgba(71,41,76,0.1) 60%,transparent 100%)" }} />
                     <div className="absolute top-5 left-5"><span className="text-3xl">{cs.emoji}</span></div>
                     <div className="absolute bottom-5 left-5 right-5">
@@ -109,7 +109,7 @@ export default function CaseStudiesPage({ navigate }) {
           </div>
         </div>
       </section>
-      <CTASection navigate={navigate} />
+    
     </div>
   );
 }

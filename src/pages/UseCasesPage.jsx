@@ -1,8 +1,7 @@
 import { CTASection, SectionHeader, CheckIcon } from "../components/UI";
 import { IMAGES } from "../images";
 
-const DARK_BG = { backgroundColor: "#2e1a32" };
-const MID_BG  = { backgroundColor: "#47294c" };
+const MID_BG = { backgroundColor: "#47294c" };
 
 const audiences = [
   { title:"Personal Trainers", tagline:"Spend Less Time on Admin. More Time Actually Coaching.", desc:"Your time is a high-value asset. When it's absorbed by manual tasks and disconnected tools, delivery and growth both suffer. SmartCoach360 standardises your operations so you can focus on coaching outcomes.", img:IMAGES.ptMale, emoji:"🏋️",
@@ -19,38 +18,90 @@ const audiences = [
     solutions:[{title:"Multi-branch & Team Management",desc:"Manage every branch from one central dashboard with consistent workflows."},{title:"Automated Lead & Client Allocation",desc:"New enquiries assigned to the right coach automatically."},{title:"Role Management & Access Control",desc:"Granular permissions for every team level and role."},{title:"Organisation-wide Dashboards",desc:"Real-time view of stats, performance, and revenue across every branch."},{title:"SSO & Enterprise Security",desc:"Single Sign-On keeps team access secure and centralised."},{title:"Bulk Upload & Onboarding",desc:"Onboard hundreds of clients and coaches at once."}]},
 ];
 
-const compRows=[
-  {f:"Custom Programs",pt:true,gym:true,nut:true,ent:true},{f:"Nutrition Tracking",pt:true,gym:true,nut:true,ent:true},
-  {f:"Client Messaging",pt:true,gym:true,nut:true,ent:true},{f:"Payment Processing",pt:true,gym:true,nut:true,ent:true},
-  {f:"Team Management",pt:false,gym:true,nut:false,ent:true},{f:"Multi-branch Support",pt:false,gym:true,nut:false,ent:true},
-  {f:"Auto Lead Allocation",pt:false,gym:true,nut:false,ent:true},{f:"Role & Access Control",pt:false,gym:true,nut:false,ent:true},
-  {f:"SSO & Enterprise Security",pt:false,gym:false,nut:false,ent:true},{f:"Dedicated Success Manager",pt:false,gym:true,nut:false,ent:true},
+const compRows = [
+  {f:"Custom Programs",        pt:true, gym:true, nut:true, ent:true},
+  {f:"Nutrition Tracking",     pt:true, gym:true, nut:true, ent:true},
+  {f:"Client Messaging",       pt:true, gym:true, nut:true, ent:true},
+  {f:"Payment Processing",     pt:true, gym:true, nut:true, ent:true},
+  {f:"Team Management",        pt:false,gym:true, nut:false,ent:true},
+  {f:"Multi-branch Support",   pt:false,gym:true, nut:false,ent:true},
+  {f:"Auto Lead Allocation",   pt:false,gym:true, nut:false,ent:true},
+  {f:"Role & Access Control",  pt:false,gym:true, nut:false,ent:true},
+  {f:"SSO & Enterprise Security",pt:false,gym:false,nut:false,ent:true},
+  {f:"Dedicated Success Manager",pt:false,gym:true, nut:false,ent:true},
 ];
+
+const COL_HEADERS = ["Personal Trainer", "Gym / Studio", "Nutrition Coach", "Large Org"];
+
+function TickCell({ value }) {
+  if (value) {
+    return (
+      <span
+        className="inline-flex items-center justify-center w-7 h-7 rounded-full"
+        style={{ backgroundColor: "#f0eaf3" }}
+      >
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#47294c" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round">
+          <path d="M5 13l4 4L19 7" />
+        </svg>
+      </span>
+    );
+  }
+  return (
+    <span
+      className="inline-flex items-center justify-center w-7 h-7 rounded-full text-sm"
+      style={{ backgroundColor: "#faf7fc", color: "#c5b8cc" }}
+    >
+      —
+    </span>
+  );
+}
 
 export default function UseCasesPage({ navigate }) {
   return (
     <div className="pt-16">
 
-      {/* ── HERO: plain, no background image ── */}
-      <section className="py-24 bg-brand-lilac border-b border-brand-silver-xl">
-        <div className="max-w-3xl mx-auto px-4 text-center">
-          <span className="inline-block text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-6"
-            style={{ backgroundColor:"rgba(71,41,76,0.1)", color:"#47294c" }}>
+      {/* ── HERO ── */}
+      <section
+        className="relative py-28 overflow-hidden flex items-center"
+        style={{ backgroundColor: "#1c0f1f", minHeight: "68vh" }}
+      >
+        {/* Ambient glow */}
+        <div
+          className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] pointer-events-none"
+          style={{
+            background: "radial-gradient(ellipse at 50% 0%, rgba(71,41,76,0.6) 0%, transparent 70%)",
+            filter: "blur(40px)",
+          }}
+        />
+        <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
+          <span
+            className="inline-block text-[0.7rem] font-bold uppercase tracking-[0.18em] px-4 py-1.5 rounded-full mb-8"
+            style={{ backgroundColor: "rgba(71,41,76,0.6)", color: "#c9a8d6", border: "1px solid rgba(129,69,140,0.35)" }}
+          >
             Solutions
           </span>
-          <h1 className="font-display text-5xl sm:text-6xl text-brand-black mb-5 leading-tight">
+          <h1
+            className="font-display text-5xl sm:text-[3.5rem] leading-[1.1] mb-6"
+            style={{ color: "#faf4fc" }}
+          >
             Built for Every Kind of<br />
-            <span style={{ color:"#47294c" }}>Fitness Professional</span>
+            <span style={{ color: "#a06cb0" }}>Fitness Professional</span>
           </h1>
-          <p className="text-brand-fedora text-lg leading-relaxed max-w-2xl mx-auto">
+          <p className="text-base sm:text-[1.0625rem] leading-relaxed max-w-2xl mx-auto" style={{ color: "#8a7490" }}>
             Whether you coach one-on-one, run a gym, deliver online nutrition programmes, or manage a national organisation—SmartCoach360 fits the way you operate.
           </p>
           {/* Audience pills */}
-          <div className="flex flex-wrap justify-center gap-2.5 mt-8">
-            {["Personal Trainers","Gym Owners & Studios","Nutrition Coaches","Large Organisations"].map((label) => (
-              <span key={label}
-                className="text-xs font-semibold px-4 py-2 rounded-full border border-brand-silver-xl text-brand-fedora-dk"
-                style={{ backgroundColor:"#fff" }}>
+          <div className="flex flex-wrap justify-center gap-2.5 mt-9">
+            {["Personal Trainers", "Gym Owners & Studios", "Nutrition Coaches", "Large Organisations"].map((label) => (
+              <span
+                key={label}
+                className="text-[0.72rem] font-semibold px-4 py-1.5 rounded-full"
+                style={{
+                  backgroundColor: "rgba(255,255,255,0.05)",
+                  color: "#c5b0d0",
+                  border: "1px solid rgba(162,122,175,0.25)",
+                }}
+              >
                 {label}
               </span>
             ))}
@@ -63,78 +114,115 @@ export default function UseCasesPage({ navigate }) {
         {audiences.map((a, idx) => {
           const isEven = idx % 2 === 0;
           return (
-            <div key={idx} className={`py-20 ${isEven ? "bg-brand-lilac" : ""}`}
-              style={isEven ? {} : { backgroundColor:"#f7f3f8" }}>
+            <div
+              key={idx}
+              className="py-20"
+              style={{ backgroundColor: isEven ? "#fff" : "#faf7fc" }}
+            >
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className={`grid lg:grid-cols-2 gap-12 items-start ${!isEven ? "lg:grid-flow-col-dense" : ""}`}>
 
-                  {/* ── LEFT / IMAGE COLUMN ── */}
+                  {/* ── IMAGE + CHALLENGES COLUMN ── */}
                   <div className={`flex flex-col gap-5 ${!isEven ? "lg:col-start-2" : ""}`}>
 
                     {/* Image card */}
-                    <div className="relative rounded-3xl overflow-hidden aspect-[4/3] shadow-xl">
+                    <div className="relative rounded-2xl overflow-hidden aspect-[4/3] shadow-lg" style={{ border: "1px solid #e8e0ed" }}>
                       <img src={a.img} alt={a.title} className="w-full h-full object-cover" />
-                      <div className="absolute inset-0" style={{ background:"linear-gradient(to top,rgba(46,26,50,0.80) 0%,transparent 55%)" }} />
+                      <div
+                        className="absolute inset-0"
+                        style={{ background: "linear-gradient(to top, rgba(28,15,31,0.82) 0%, transparent 55%)" }}
+                      />
                       <div className="absolute top-5 left-5">
                         <span className="text-3xl drop-shadow">{a.emoji}</span>
                       </div>
                       <div className="absolute bottom-0 left-0 right-0 p-6">
-                        <span className="text-xs font-bold uppercase tracking-widest text-brand-lilac-200 opacity-80 mb-1 block">
+                        <span
+                          className="text-[0.65rem] font-bold uppercase tracking-[0.18em] mb-1 block"
+                          style={{ color: "rgba(200,170,214,0.7)" }}
+                        >
                           For
                         </span>
-                        <h3 className="font-display text-2xl text-brand-lilac leading-tight">{a.title}</h3>
+                        <h3 className="font-display text-2xl leading-tight" style={{ color: "#faf4fc" }}>
+                          {a.title}
+                        </h3>
                       </div>
                     </div>
 
-                    {/* Common Challenges — lives below image */}
-                    <div className="rounded-2xl border border-rose-100 overflow-hidden"
-                      style={{ backgroundColor:"#fff8f8" }}>
-                      <div className="flex items-center gap-2.5 px-5 py-3.5 border-b border-rose-100"
-                        style={{ backgroundColor:"#fff1f1" }}>
-                        <svg className="w-4 h-4 text-rose-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
+                    {/* Challenges card */}
+                    <div
+                      className="rounded-2xl overflow-hidden"
+                      style={{ backgroundColor: "#fff8f8", border: "1px solid #fce4e4" }}
+                    >
+                      <div
+                        className="flex items-center gap-2.5 px-5 py-3.5 border-b"
+                        style={{ backgroundColor: "#fff1f1", borderColor: "#fce4e4" }}
+                      >
+                        <svg className="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="#f87171" strokeWidth={2.5}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
                         </svg>
-                        <h3 className="text-xs font-bold text-rose-500 uppercase tracking-widest">Common Challenges</h3>
+                        <h3
+                          className="text-[0.67rem] font-bold uppercase tracking-[0.16em]"
+                          style={{ color: "#e05555" }}
+                        >
+                          Common Challenges
+                        </h3>
                       </div>
-                      <div className="divide-y divide-rose-50">
+                      <div className="divide-y" style={{ borderColor: "#fef2f2" }}>
                         {a.challenges.map((c, i) => (
                           <div key={i} className="flex items-start gap-3 px-5 py-3">
-                            <svg className="w-3.5 h-3.5 text-rose-300 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12"/>
+                            <svg className="w-3.5 h-3.5 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="#fca5a5" strokeWidth={2.5}>
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12"/>
                             </svg>
-                            <p className="text-sm text-rose-700 leading-snug">{c}</p>
+                            <p className="text-sm leading-snug" style={{ color: "#b45252" }}>{c}</p>
                           </div>
                         ))}
                       </div>
                     </div>
                   </div>
 
-                  {/* ── RIGHT / CONTENT COLUMN ── */}
+                  {/* ── CONTENT COLUMN ── */}
                   <div className={`flex flex-col justify-start ${!isEven ? "lg:col-start-1" : ""}`}>
-                    <h2 className="font-display text-3xl sm:text-4xl text-brand-black mb-3 leading-tight">
+                    <h2
+                      className="font-display text-3xl sm:text-[2.1rem] leading-tight mb-3"
+                      style={{ color: "#1c0f1f" }}
+                    >
                       {a.tagline}
                     </h2>
-                    <p className="text-brand-fedora leading-relaxed mb-8 text-base">{a.desc}</p>
+                    <p className="leading-relaxed mb-8 text-[0.9375rem]" style={{ color: "#7b6880" }}>
+                      {a.desc}
+                    </p>
 
-                    {/* Solutions grid */}
+                    {/* Solutions */}
                     <div>
-                      <h3 className="text-xs font-bold uppercase tracking-widest mb-4"
-                        style={{ color:"#47294c" }}>
+                      <p
+                        className="text-[0.67rem] font-bold uppercase tracking-[0.18em] mb-4"
+                        style={{ color: "#a06cb0" }}
+                      >
                         How SmartCoach360 Helps
-                      </h3>
+                      </p>
                       <div className="grid sm:grid-cols-2 gap-3">
                         {a.solutions.map((s, i) => (
-                          <div key={i}
-                            className="rounded-2xl p-4 border transition-all hover:shadow-md hover:-translate-y-0.5"
-                            style={{ backgroundColor:"#fff", borderColor:"#e8dced" }}>
+                          <div
+                            key={i}
+                            className="rounded-xl p-4 transition-all hover:shadow-md hover:-translate-y-0.5"
+                            style={{ backgroundColor: "#fff", border: "1px solid #e8e0ed", boxShadow: "0 1px 4px rgba(46,26,50,0.04)" }}
+                          >
                             <div className="flex items-start gap-3">
-                              <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 shadow-sm"
-                                style={MID_BG}>
-                                <CheckIcon className="w-3 h-3 text-white" />
+                              <div
+                                className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
+                                style={{ backgroundColor: "#47294c" }}
+                              >
+                                <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={3.5} strokeLinecap="round" strokeLinejoin="round">
+                                  <path d="M5 13l4 4L19 7" />
+                                </svg>
                               </div>
                               <div>
-                                <h4 className="font-semibold text-brand-black text-xs mb-0.5 leading-snug">{s.title}</h4>
-                                <p className="text-brand-fedora text-xs leading-relaxed">{s.desc}</p>
+                                <h4 className="font-semibold text-[0.8rem] mb-0.5 leading-snug" style={{ color: "#1c0f1f" }}>
+                                  {s.title}
+                                </h4>
+                                <p className="text-[0.76rem] leading-relaxed" style={{ color: "#8a7490" }}>
+                                  {s.desc}
+                                </p>
                               </div>
                             </div>
                           </div>
@@ -151,30 +239,71 @@ export default function UseCasesPage({ navigate }) {
       </section>
 
       {/* ── COMPARISON TABLE ── */}
-      <section className="py-20" style={DARK_BG}>
-        <div className="max-w-5xl mx-auto px-4">
-          <SectionHeader tag="Plan Comparison" title="Which Plan Is Right for You?" light />
-          <div className="overflow-x-auto rounded-3xl border border-brand-boss/50 shadow-2xl">
-            <table className="w-full min-w-[500px]" style={{ backgroundColor:"rgba(71,41,76,0.3)" }}>
+      <section
+        className="py-20"
+        style={{ backgroundColor: "#faf7fc", borderTop: "1px solid #e8e0ed" }}
+      >
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
+
+          {/* Header */}
+          <div className="text-center mb-12">
+            <span
+              className="inline-block text-[0.7rem] font-bold uppercase tracking-[0.18em] px-4 py-1.5 rounded-full mb-5"
+              style={{ backgroundColor: "#f0eaf3", color: "#7b4e87", border: "1px solid #ddd4e4" }}
+            >
+              Plan Comparison
+            </span>
+            <h2
+              className="font-display text-3xl sm:text-4xl font-semibold"
+              style={{ color: "#1c0f1f" }}
+            >
+              Which Plan Is Right for You?
+            </h2>
+          </div>
+
+          {/* Table */}
+          <div
+            className="overflow-x-auto rounded-2xl"
+            style={{
+              border: "1px solid #e0d6e8",
+              boxShadow: "0 4px 32px rgba(46,26,50,0.07), 0 1px 4px rgba(46,26,50,0.05)",
+            }}
+          >
+            <table className="w-full min-w-[520px]" style={{ backgroundColor: "#fff" }}>
               <thead>
-                <tr className="border-b border-brand-boss/50">
-                  <th className="text-left p-4 text-sm font-semibold text-brand-silver">Feature</th>
-                  {["Personal Trainer","Gym / Studio","Nutrition Coach","Large Org"].map(h => (
-                    <th key={h} className="p-4 text-center text-xs font-bold text-brand-lilac-200">{h}</th>
+                <tr style={{ backgroundColor: "#f7f2fa", borderBottom: "1px solid #e8e0ed" }}>
+                  <th
+                    className="text-left px-6 py-4 text-[0.65rem] font-bold uppercase tracking-[0.16em]"
+                    style={{ color: "#a891b0" }}
+                  >
+                    Feature
+                  </th>
+                  {COL_HEADERS.map((h) => (
+                    <th
+                      key={h}
+                      className="px-5 py-4 text-center text-[0.65rem] font-bold uppercase tracking-[0.16em]"
+                      style={{ color: "#47294c" }}
+                    >
+                      {h}
+                    </th>
                   ))}
                 </tr>
               </thead>
               <tbody>
                 {compRows.map((row, i) => (
-                  <tr key={i} className="border-b border-brand-boss/30 hover:bg-brand-boss/20 transition-colors">
-                    <td className="p-4 text-sm text-brand-lilac-100">{row.f}</td>
+                  <tr
+                    key={i}
+                    className="transition-colors"
+                    style={{ borderBottom: i < compRows.length - 1 ? "1px solid #f0eaf3" : "none" }}
+                    onMouseEnter={e => e.currentTarget.style.backgroundColor = "#faf7fc"}
+                    onMouseLeave={e => e.currentTarget.style.backgroundColor = "transparent"}
+                  >
+                    <td className="px-6 py-4 text-sm font-medium" style={{ color: "#2e1a32" }}>
+                      {row.f}
+                    </td>
                     {[row.pt, row.gym, row.nut, row.ent].map((v, j) => (
-                      <td key={j} className="p-4 text-center">
-                        {v
-                          ? <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-brand-boss-mid">
-                              <CheckIcon className="w-3.5 h-3.5 text-brand-lilac" />
-                            </span>
-                          : <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-brand-boss/20 text-brand-fedora text-xs">—</span>}
+                      <td key={j} className="px-5 py-4 text-center">
+                        <TickCell value={v} />
                       </td>
                     ))}
                   </tr>
@@ -185,7 +314,6 @@ export default function UseCasesPage({ navigate }) {
         </div>
       </section>
 
-      <CTASection navigate={navigate} />
     </div>
   );
 }
