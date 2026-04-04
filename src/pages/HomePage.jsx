@@ -57,7 +57,6 @@ export default function HomePage({ navigate }) {
       </div>
     </div>
 
-    {/* Stepper track */}
     <div className="flex items-start mb-8">
       {steps.map((s, i) => (
         <React.Fragment key={i}>
@@ -74,7 +73,7 @@ export default function HomePage({ navigate }) {
           </div>
 
           {i < steps.length - 1 && (
-            <div className="flex-1 mt-[22px] mx-1 rounded-full relative overflow-hidden" style={{ height: "3px", background: "rgba(71,41,76,0.15)" }}>
+            <div className="flex-1 mt-[22px] rounded-full relative overflow-hidden" style={{ height: "3px", background: "rgba(71,41,76,0.15)" }}>
               <div
                 className="absolute inset-y-0 left-0 w-full rounded-full"
                 style={{
