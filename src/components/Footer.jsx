@@ -30,9 +30,9 @@ export default function Footer({ navigate }) {
             </p>
             <div className="flex gap-2">
               {["𝕏", "in", "📸"].map((s, i) => (
-                <a key={i} href="#" className="w-9 h-9 rounded-xl bg-brand-boss/60 hover:bg-brand-boss-mid flex items-center justify-center text-xs text-brand-silver hover:text-brand-lilac transition-all">
+                <p key={i} href="#" className="w-9 h-9 rounded-xl bg-brand-boss/60 hover:bg-brand-boss-mid flex items-center justify-center text-xs text-brand-silver hover:text-brand-lilac transition-all">
                   {s}
-                </a>
+                </p>
               ))}
             </div>
           </div>
@@ -41,7 +41,7 @@ export default function Footer({ navigate }) {
               <h4 className="text-brand-lilac-100 font-semibold text-sm mb-4">{cat}</h4>
               <ul className="space-y-3">
                 {links.map(l => (
-                  <li key={l}>
+                  <li key={l.label}>
                     <Link to={l.path}>
                       <a className="text-sm text-brand-fedora-lt hover:text-brand-lilac-100 transition-colors">{l.label}</a>
                     </Link>

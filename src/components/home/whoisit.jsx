@@ -45,7 +45,7 @@ export default function WhoIsIt({DARK_BG,IMAGES}) {
                         <Link to={"/usecases"} key={i}> 
                          <button key={i}  className="group relative rounded-3xl overflow-hidden text-left hover:scale-[1.02] transition-all duration-300 shadow-xl">
                         <div className="relative aspect-[3/4]">
-                          <img src={a.img} alt={a.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                          <img src={a.img} loading="lazy" alt={a.title} className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105" />
                           <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(28,15,31,0.92) 0%, rgba(46,26,50,0.3) 60%, transparent 100%)" }} />
                         </div>
                         <div className="absolute bottom-0 left-0 right-0 p-5">
