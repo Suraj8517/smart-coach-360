@@ -83,4 +83,5 @@ export const IMAGES = {
   telephony:telephony,
   lab:lab,
   web:web,
+  largeorg:largeorg
 };

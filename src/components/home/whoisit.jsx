@@ -30,7 +30,7 @@ export default function WhoIsIt({DARK_BG,IMAGES}) {
         icon: <Trophy />,
         title: "Large Organisations",
         desc: "Enterprise tools for multi-branch, multi-coach teams.",
-        img: IMAGES.org,
+        img: IMAGES.largeorg,
         page: "usecases",
       },
     ];
