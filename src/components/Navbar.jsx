@@ -1,118 +1,231 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { IMAGES } from "../images";
 
 const NAV = [
-  { label: "Solutions", path: "/usecases" },
+  { label: "Solutions",    path: "/usecases" },
   { label: "Integrations", path: "/integrations" },
   { label: "Case Studies", path: "/case-studies" },
-  { label: "Compare", path: "/comparison" },
-  { label: "Blogs", path: "/blogs" },
+  { label: "Compare",      path: "/comparison" },
+  { label: "Blogs",        path: "/blogs" },
 ];
 
-export default function Navbar() {
-  const [open, setOpen] = useState(false);
+const CALENDLY = "https://calendly.com/sangameswaran-vmaxhealthtech/30min";
+
+export default function Navbar({ onOpenForm, onOpenContactForm }) {
+  const [open,      setOpen]      = useState(false);
+  const [scrolled,  setScrolled]  = useState(false);
+  const [indicator, setIndicator] = useState({ left: 0, width: 0, opacity: 0 });
+
+  const navRef   = useRef(null);
+  const linkRefs = useRef({});
   const location = useLocation();
   const navigate = useNavigate();
 
+  // Floating pill on scroll
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Close drawer on route change
+  useEffect(() => { setOpen(false); }, [location.pathname]);
+
+  // Sliding active indicator — needs inline style since left/width are JS-measured
+  useEffect(() => {
+    const activeEl = linkRefs.current[location.pathname];
+    const navEl    = navRef.current;
+    if (activeEl && navEl) {
+      const nr = navEl.getBoundingClientRect();
+      const lr = activeEl.getBoundingClientRect();
+      setIndicator({ left: lr.left - nr.left, width: lr.width, opacity: 1 });
+    } else {
+      setIndicator((p) => ({ ...p, opacity: 0 }));
+    }
+  }, [location.pathname]);
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-brand-lilac/95 backdrop-blur-md border-b border-brand-silver-xl">
-      
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-
-        {/* Logo */}
-        <button
-          onClick={() => navigate("/")}
-          className="flex items-center gap-2.5 group"
+    <>
+      {/* ═══════════════════════════════════════
+          NAVBAR
+      ═══════════════════════════════════════ */}
+      <nav
+        className={`fixed left-0 right-0 z-50 transition-all duration-300 ${
+          scrolled ? "top-2" : "top-0"
+        }`}
+      >
+        {/* Bar — full-width at top, floating pill when scrolled */}
+        <div
+          className={`mx-auto transition-all duration-300 ${
+            scrolled
+              ? "max-w-[1200px] mx-4 sm:mx-6 lg:mx-8 rounded-[18px] border border-[rgba(201,168,214,0.35)] bg-[rgba(253,250,255,0.96)] backdrop-blur-xl shadow-[0_4px_24px_rgba(71,41,76,0.08),0_1px_4px_rgba(71,41,76,0.04),inset_0_1px_0_rgba(255,255,255,0.9)]"
+              : "border-b border-[#e8e0ed] bg-[rgba(250,247,252,0.97)] backdrop-blur-md"
+          }`}
         >
-          <div className="w-9 h-9 rounded-xl bg-lilac-300 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow">
-            <img src={IMAGES.logo} alt="Logo" className="w-5 h-5"/>
-          </div>
-          <span className="font-display text-lg text-brand-black">
-            SmartCoach<span className="text-brand-boss">360</span>
-          </span>
-        </button>
+          <div
+            className={`flex items-center justify-between px-5 transition-all duration-300 ${
+              scrolled ? "h-[54px]" : "h-[60px]"
+            }`}
+          >
 
-        {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-1">
-          {NAV.map((n) => {
-            const active = location.pathname === n.path;
+            {/* ── Logo ── */}
+            <button
+              onClick={() => navigate("/")}
+              className="flex items-center gap-2.5 group bg-transparent border-none p-0 cursor-pointer"
+            >
+              <div className="w-[34px] h-[34px] rounded-[10px] bg-gradient-to-br from-[#c9a8d6] to-[#a06cb0] flex items-center justify-center flex-shrink-0 shadow-[0_2px_8px_rgba(160,108,176,0.3)] transition-all duration-200 group-hover:shadow-[0_4px_16px_rgba(160,108,176,0.45)] group-hover:-translate-y-px">
+                <img
+                  src={IMAGES.logo}
+                  alt="SmartCoach360"
+                  className="w-[18px] h-[18px] object-contain"
+                />
+              </div>
+              <span className="font-display text-[17px] text-[#1c0f1f] tracking-[-0.01em] whitespace-nowrap">
+                SmartCoach<span className="text-[#a06cb0]">360</span>
+              </span>
+            </button>
 
-            return (
-              <Link
-                key={n.path}
-                to={n.path}
-                className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
-                  active
-                    ? "bg-brand-boss text-brand-lilac"
-                    : "text-brand-fedora-dk hover:bg-brand-lilac-100 hover:text-brand-boss"
-                }`}
+            {/* ── Desktop nav links ── */}
+            <div ref={navRef} className="hidden md:flex items-center gap-0.5 relative">
+              {/* Sliding gradient pill — inline style required for dynamic JS values */}
+              <div
+                className="absolute bottom-1 h-[30px] rounded-lg bg-gradient-to-br from-[#47294c] to-[#a06cb0] pointer-events-none z-0 transition-[left,width,opacity] duration-[350ms]"
+                style={{
+                  left:    indicator.left,
+                  width:   indicator.width,
+                  opacity: indicator.opacity,
+                }}
+              />
+              {NAV.map((n) => {
+                const active = location.pathname === n.path;
+                return (
+                  <Link
+                    key={n.path}
+                    to={n.path}
+                    ref={(el) => { if (el) linkRefs.current[n.path] = el; }}
+                    className={`relative z-[1] px-3.5 py-1.5 rounded-lg text-[13.5px] font-medium whitespace-nowrap no-underline transition-colors duration-200 ${
+                      active
+                        ? "text-white pointer-events-none"
+                        : "text-[#5c4862] hover:text-[#47294c]"
+                    }`}
+                  >
+                    {n.label}
+                  </Link>
+                );
+              })}
+            </div>
+
+            {/* ── Desktop CTAs ── */}
+            <div className="hidden md:flex items-center gap-2.5">
+              <button
+                onClick={onOpenContactForm}
+                className="text-[13.5px] font-medium text-[#8a7490] bg-transparent border-none cursor-pointer px-3 py-1.5 rounded-lg transition-all duration-200 hover:text-[#47294c] hover:bg-[rgba(71,41,76,0.06)]"
               >
-                {n.label}
-              </Link>
-            );
-          })}
+                Contact Us
+              </button>
+              <button
+                onClick={() => window.open(CALENDLY, "_blank")}
+                className="text-[13.5px] font-semibold text-white bg-gradient-to-br from-[#a06cb0] to-[#47294c] border-none cursor-pointer px-[18px] py-2 rounded-[10px] whitespace-nowrap shadow-[0_3px_12px_rgba(71,41,76,0.28)] transition-all duration-200 hover:shadow-[0_6px_20px_rgba(71,41,76,0.38)] hover:-translate-y-px active:translate-y-0 active:opacity-90"
+              >
+                Book a Demo →
+              </button>
+            </div>
+
+            {/* ── Mobile hamburger ── */}
+            <button
+              onClick={() => setOpen(!open)}
+              aria-label="Toggle menu"
+              className="md:hidden p-1.5 rounded-[9px] bg-transparent border-none text-[#5c4862] cursor-pointer transition-all duration-150 hover:bg-[rgba(71,41,76,0.07)] hover:text-[#47294c]"
+            >
+              {open ? (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                  <path d="M18 6L6 18M6 6l12 12" />
+                </svg>
+              ) : (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                  <path d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              )}
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      {/* ═══════════════════════════════════════
+          MOBILE DRAWER
+      ═══════════════════════════════════════ */}
+
+      {/* Backdrop */}
+      <div
+        onClick={() => setOpen(false)}
+        className={`fixed inset-0 z-[49] bg-[rgba(28,15,31,0.45)] backdrop-blur-[4px] transition-opacity duration-300 md:hidden ${
+          open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        }`}
+      />
+
+      {/* Slide-in panel */}
+      <div
+        className={`fixed top-0 right-0 bottom-0 z-[49] w-[280px] bg-[#fdf9ff] border-l border-[#e8e0ed] shadow-[-8px_0_48px_rgba(71,41,76,0.12)] flex flex-col px-4 py-5 overflow-y-auto transition-transform duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] md:hidden ${
+          open ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        {/* Panel header */}
+        <div className="flex items-center justify-between mb-7 px-1">
+          <span className="font-display text-base text-[#1c0f1f]">
+            SmartCoach<span className="text-[#a06cb0]">360</span>
+          </span>
+          <button
+            onClick={() => setOpen(false)}
+            aria-label="Close menu"
+            className="w-[30px] h-[30px] rounded-lg border-none bg-[rgba(71,41,76,0.07)] flex items-center justify-center text-[#5c4862] cursor-pointer transition-colors duration-150 hover:bg-[rgba(71,41,76,0.14)]"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+              <path d="M18 6L6 18M6 6l12 12" />
+            </svg>
+          </button>
         </div>
 
-        {/* Right CTA */}
-        <div className="hidden md:flex items-center gap-3">
-          <button className="text-sm font-medium text-brand-fedora hover:text-brand-boss px-3 py-2 transition-colors">
-            Sign In
-          </button>
-          <button className="btn-primary text-sm !py-2.5 !px-5 !rounded-xl">
-            Book a Demo
-          </button>
-        </div>
-
-        {/* Mobile Toggle */}
-        <button
-          onClick={() => setOpen(!open)}
-          className="md:hidden p-2 rounded-lg text-brand-fedora-dk hover:bg-brand-lilac-100"
-        >
-          {open ? (
-            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12"/>
-            </svg>
-          ) : (
-            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16"/>
-            </svg>
-          )}
-        </button>
-      </div>
-
-      {/* Mobile Menu */}
-      {open && (
-        <div className="md:hidden bg-brand-lilac border-t border-brand-silver-xl px-4 py-4 space-y-1 shadow-xl">
+        {/* Nav links */}
+        <nav className="flex flex-col gap-0.5 flex-1">
           {NAV.map((n) => {
             const active = location.pathname === n.path;
-
             return (
               <Link
                 key={n.path}
                 to={n.path}
                 onClick={() => setOpen(false)}
-                className={`block w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium ${
+                className={`block px-4 py-2.5 rounded-[10px] text-sm font-medium no-underline transition-all duration-150 ${
                   active
-                    ? "bg-brand-boss text-brand-lilac"
-                    : "text-brand-fedora-dk hover:bg-brand-lilac-100"
+                    ? "bg-gradient-to-br from-[#47294c] to-[#a06cb0] text-white pointer-events-none"
+                    : "text-[#5c4862] hover:bg-[rgba(71,41,76,0.06)] hover:text-[#47294c]"
                 }`}
               >
                 {n.label}
               </Link>
             );
           })}
+        </nav>
 
-          <div className="pt-3 border-t border-brand-silver-xl flex flex-col gap-2">
-            <button className="text-sm font-medium text-brand-fedora px-4 py-2.5 text-left">
-              Sign In
-            </button>
-            <button className="btn-primary text-sm w-full justify-center">
-              Book a Demo
-            </button>
-          </div>
+        {/* Divider */}
+        <div className="h-px bg-[#e8e0ed] my-4 mx-1" />
+
+        {/* Bottom actions */}
+        <div className="flex flex-col gap-2 px-1">
+          <button
+            onClick={() => { setOpen(false); onOpenContactForm?.(); }}
+            className="text-sm font-medium text-[#8a7490] bg-transparent border-none cursor-pointer px-3 py-2.5 rounded-[10px] text-left transition-all duration-150 hover:bg-[rgba(71,41,76,0.06)] hover:text-[#47294c]"
+          >
+            Contact Us
+          </button>
+          <button
+            onClick={() => { setOpen(false); window.open(CALENDLY, "_blank"); }}
+            className="text-sm font-semibold text-white bg-gradient-to-br from-[#a06cb0] to-[#47294c] border-none cursor-pointer px-4 py-3 rounded-xl text-center shadow-[0_3px_14px_rgba(71,41,76,0.28)] transition-all duration-200 hover:opacity-90 hover:-translate-y-px"
+          >
+            Book a Demo →
+          </button>
         </div>
-      )}
-    </nav>
+      </div>
+    </>
   );
 }

@@ -6,7 +6,7 @@ const LINKS = {
     {label:"Features", path :"/"}, {label:"Integrations", path :"/integrations"}, {label:"Pricing", path :"/pricing"}, {label:"Mobile App", path :"/mobile-app"}, {label:"Security", path :"/security"} ],
   Solutions: [{label:"Personal Trainers", path :"/personal-trainers"}, {label:"Gym Owners", path :"/gym-owners"}, {label:"Nutrition Coaches", path :"/nutrition-coaches"}, {label:"Enterprise", path :"/enterprise"}],
   Resources: [  {label:"Case Studies", path :"case-studies"}, {label:"Blog", path :"/blogs"}, {label:"Help Centre", path :"/help-centre"}, {label:"Webinars", path :"/webinars"}],
-  Company:   [{label:"About", path :"/about"}, {label:"Careers", path :"/careers"}, {label:"Contact", path :"/contact-us"}, {label:"Privacy", path :"/privacy"}, {label:"Terms", path :"/terms"}],
+  Company:   [{label:"About", path :"/about"},{label:"Contact", path :"/contact-us"}],
 };
 
 export default function Footer({ navigate }) {
