@@ -53,7 +53,7 @@ export default function CaseStudiesPage({ navigate }) {
                       <span className="text-brand-lilac text-xs font-semibold px-3 py-1.5 rounded-xl" style={{ backgroundColor:"rgba(71,41,76,0.75)", backdropFilter:"blur(8px)" }}>{cs.subheading}</span>
                     </div>
                   </div>
-                  <div className="grid grid-cols-5 gap-2">
+                  <div className="grid grid-cols-3 md:grid-cols-5 gap-2">
                     {cs.results.map((r,j) => (
                       <div key={j} className="rounded-2xl p-3 text-center" style={DARK_BG}>
                         <p className="font-display text-lg text-brand-lilac-300 leading-tight">{r.value}</p>
