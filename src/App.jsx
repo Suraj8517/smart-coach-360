@@ -10,6 +10,7 @@ import Blogs from "./pages/blogs";
 import BlogsPost from "./pages/blogsPost";
 import HelpCentre from "./pages/Helpcentrepage";
 import ContactPage from "./pages/contactus";
+import AboutUs from "./pages/Aboutus";
 
 export default function App() {
   return (
@@ -27,6 +28,8 @@ export default function App() {
             <Route path="/blogs" element={<Blogs />} />
             <Route path="/blogs/:slug" element={<BlogsPost />} />
             <Route path="/contact-us" element={<ContactPage />} />
+            <Route path="/about-us" element={<AboutUs />} />
+
 
           </Routes>
         </main>

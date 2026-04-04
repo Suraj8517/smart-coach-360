@@ -1,30 +1,63 @@
 export function CTASection({ navigate }) {
   return (
-    <section className="py-24 px-4">
-      <div className="max-w-5xl mx-auto">
-        <div className="relative overflow-hidden rounded-[2.5rem] px-8 py-20 text-center" style={{ backgroundColor: "#2e1a32" }}>
+    <section className="py-16 px-4">
+      <div className="max-w-4xl mx-auto">
+        <div className="relative overflow-hidden rounded-3xl px-6 sm:px-10 py-14 text-center backdrop-blur-xl border border-white/10 bg-gradient-to-br from-[#2e1a32] to-[#3c2442] shadow-2xl">
+
+          {/* Background Image */}
           <div
-            className="absolute inset-0 opacity-15"
-            style={{ backgroundImage: "url(https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1400&q=60&fit=crop)", backgroundSize: "cover", backgroundPosition: "center" }}
+            className="absolute inset-0 opacity-10"
+            style={{
+              backgroundImage:
+                "url(https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1400&q=60&fit=crop)",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
           />
-          <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(46,26,50,0.9) 0%, rgba(71,41,76,0.75) 100%)" }} />
-          <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full opacity-20 blur-3xl" style={{ backgroundColor: "#816f7d" }} />
-          <div className="absolute -bottom-20 -left-20 w-80 h-80 rounded-full opacity-10 blur-3xl" style={{ backgroundColor: "#c3b9b7" }} />
+
+          {/* Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-br from-black/40 to-transparent" />
+
+          {/* Glow Effect */}
+          <div className="absolute -top-16 right-10 w-40 h-40 bg-purple-400/20 blur-3xl rounded-full" />
+          <div className="absolute -bottom-16 left-10 w-52 h-52 bg-pink-300/10 blur-3xl rounded-full" />
+
+          {/* Content */}
           <div className="relative z-10">
-            <span className="section-tag !bg-brand-boss/60 !text-brand-lilac-200 mb-6">Get Started Today</span>
-            <h2 className="font-display text-4xl sm:text-5xl text-brand-lilac mb-5 leading-tight">
-              Ready to Change the Way<br className="hidden sm:block" /> You Coach?
+            <span className="inline-block text-xs tracking-wide px-4 py-1.5 rounded-full bg-white/10 text-purple-200 mb-5">
+              Get Started Today
+            </span>
+
+            <h2 className="font-display text-3xl sm:text-4xl text-white mb-4 leading-tight">
+              Ready to Transform <br className="hidden sm:block" />
+              Your Coaching Business?
             </h2>
-            <p className="text-brand-silver text-lg mb-10 max-w-2xl mx-auto leading-relaxed">
-              Start with a complimentary 20-minute demo tailored to your business. No obligation, no hard sell—just a clear look at how SmartCoach360 fits your workflow.
+
+            <p className="text-sm sm:text-base text-gray-300 mb-8 max-w-xl mx-auto leading-relaxed">
+              Book a quick 20-minute demo and see exactly how SmartCoach360
+              fits into your workflow—no fluff, no pressure.
             </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <button className="btn-cream font-bold text-base shadow-xl">
-                Book Your Free Demo
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+              <button className="px-6 py-3 rounded-xl bg-gradient-to-r from-purple-400 to-pink-400 text-black font-semibold shadow-lg hover:scale-105 transition">
+                Book Free Demo
               </button>
-              <button className="inline-flex items-center gap-2 text-brand-lilac-100 font-semibold px-7 py-3.5 rounded-2xl border-2 border-brand-boss-mid hover:bg-brand-boss/50 transition-all">
-                Explore the Platform
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7"/></svg>
+
+              <button className="px-6 py-3 rounded-xl border border-white/20 text-white hover:bg-white/10 transition flex items-center gap-2">
+                Explore Platform
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
               </button>
             </div>
           </div>

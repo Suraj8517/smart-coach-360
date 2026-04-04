@@ -60,11 +60,7 @@ export default function ComparisonPage({ navigate }) {
           <p className="text-lg leading-relaxed max-w-2xl mx-auto" style={{ color: "#7b6880" }}>
             Many coaching platforms excel in one area but leave critical gaps elsewhere. SmartCoach360 was designed as a complete, end-to-end platform—coaching delivery and business operations built to work together.
           </p>
-          {/* Score pill */}
-          <div className="inline-flex items-center gap-3 mt-8 px-6 py-3 rounded-2xl border" style={{ backgroundColor: "#fff", borderColor: "#ddd4e4" }}>
-            <span className="font-display text-3xl" style={{ color: "#47294c" }}>{scScore}/{rows.length}</span>
-            <span className="text-sm" style={{ color: "#7b6880" }}>features — more than any competitor on this page</span>
-          </div>
+         
         </div>
       </section>
 

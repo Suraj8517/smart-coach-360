@@ -30,9 +30,8 @@ const studies = [
 export default function CaseStudiesPage({ navigate }) {
   return (
     <div className="pt-16">
-      <section className="relative py-32 overflow-hidden">
-        <div className="absolute inset-0" style={{ backgroundImage:`url(${IMAGES.gymOwner})`, backgroundSize:"cover", backgroundPosition:"center center" }} />
-        <div className="absolute inset-0" style={{ background:"linear-gradient(100deg,rgba(28,15,31,0.94) 0%,rgba(46,26,50,0.82) 60%,rgba(71,41,76,0.4) 100%)" }} />
+      <section className="relative py-32 overflow-hidden h-[80%] ">
+        <div className="absolute inset-0 " style={{ background:"linear-gradient(100deg,rgba(28,15,31,0.94) 0%,rgba(46,26,50,0.82) 60%,rgba(71,41,76,0.4) 100%)" }} />
         <div className="relative z-10 max-w-3xl mx-auto px-4 text-center">
           <span className="section-tag" style={{ backgroundColor:"rgba(71,41,76,0.5)", color:"#e8d9ee" }}>Success Stories</span>
           <h1 className="font-display text-5xl sm:text-6xl text-brand-lilac mb-5 leading-tight">Real Coaches. Real Results. Real Growth.</h1>

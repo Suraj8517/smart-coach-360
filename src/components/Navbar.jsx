@@ -25,7 +25,7 @@ export default function Navbar() {
           onClick={() => navigate("/")}
           className="flex items-center gap-2.5 group"
         >
-          <div className="w-9 h-9 rounded-xl bg-lilac-300 flex items-center justify-center shadow-lg group-hover:bg-brand-boss-mid transition-colors">
+          <div className="w-9 h-9 rounded-xl bg-lilac-300 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow">
             <img src={IMAGES.logo} alt="Logo" className="w-5 h-5"/>
           </div>
           <span className="font-display text-lg text-brand-black">

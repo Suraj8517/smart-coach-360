@@ -1,5 +1,6 @@
 import { CTASection, SectionHeader } from "../components/UI";
 import { IMAGES } from "../images";
+import { useEffect, useRef } from "react";
 
 const INTEGRATION_IMAGES = {
   WhatsApp: IMAGES.whatsapp,
@@ -62,6 +63,89 @@ const ALL_INTEGRATIONS = [
   ["Lab Integration",             "Biomarker and diagnostic data in client profiles"],
   ["Web Content Builder",         "Branded lead capture pages and communication templates"],
 ];
+
+const ALL_LOGOS = [
+  { id: "whatsapp",  name: "WhatsApp",             src: IMAGES.whatsapp  },
+  { id: "zoom",      name: "Zoom",                 src: IMAGES.zoom      },
+  { id: "teams",     name: "Microsoft Teams",       src: IMAGES.teams     },
+  { id: "gsheets",   name: "Google Sheets",         src: IMAGES.gsheets   },
+  { id: "gforms",    name: "Google Forms",          src: IMAGES.gforms    },
+  { id: "zoho",      name: "Zoho Forms",            src: IMAGES.zoho      },
+  { id: "apple",     name: "Apple Health",          src: IMAGES.apple     },
+  { id: "gfit",      name: "Google Fit",            src: IMAGES.gfit      },
+  { id: "telephony", name: "Telephony",             src: IMAGES.telephony },
+  { id: "lab",       name: "Lab Integration",       src: IMAGES.lab       },
+  { id: "web",       name: "Web Content Builder",   src: IMAGES.web       },
+];
+
+function MarqueeLogoCard({ logo }) {
+  return (
+    <div
+      className="group flex-shrink-0 flex flex-col items-center justify-center gap-2"
+      style={{
+        width: 72,
+        height: 72,
+        borderRadius: 16,
+        backgroundColor: "rgba(255,255,255,0.06)",
+        border: "1px solid rgba(255,255,255,0.1)",
+        backdropFilter: "blur(8px)",
+        transition: "background 0.25s, border-color 0.25s",
+        cursor: "default",
+      }}
+      onMouseEnter={e => {
+        e.currentTarget.style.backgroundColor = "rgba(160,108,176,0.18)";
+        e.currentTarget.style.borderColor = "rgba(160,108,176,0.45)";
+      }}
+      onMouseLeave={e => {
+        e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.06)";
+        e.currentTarget.style.borderColor = "rgba(255,255,255,0.1)";
+      }}
+    >
+      <img
+        src={logo.src}
+        alt={logo.name}
+        style={{
+          width: 32,
+          height: 32,
+          objectFit: "contain",
+          filter: "brightness(0.85) saturate(0.7)",
+          transition: "filter 0.25s, transform 0.25s",
+        }}
+        onMouseEnter={e => {
+          e.currentTarget.style.filter = "brightness(1) saturate(1)";
+          e.currentTarget.style.transform = "scale(1.1)";
+        }}
+        onMouseLeave={e => {
+          e.currentTarget.style.filter = "brightness(0.85) saturate(0.7)";
+          e.currentTarget.style.transform = "scale(1)";
+        }}
+        onError={e => { e.target.style.display = "none"; }}
+      />
+    </div>
+  );
+}
+
+function MarqueeRow({ logos, reverse = false, speed = 7 }) {
+  const tripled = [...logos, ...logos, ...logos];
+  const duration = `${logos.length * speed}s`;
+  const animName = reverse ? "marqueeRev" : "marquee";
+  return (
+    <div style={{ overflow: "hidden", width: "100%" }}>
+      <div
+        style={{
+          display: "flex",
+          gap: 10,
+          width: "max-content",
+          animation: `${animName} ${duration} linear infinite`,
+        }}
+      >
+        {tripled.map((logo, i) => (
+          <MarqueeLogoCard key={`${logo.id}-${i}`} logo={logo} />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 function CheckIcon() {
   return (
@@ -154,28 +238,41 @@ export default function IntegrationsPage({ navigate }) {
   return (
     <div className="pt-16">
 
+      {/* ── KEYFRAMES ── */}
+      <style>{`
+        @keyframes marquee {
+          from { transform: translateX(0); }
+          to   { transform: translateX(-33.333%); }
+        }
+        @keyframes marqueeRev {
+          from { transform: translateX(-33.333%); }
+          to   { transform: translateX(0); }
+        }
+      `}</style>
+
       {/* ── HERO ── */}
       <section
-        className="relative py-28 flex items-center overflow-hidden"
-        style={{ backgroundColor: "#1c0f1f", minHeight: "72vh" }}
+        className="relative overflow-hidden flex flex-col"
+        style={{ backgroundColor: "#1c0f1f", minHeight: "88vh", paddingTop: "5rem" }}
       >
         {/* Ambient blobs */}
         <div
-          className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] rounded-full pointer-events-none"
+          className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[420px] pointer-events-none"
           style={{
-            background: "radial-gradient(ellipse at 50% 0%, rgba(71,41,76,0.55) 0%, transparent 70%)",
-            filter: "blur(40px)",
+            background: "radial-gradient(ellipse at 50% 0%, rgba(71,41,76,0.6) 0%, transparent 70%)",
+            filter: "blur(48px)",
           }}
         />
         <div
-          className="absolute bottom-0 right-0 w-[400px] h-[300px] pointer-events-none"
+          className="absolute bottom-0 right-0 w-[500px] h-[320px] pointer-events-none"
           style={{
-            background: "radial-gradient(ellipse at 100% 100%, rgba(129,69,140,0.18) 0%, transparent 70%)",
+            background: "radial-gradient(ellipse at 100% 100%, rgba(129,69,140,0.15) 0%, transparent 70%)",
             filter: "blur(60px)",
           }}
         />
 
-        <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
+        {/* Text block */}
+        <div className="relative z-10 max-w-3xl mx-auto px-6 text-center pt-12 pb-14">
           <span
             className="inline-block text-[0.7rem] font-bold uppercase tracking-[0.18em] px-4 py-1.5 rounded-full mb-8"
             style={{ backgroundColor: "rgba(71,41,76,0.6)", color: "#c9a8d6", border: "1px solid rgba(129,69,140,0.35)" }}
@@ -198,6 +295,29 @@ export default function IntegrationsPage({ navigate }) {
             enquiry to long-term retention.
           </p>
         </div>
+
+        
+        <div className="relative z-10 flex-1 flex flex-col justify-center gap-3 pb-12 overflow-hidden max-w-3xl mx-auto">
+         
+          <div
+            className="absolute inset-y-0 left-0 z-20 pointer-events-none"
+            style={{ width: "12vw", background: "linear-gradient(to right, #1c0f1f 40%, transparent)" }}
+          />
+          <div
+            className="absolute inset-y-0 right-0 z-20 pointer-events-none"
+            style={{ width: "12vw", background: "linear-gradient(to left, #1c0f1f 40%, transparent)" }}
+          />
+
+          <MarqueeRow logos={ALL_LOGOS} reverse={false} speed={7} />
+          <MarqueeRow logos={[...ALL_LOGOS.slice(4), ...ALL_LOGOS.slice(0, 4)]} reverse={true} speed={6} />
+          <MarqueeRow logos={[...ALL_LOGOS.slice(7), ...ALL_LOGOS.slice(0, 7)]} reverse={false} speed={8} />
+        </div>
+
+        {/* Bottom border fade */}
+        <div
+          className="absolute bottom-0 inset-x-0 h-px"
+          style={{ background: "linear-gradient(90deg, transparent, rgba(162,122,175,0.2), transparent)" }}
+        />
       </section>
 
       {/* ── INTEGRATION GROUPS ── */}
