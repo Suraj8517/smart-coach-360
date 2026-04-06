@@ -136,18 +136,7 @@ export default function PageLoader({ onComplete }) {
           fontFamily: "'DM Sans', system-ui, sans-serif",
         }}
       >
-        {/* Dot grid */}
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            backgroundImage:
-              "radial-gradient(circle, rgba(200,160,220,0.9) 1px, transparent 1px)",
-            backgroundSize: "32px 32px",
-            pointerEvents: "none",
-            animation: "ldr-grid-fade 1.2s ease 0.2s both",
-          }}
-        />
+        
 
         {/* Blobs */}
         <div
@@ -196,24 +185,7 @@ export default function PageLoader({ onComplete }) {
           }}
         />
 
-        {/* Corner accents */}
-        {[
-          { top: 20, left: 20, borderTop: "1px solid #a06cb0", borderLeft: "1px solid #a06cb0", borderRadius: "4px 0 0 0" },
-          { top: 20, right: 20, borderTop: "1px solid #a06cb0", borderRight: "1px solid #a06cb0", borderRadius: "0 4px 0 0" },
-          { bottom: 20, left: 20, borderBottom: "1px solid #a06cb0", borderLeft: "1px solid #a06cb0", borderRadius: "0 0 0 4px" },
-          { bottom: 20, right: 20, borderBottom: "1px solid #a06cb0", borderRight: "1px solid #a06cb0", borderRadius: "0 0 4px 0" },
-        ].map((s, i) => (
-          <div
-            key={i}
-            style={{
-              position: "absolute",
-              width: 24,
-              height: 24,
-              opacity: 0.35,
-              ...s,
-            }}
-          />
-        ))}
+       
 
         {/* Centre content */}
         <div
@@ -308,7 +280,7 @@ export default function PageLoader({ onComplete }) {
               animation: "ldr-fade-up 0.7s ease 0.65s both",
             }}
           >
-            Fitness Coaching Platform
+            #1 Software for Coaches
           </div>
 
           {/* Progress bar */}

@@ -255,7 +255,6 @@ export default function IntegrationsPage({ navigate }) {
         className="relative overflow-hidden flex flex-col"
         style={{ backgroundColor: "#1c0f1f", minHeight: "88vh", paddingTop: "5rem" }}
       >
-        {/* Ambient blobs */}
         <div
           className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[420px] pointer-events-none"
           style={{

@@ -6,7 +6,7 @@ const problems = [
   "Clients drift and cancel because check-ins and progress tracking aren't consistent.",
   "Growth stalls—not from lack of demand, but because admin has eaten your capacity.",
 ];
-export default function Problem() {
+export default function Problem({navigate}) {
   return (
     <section className="py-28 relative overflow-hidden bg-brand-lilac">
 
@@ -22,7 +22,7 @@ export default function Problem() {
         <p className="text-brand-fedora text-lg leading-relaxed mb-10">
           You entered coaching to drive transformation—not to manage a patchwork of tools. As your client base grows, these challenges compound.
         </p>
-        <button onClick={() => navigate("usecases")} className="btn-primary group">
+        <button onClick={() => navigate("/usecases")} className="btn-primary group">
           See How We Solve It
           <svg className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

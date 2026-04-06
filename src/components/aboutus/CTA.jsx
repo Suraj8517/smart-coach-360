@@ -11,7 +11,7 @@ export const CTA = () => (
       </span>
       <h2 className="sc-fd text-[clamp(2rem,4vw,3rem)] leading-[1.1] text-[#faf4fc] mb-5">
         Building the Future of<br />
-        <span className="shimmer-text">Fitness Coaching</span>
+        <span className="text-brand-lilac-300">Fitness Coaching</span>
       </h2>
       <p className="sc-fb text-[1rem] leading-[1.75] text-[#8a7490] mb-10">
         Every fitness coach—whether you're training your first client or managing a team of fifty—deserves enterprise-quality tools that are genuinely easy to use. SmartCoach360 will always be shaped by the people who use it.

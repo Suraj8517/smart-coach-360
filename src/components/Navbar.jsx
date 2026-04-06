@@ -3,11 +3,13 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { IMAGES } from "../images";
 
 const NAV = [
+  { label: "About Us",     path: "/about-us" },
   { label: "Solutions",    path: "/usecases" },
   { label: "Integrations", path: "/integrations" },
   { label: "Case Studies", path: "/case-studies" },
   { label: "Compare",      path: "/comparison" },
   { label: "Blogs",        path: "/blogs" },
+  
 ];
 
 const CALENDLY = "https://calendly.com/sangameswaran-vmaxhealthtech/30min";
@@ -47,19 +49,16 @@ export default function Navbar({ onOpenForm, onOpenContactForm }) {
 
   return (
     <>
-      {/* ═══════════════════════════════════════
-          NAVBAR
-      ═══════════════════════════════════════ */}
+    
       <nav
         className={`fixed left-0 right-0 z-50 transition-all duration-300 ${
           scrolled ? "top-2" : "top-0"
         }`}
       >
-        {/* Bar — full-width at top, floating pill when scrolled */}
         <div
           className={`mx-auto transition-all duration-300 ${
             scrolled
-              ? "max-w-[1200px] mx-4 sm:mx-6 lg:mx-8 rounded-[18px] border border-[rgba(201,168,214,0.35)] bg-[rgba(253,250,255,0.96)] backdrop-blur-xl shadow-[0_4px_24px_rgba(71,41,76,0.08),0_1px_4px_rgba(71,41,76,0.04),inset_0_1px_0_rgba(255,255,255,0.9)]"
+              ? "max-w-[98%] mx-4 sm:mx-6 lg:mx-8 rounded-[18px] border border-[rgba(201,168,214,0.35)] bg-[rgba(253,250,255,0.96)] backdrop-blur-xl shadow-[0_4px_24px_rgba(71,41,76,0.08),0_1px_4px_rgba(71,41,76,0.04),inset_0_1px_0_rgba(255,255,255,0.9)]"
               : "border-b border-[#e8e0ed] bg-[rgba(250,247,252,0.97)] backdrop-blur-md"
           }`}
         >
@@ -69,12 +68,11 @@ export default function Navbar({ onOpenForm, onOpenContactForm }) {
             }`}
           >
 
-            {/* ── Logo ── */}
             <button
               onClick={() => navigate("/")}
               className="flex items-center gap-2.5 group bg-transparent border-none p-0 cursor-pointer"
             >
-              <div className="w-[34px] h-[34px] rounded-[10px] bg-gradient-to-br from-[#c9a8d6] to-[#a06cb0] flex items-center justify-center flex-shrink-0 shadow-[0_2px_8px_rgba(160,108,176,0.3)] transition-all duration-200 group-hover:shadow-[0_4px_16px_rgba(160,108,176,0.45)] group-hover:-translate-y-px">
+              <div className="w-[34px] h-[34px] rounded-[10px] flex items-center justify-center flex-shrink-0 shadow-[0_2px_8px_rgba(160,108,176,0.3)] transition-all duration-200 group-hover:shadow-[0_4px_16px_rgba(160,108,176,0.45)] group-hover:-translate-y-px">
                 <img
                   src={IMAGES.logo}
                   alt="SmartCoach360"
@@ -88,9 +86,8 @@ export default function Navbar({ onOpenForm, onOpenContactForm }) {
 
             {/* ── Desktop nav links ── */}
             <div ref={navRef} className="hidden md:flex items-center gap-0.5 relative">
-              {/* Sliding gradient pill — inline style required for dynamic JS values */}
               <div
-                className="absolute bottom-1 h-[30px] rounded-lg bg-gradient-to-br from-[#47294c] to-[#a06cb0] pointer-events-none z-0 transition-[left,width,opacity] duration-[350ms]"
+                className="absolute bottom-1 h-[30px] rounded-lg  pointer-events-none z-0 transition-[left,width,opacity] duration-[350ms]"
                 style={{
                   left:    indicator.left,
                   width:   indicator.width,
@@ -106,7 +103,7 @@ export default function Navbar({ onOpenForm, onOpenContactForm }) {
                     ref={(el) => { if (el) linkRefs.current[n.path] = el; }}
                     className={`relative z-[1] px-3.5 py-1.5 rounded-lg text-[13.5px] font-medium whitespace-nowrap no-underline transition-colors duration-200 ${
                       active
-                        ? "text-white pointer-events-none"
+                        ? "text-purple-800 pointer-events-none font-extrabold"
                         : "text-[#5c4862] hover:text-[#47294c]"
                     }`}
                   >

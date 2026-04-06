@@ -1,22 +1,205 @@
-import React from 'react'
-import { IMAGES } from '../../images';
-export default function Integration() {
-  return (
+import React, { useRef } from "react";
+import { ArrowRight, Zap } from "lucide-react";
+import { IMAGES } from "../../images";
 
-    <section className="py-20 bg-brand-lilac border-y border-brand-silver-xl">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+const STYLES = `
+  @keyframes marquee-left {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  @keyframes marquee-right {
+    0%   { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+  }
+  @keyframes float-slow {
+    0%,100% { transform: translateY(0px) scale(1); }
+    50%      { transform: translateY(-10px) scale(1.02); }
+  }
+  @keyframes blob-drift {
+    0%,100% { transform: translate(-50%,-50%) scale(1); }
+    50%      { transform: translate(-50%,-50%) scale(1.12) translate(8px,-6px); }
+  }
+  @keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+  @keyframes fade-up {
+    from { opacity:0; transform:translateY(18px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+  .int-fade-up   { animation: fade-up 0.6s ease both; }
+  .int-d1 { animation-delay:0.05s; }
+  .int-d2 { animation-delay:0.15s; }
+  .int-d3 { animation-delay:0.25s; }
+  .int-d4 { animation-delay:0.35s; }
+
+  .int-marquee-l { animation: marquee-left  28s linear infinite; }
+  .int-marquee-r { animation: marquee-right 22s linear infinite; }
+
+  /* Card glow on hover */
+  .int-tile {
+    position: relative;
+    transition: transform 0.28s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.28s ease;
+    cursor: default;
+  }
+  .int-tile::before {
+    content: '';
+    position: absolute; inset: 0;
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 0.25s;
+    background: radial-gradient(circle at 50% 0%, rgba(160,108,176,0.25), transparent 70%);
+    pointer-events: none;
+  }
+  .int-tile:hover { transform: translateY(-6px) scale(1.04); }
+  .int-tile:hover::before { opacity: 1; }
+  .int-tile:hover .int-tile-shadow {
+    box-shadow: 0 16px 40px rgba(71,41,76,0.18);
+  }
+
+  /* Pause marquee on hover */
+  .int-strip:hover .int-marquee-l,
+  .int-strip:hover .int-marquee-r { animation-play-state: paused; }
+`;
+
+const INTEGRATIONS = [
+  { 
+    name: "WhatsApp",        
+    bg: "rgba(92,57,100,0.10)",  
+    border: "rgba(92,57,100,0.25)",  
+    logo: IMAGES.whatsapp 
+  },
+  { 
+    name: "Zoom",            
+    bg: "rgba(92,57,100,0.14)",  
+    border: "rgba(92,57,100,0.30)",  
+    logo: IMAGES.zoom 
+  },
+  { 
+    name: "MS Teams",        
+    bg: "rgba(92,57,100,0.18)",  
+    border: "rgba(92,57,100,0.35)",  
+    logo: IMAGES.teams 
+  },
+  { 
+    name: "Google Sheets",   
+    bg: "rgba(92,57,100,0.22)",  
+    border: "rgba(92,57,100,0.40)",  
+    logo: IMAGES.gsheets 
+  },
+  { 
+    name: "Google Forms",    
+    bg: "rgba(92,57,100,0.12)",  
+    border: "rgba(92,57,100,0.28)",  
+    logo: IMAGES.gforms 
+  },
+  { 
+    name: "Apple Health",    
+    bg: "rgba(92,57,100,0.16)",  
+    border: "rgba(92,57,100,0.32)",  
+    logo: IMAGES.apple 
+  },
+  { 
+    name: "Google Fit",      
+    bg: "rgba(92,57,100,0.20)",  
+    border: "rgba(92,57,100,0.36)",  
+    logo: IMAGES.gfit 
+  },
+  { 
+    name: "Lab Integration", 
+    bg: "rgba(92,57,100,0.24)",  
+    border: "rgba(92,57,100,0.45)",  
+    logo: IMAGES.lab,
+    badge: "New" 
+  },
+  { 
+    name: "Telephony",       
+    bg: "rgba(92,57,100,0.18)",  
+    border: "rgba(92,57,100,0.34)",  
+    logo: IMAGES.telephony 
+  },
+];
+
+const ROW_1 = [...INTEGRATIONS.slice(0, 5), ...INTEGRATIONS.slice(0, 5)]; 
+const ROW_2 = [...INTEGRATIONS.slice(4),    ...INTEGRATIONS.slice(4)];
+
+function Tile({ name, bg, border, logo, badge }) {
+  return (
+    <div
+      className="int-tile flex-shrink-0 flex flex-col items-center gap-2.5 rounded-2xl p-4 border w-[110px]"
+      style={{ background: bg, borderColor: border }}
+    >
+      
+      <div
+        className="int-tile-shadow w-12 h-12 rounded-xl bg-white flex items-center justify-center transition-all duration-300"
+        style={{ boxShadow: "0 2px 8px rgba(0,0,0,0.08)" }}
+      >
+        <img src={logo} alt={name} className="w-7 h-7 object-contain" />
+      </div>
     
-          {/* LEFT — heading */}
+    </div>
+  );
+}
+
+function MarqueeStrip({ items, direction = "left" }) {
+  return (
+    <div className="int-strip overflow-hidden w-full py-1">
+      <div className={`flex gap-3 w-max ${direction === "left" ? "int-marquee-l" : "int-marquee-r"}`}>
+        {items.map((t, i) => <Tile key={i} {...t} />)}
+      </div>
+    </div>
+  );
+}
+
+export default function Integration({ navigate }) {
+  
+
+  return (
+    <section className="relative py-24 overflow-hidden bg-brand-lilac border-y border-[#e8e0ed]">
+      <style>{STYLES}</style>
+      <div
+        className="absolute pointer-events-none"
+        style={{
+          top: "50%", left: "25%",
+          width: 360, height: 300,
+          borderRadius: "50%",
+          background: "radial-gradient(ellipse at center, rgba(71,41,76,0.08) 0%, transparent 70%)",
+          filter: "blur(48px)",
+          animation: "blob-drift 13s ease-in-out infinite reverse",
+        }}
+      />
+
+      <div
+        className="absolute inset-0 pointer-events-none opacity-[0.045]"
+        style={{
+          backgroundImage: "radial-gradient(circle, #a06cb0 1px, transparent 1px)",
+          backgroundSize: "28px 28px",
+        }}
+      />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+
           <div>
-            <span className="section-tag">Integrations</span>
-            <h2 className="font-display text-4xl sm:text-5xl text-brand-black leading-tight mt-3 mb-5">
+            <div className="flex items-center gap-3 mb-5 int-fade-up int-d1">
+              <div
+                className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.16em] px-3 py-1.5 rounded-full"
+                style={{ background: "rgba(71,41,76,0.1)", color: "#47294c" }}
+              >
+                <Zap size={11} strokeWidth={2.5} />
+                Integrations
+              </div>
+            </div>
+
+            <h2
+              className="font-display text-[clamp(2.2rem,4vw,3.2rem)] leading-[1.1] text-[#1c0f1f] mb-5 int-fade-up int-d2"
+            >
               Works with the tools<br />
               you{" "}
               <em
                 className="not-italic"
                 style={{
-                  background: "linear-gradient(135deg, #47294c 0%, #9b6dbd 100%)",
+                  background: "linear-gradient(135deg,#47294c 0%,#a06cb0 100%)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text",
@@ -25,80 +208,68 @@ export default function Integration() {
                 already use
               </em>
             </h2>
-            <p className="text-brand-fedora text-lg leading-relaxed mb-8">
-              Connect SmartCoach360 to your favourite apps and keep everything in sync — no switching, no manual exports.
+
+            <p className="text-[#5c4862] text-[1.0625rem] leading-[1.78] mb-8 max-w-[440px] int-fade-up int-d3">
+              Connect SmartCoach360 to your favourite apps and keep everything in sync, no switching, no manual exports.
             </p>
-            <div className="flex items-baseline gap-2 mb-10">
-              <span className="font-display text-4xl text-brand-boss">15+</span>
-              <span className="text-sm text-brand-fedora">native integrations</span>
+
+            
+
+            {/* CTA */}
+            <div className="int-fade-up int-d4">
+              <button
+                onClick={() => navigate("/integrations")}
+                className="group inline-flex items-center gap-2.5 text-sm font-semibold text-white px-6 py-3 rounded-xl transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0"
+                style={{
+                  background: "linear-gradient(135deg,#a06cb0 0%,#47294c 100%)",
+                  boxShadow: "0 4px 18px rgba(71,41,76,0.3)",
+                }}
+              >
+                View all integrations
+                <ArrowRight
+                  size={15}
+                  strokeWidth={2.2}
+                  className="transition-transform duration-200 group-hover:translate-x-0.5"
+                />
+              </button>
             </div>
-            <button
-              onClick={() => navigate("integrations")}
-              className="btn-primary"
-            >
-              View all integrations
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
           </div>
-    
-          {/* RIGHT — 3×3 grid */}
-         <div>
-  <div className="grid grid-cols-3 sm:grid-cols-3 gap-4">
-    {[
-      { name: "WhatsApp",        bg: "rgba(37,211,102,0.10)",  border: "rgba(37,211,102,0.2)",  logo: IMAGES.whatsapp },
-      { name: "Zoom",            bg: "rgba(43,141,255,0.10)",  border: "rgba(43,141,255,0.2)",  logo: IMAGES.zoom },
-      { name: "MS Teams",        bg: "rgba(0,120,212,0.10)",   border: "rgba(0,120,212,0.2)",   logo: IMAGES.teams },
-      { name: "Google Sheets",   bg: "rgba(52,168,83,0.10)",   border: "rgba(52,168,83,0.2)",   logo: IMAGES.gsheets },
-      { name: "Google Forms",    bg: "rgba(66,133,244,0.10)",  border: "rgba(66,133,244,0.2)",  logo: IMAGES.gforms },
-      { name: "Apple Health",    bg: "rgba(255,61,0,0.08)",    border: "rgba(255,61,0,0.18)",   logo: IMAGES.apple },
-      { name: "Google Fit",      bg: "rgba(66,133,244,0.10)",  border: "rgba(66,133,244,0.2)",  logo: IMAGES.gfit },
-      { name: "Lab Integration", bg: "rgba(71,41,76,0.08)",    border: "rgba(71,41,76,0.2)",    logo: IMAGES.lab, badge: "New" },
-      { name: "Telephony",       bg: "rgba(255,171,0,0.10)",   border: "rgba(255,171,0,0.22)",  logo: IMAGES.telephony },
-    ].map((t, i) => (
-      <div
-        key={i}
-        className="relative flex flex-col items-center gap-2 rounded-2xl p-4 border transition-all duration-300 hover:-translate-y-1 hover:shadow-lg group"
-        style={{
-          background: t.bg,
-          borderColor: t.border,
-        }}
-      >
-        {/* Badge */}
-        {t.badge && (
-          <span
-            className="absolute -top-2 -right-2 text-[10px] px-2 py-0.5 rounded-full font-semibold"
-            style={{
-              background: "#47294c",
-              color: "#e8d5f5",
-            }}
-          >
-            {t.badge}
-          </span>
-        )}
 
-        {/* Icon */}
-        <div className="w-11 h-11 rounded-xl bg-white flex items-center justify-center shadow-sm group-hover:scale-105 transition">
-          <img src={t.logo} alt={t.name} className="w-6 h-6 object-contain" />
-        </div>
+          <div className="relative">
 
-        {/* Label */}
-        <span className="text-xs font-medium text-center leading-tight text-brand-fedora-dk">
-          {t.name}
-        </span>
-      </div>
-    ))}
-  </div>
+            <div
+              className="absolute left-0 top-0 bottom-0 w-16 z-10 pointer-events-none"
+              style={{ background: "linear-gradient(90deg,#faf4fc,transparent)" }}
+            />
+            <div
+              className="absolute right-0 top-0 bottom-0 w-16 z-10 pointer-events-none"
+              style={{ background: "linear-gradient(270deg,#faf7fc,transparent)" }}
+            />
 
-  {/* Footer text */}
-  <p className="text-sm text-center text-brand-fedora-dk mt-6 opacity-70">
-    and many more....
-  </p>
-</div>
-    
+
+            <div className="flex flex-col gap-4 py-4">
+              <MarqueeStrip items={ROW_1} direction="left" />
+              <MarqueeStrip items={ROW_2} direction="right" />
+                            <MarqueeStrip items={ROW_1} direction="left" />
+
+            </div>
+
+            <div className="flex justify-center mt-5">
+              <span
+                className="text-xs font-semibold px-4 py-1.5 rounded-full"
+                style={{
+                  background: "rgba(71,41,76,0.07)",
+                  color: "#8a7490",
+                  border: "1px solid rgba(71,41,76,0.1)",
+                }}
+              >
+                15+ integrations
+              </span>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
-  )
+  );
 }

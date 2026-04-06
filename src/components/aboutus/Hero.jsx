@@ -24,7 +24,7 @@ export const Hero = () => (
 
       <h1 className="fade-up d2 sc-fd text-[clamp(2.5rem,5.5vw,3.75rem)] leading-[1.08] text-[#faf4fc] mb-5">
         Built by Fitness Professionals,<br />
-        <span className="shimmer-text">for Fitness Professionals</span>
+        <span className="text-brand-lilac-300">for Fitness Professionals</span>
       </h1>
 
       <p className="fade-up d3 sc-fb text-[clamp(0.9375rem,1.5vw,1.0625rem)] leading-[1.78] text-[#8a7490] max-w-[640px] mx-auto mb-14">

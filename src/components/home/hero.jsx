@@ -1,5 +1,6 @@
 import React from 'react'
-export default function hero({DARK_BG,IMAGES}) {
+export default function hero({DARK_BG,IMAGES,navigate}) {
+    const CALENDLY = "https://calendly.com/sangameswaran-vmaxhealthtech/30min";
   return (
           <section
       className="relative min-h-[92vh] flex items-center overflow-hidden"
@@ -8,7 +9,7 @@ export default function hero({DARK_BG,IMAGES}) {
       <div
         className="absolute inset-0 transition-transform duration-700"
         style={{
-          backgroundImage: `url(${IMAGES.heroCoach})`,
+          backgroundImage: `url(${IMAGES.background})`,
           backgroundSize: "cover",
           backgroundPosition: "60% center",
         }}
@@ -73,7 +74,7 @@ export default function hero({DARK_BG,IMAGES}) {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-lilac-300 opacity-75" />
                 <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-brand-lilac-300" />
               </span>
-              Trusted by coaches worldwide
+              #1 Software for Coaches
             </span>
     
             {/* Headline */}
@@ -99,7 +100,7 @@ export default function hero({DARK_BG,IMAGES}) {
     
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-3.5 mb-14 fade-up fade-up-3">
-              <button
+              <button onClick={() => window.open(CALENDLY, "_blank")}
                 className="btn-cream font-bold text-base shadow-2xl group relative overflow-hidden"
                 style={{ paddingLeft: "1.75rem", paddingRight: "1.75rem" }}
               >
@@ -123,7 +124,7 @@ export default function hero({DARK_BG,IMAGES}) {
               </button>
     
               <button
-                onClick={() => navigate("casestudies")}
+                onClick={() => navigate("/case-studies")}
                 className="inline-flex items-center gap-2.5 text-brand-lilac-100 font-semibold px-7 py-3.5 rounded-2xl border border-brand-boss-mid/50 hover:border-brand-boss-mid/80 hover:bg-brand-boss/40 transition-all duration-200 group"
                 style={{ backdropFilter: "blur(4px)" }}
               >

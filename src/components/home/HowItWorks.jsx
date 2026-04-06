@@ -15,7 +15,16 @@ export default function HowItWorks() {
           <div>
             <span className="section-tag">How It Works</span>
             <h2 className="font-display text-4xl sm:text-5xl text-brand-black leading-tight mt-3">
-              Up and Running in<br />4 Simple Steps
+              Up and Running in<br />{" "}
+              <em
+                className="not-italic"
+                style={{
+                  background: "linear-gradient(135deg,#47294c 0%,#a06cb0 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                }}
+              >4 Simple Steps</em>
             </h2>
           </div>
           <div>

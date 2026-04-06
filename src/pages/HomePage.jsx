@@ -1,6 +1,7 @@
 import { CTASection, SectionHeader, CheckIcon } from "../components/UI";
 import { IMAGES } from "../images";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Hero from "../components/home/hero";
 import Problem from "../components/home/problem";
 import Features from "../components/home/features";
@@ -47,7 +48,9 @@ const integrations = [
 const DARK_BG = { backgroundColor: "#2e1a32" };
 const MID_BG = { backgroundColor: "#47294c" };
 
-export default function HomePage({ navigate }) {
+export default function HomePage() {
+      const navigate = useNavigate();
+  
   const [loading,setLoading]=useState(true);
 useEffect(()=>{
   const timer = setTimeout(()=>{
@@ -58,12 +61,12 @@ useEffect(()=>{
   if(loading) return <PageLoader />;
   return (
     <div className="pt-16">
-      <Hero DARK_BG={DARK_BG} IMAGES={IMAGES} />
-      <Problem />
+      <Hero DARK_BG={DARK_BG} IMAGES={IMAGES} navigate={navigate} />
+      <Problem navigate={navigate}/>
       <Features />
       <WhoIsIt DARK_BG={DARK_BG} IMAGES={IMAGES} />
       <HowItWorks />
-      <Integration />
+      <Integration navigate={navigate}/>
       {/* TESTIMONIALS 
       <section className="py-24 bg-brand-lilac">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -1,19 +1,20 @@
 import { CTASection, SectionHeader, CheckIcon } from "../components/UI";
 import { IMAGES } from "../images";
+import { Dumbbell, Building2, Salad, Trophy } from "lucide-react";
 
 const MID_BG = { backgroundColor: "#47294c" };
 
 const audiences = [
-  { title:"Personal Trainers", tagline:"Spend Less Time on Admin. More Time Actually Coaching.", desc:"Your time is a high-value asset. When it's absorbed by manual tasks and disconnected tools, delivery and growth both suffer. SmartCoach360 standardises your operations so you can focus on coaching outcomes.", img:IMAGES.ptFemale, emoji:"🏋️",
+  { title:"Personal Trainers", tagline:"Spend Less Time on Admin. More Time Actually Coaching.", desc:"Your time is a high-value asset. When it's absorbed by manual tasks and disconnected tools, delivery and growth both suffer. SmartCoach360 standardises your operations so you can focus on coaching outcomes.", img:IMAGES.ptFemale, emoji:Dumbbell,
     challenges:["Tracking client progress across spreadsheets and handwritten notes","Chasing payments and manually tracking session packs","Sending plans through WhatsApp or email every week","Clients drifting because follow-ups aren't consistent","Hitting a client ceiling because operations can't scale"],
     solutions:[{title:"Custom Programs for Every Client",desc:"Build your workout library once, assign personalised programs instantly."},{title:"Nutrition & Macro Tracking",desc:"Set personalised nutrition targets and track adherence from one dashboard."},{title:"Client Messaging, Without Extra Admin",desc:"Automated check-ins and video calls keep clients engaged without manual work."},{title:"Effortless Payment Management",desc:"Session packs and discounts configured once and running automatically."},{title:"Progress at a Glance",desc:"Clean dashboard shows compliance, progress and assessments for every client."},{title:"Your Business in Your Pocket",desc:"Full platform access on iOS and Android."}]},
-  { title:"Gym Owners & Studios", tagline:"Run Your Entire Gym From One Powerful Platform.", desc:"Running a gym requires visibility across coaches, clients, classes, memberships, and revenue. SmartCoach360 provides a single operational view—so you can standardise delivery, reduce overhead, and make decisions with real-time insight.", img:IMAGES.gymOwner, emoji:"🏢",
+  { title:"Gym Owners & Studios", tagline:"Run Your Entire Gym From One Powerful Platform.", desc:"Running a gym requires visibility across coaches, clients, classes, memberships, and revenue. SmartCoach360 provides a single operational view—so you can standardise delivery, reduce overhead, and make decisions with real-time insight.", img:IMAGES.gymOwner, emoji:Building2,
     challenges:["Coordinating multiple coaches manually with no central view","Inconsistent client experiences depending on which coach they work with","Class scheduling scattered across different systems","Slow, error-prone billing and membership management","No easy way to track revenue across the whole business"],
     solutions:[{title:"Multi-coach & Branch Management",desc:"Assign coaches to clients and track performance across every location."},{title:"Consistent Client Experience",desc:"Master programmes ensure every coach delivers the same quality."},{title:"Classes, Appointments & Calendar Sync",desc:"Schedule classes, sync calendars, and avoid double-bookings."},{title:"Business Dashboards & Reporting",desc:"Real-time view of revenue, retention, and coach performance."},{title:"Automated Billing & Memberships",desc:"Session packs and recurring memberships managed automatically."},{title:"Role & Access Management",desc:"Precise access for coaches, managers, and reception."}]},
-  { title:"Nutrition & Wellness Coaches", tagline:"Deliver Personalised Nutrition at Scale. Keep Clients Accountable.", desc:"Nutrition coaching is deeply personal work. Getting it right requires consistent monitoring, personalised planning, and ongoing client accountability. SmartCoach360 gives you the tools to do that for more clients than you ever thought possible.", img:IMAGES.nutritionCoach, emoji:"🥗",
+  { title:"Nutrition & Wellness Coaches", tagline:"Deliver Personalised Nutrition at Scale. Keep Clients Accountable.", desc:"Nutrition coaching is deeply personal work. Getting it right requires consistent monitoring, personalised planning, and ongoing client accountability. SmartCoach360 gives you the tools to do that for more clients than you ever thought possible.", img:IMAGES.nutritionCoach, emoji:Salad,
     challenges:["Manually creating individual meal plans one by one","No reliable way to know if clients are following their plan","Tracking health data across multiple apps and spreadsheets","Clients going quiet between check-in calls","Struggling to grow without compromising coaching quality"],
     solutions:[{title:"Personalised Meal Plans & Recipes",desc:"Create a library, then assign customised programmes quickly."},{title:"Macro & Nutrition Goal Tracking",desc:"Track daily intake in real time—no waiting for weekly check-ins."},{title:"Compliance Monitoring",desc:"See which clients need a nudge across your entire client base."},{title:"Female Health Tracker",desc:"Track hormonal cycles alongside nutrition for holistic coaching."},{title:"Health & Activity Integration",desc:"Sync Apple Health and Google Fit for reality-based coaching."},{title:"Automated Check-ins",desc:"Daily/weekly automated messages keep clients accountable."}]},
-  { title:"Large Fitness Organisations", tagline:"Enterprise Tools to Manage, Scale, and Automate.", desc:"When you're running multiple locations, managing large coaching teams, and serving thousands of clients, disconnected systems get expensive fast. SmartCoach360 provides enterprise-grade infrastructure built for the fitness industry.", img:IMAGES.largeOrg, emoji:"🏆",
+  { title:"Large Fitness Organisations", tagline:"Enterprise Tools to Manage, Scale, and Automate.", desc:"When you're running multiple locations, managing large coaching teams, and serving thousands of clients, disconnected systems get expensive fast. SmartCoach360 provides enterprise-grade infrastructure built for the fitness industry.", img:IMAGES.largeOrg, emoji:Trophy,
     challenges:["No single system connecting all branches, teams, and coaching data","Service quality varies by location or coach","Manual lead allocation creating slow response times","Difficulty controlling data access across a large team","No bird's-eye view of organisational performance"],
     solutions:[{title:"Multi-branch & Team Management",desc:"Manage every branch from one central dashboard with consistent workflows."},{title:"Automated Lead & Client Allocation",desc:"New enquiries assigned to the right coach automatically."},{title:"Role Management & Access Control",desc:"Granular permissions for every team level and role."},{title:"Organisation-wide Dashboards",desc:"Real-time view of stats, performance, and revenue across every branch."},{title:"SSO & Enterprise Security",desc:"Single Sign-On keeps team access secure and centralised."},{title:"Bulk Upload & Onboarding",desc:"Onboard hundreds of clients and coaches at once."}]},
 ];
@@ -63,7 +64,7 @@ export default function UseCasesPage({ navigate }) {
       {/* ── HERO ── */}
       <section
         className="relative py-28 overflow-hidden flex items-center"
-        style={{ backgroundColor: "#1c0f1f", minHeight: "68vh" }}
+        style={{ backgroundColor: "#1c0f1f", minHeight: "70vh" }}
       >
         {/* Ambient glow */}
         <div
@@ -90,7 +91,6 @@ export default function UseCasesPage({ navigate }) {
           <p className="text-base sm:text-[1.0625rem] leading-relaxed max-w-2xl mx-auto" style={{ color: "#8a7490" }}>
             Whether you coach one-on-one, run a gym, deliver online nutrition programmes, or manage a national organisation—SmartCoach360 fits the way you operate.
           </p>
-          {/* Audience pills */}
           <div className="flex flex-wrap justify-center gap-2.5 mt-9">
             {["Personal Trainers", "Gym Owners & Studios", "Nutrition Coaches", "Large Organisations"].map((label) => (
               <span
@@ -132,8 +132,15 @@ export default function UseCasesPage({ navigate }) {
                         className="absolute inset-0"
                         style={{ background: "linear-gradient(to top, rgba(28,15,31,0.82) 0%, transparent 55%)" }}
                       />
-                      <div className="absolute top-5 left-5">
-                        <span className="text-3xl drop-shadow">{a.emoji}</span>
+                      <div className="absolute top-5 right-5">
+                        {(() => {
+  const Icon = a.emoji;
+  return (
+    <div className="p-2 rounded-xl bg-white/10 backdrop-blur-sm">
+      <Icon className="w-6 h-6 text-white" strokeWidth={2.2} />
+    </div>
+  );
+})()}
                       </div>
                       <div className="absolute bottom-0 left-0 right-0 p-6">
                         <span

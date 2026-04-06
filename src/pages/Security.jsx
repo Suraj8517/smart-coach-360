@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import {
   KeyRound, Users, Lock, CreditCard, ShieldCheck,
-  Database, ServerCrash, FileDown, ChevronDown, ArrowRight,
+  Database, ServerCrash, EarthLock, ChevronDown, ArrowRight,
   CheckCircle2, Globe, Clock4
 } from "lucide-react";
 
@@ -225,7 +225,7 @@ const complianceItems = [
     desc: "SmartCoach360 gives you the tools to manage client data responsibly and meet your obligations under GDPR and other global data privacy regulations.",
   },
   {
-    Icon: FileDown,
+    Icon: EarthLock,
     title: "Your Data Belongs to You",
     tag: "All Plans",
     tagColor: "bg-[#f0eaf3] text-[#7b4e87] border-[#ddd4e4]",
@@ -381,18 +381,12 @@ const SummaryTable = () => (
       <div className="rounded-2xl border border-[#e0d6e8] overflow-hidden no-scroll"
         style={{ boxShadow: "0 4px 40px rgba(46,26,50,.07),0 1px 4px rgba(46,26,50,.04)" }}>
 
-        {/* Plan legend */}
-        <div className="bg-[#1c0f1f] px-6 py-4 flex flex-wrap gap-4 items-center">
-          <span className="sc-fb text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-[#6b5272] mr-2">Plan key:</span>
-          <Badge label="All Plans" variant="all" />
-          <Badge label="Pro & Enterprise" variant="pro" />
-          <Badge label="Enterprise" variant="ent" />
-        </div>
+       
 
-        <div className="overflow-x-auto no-scroll">
+        <div className="overflow-x-auto no-scroll ">
           <table className="w-full border-collapse bg-white min-w-[480px]">
             <thead>
-              <tr className="bg-[#f7f2fa] border-b border-[#e8e0ed]">
+              <tr className=" border-b border-[#e8e0ed] bg-[#1c0f1f] ">
                 <th className="text-left px-6 py-4 sc-fb text-[0.63rem] font-bold uppercase tracking-[0.15em] text-[#a891b0]">Security Feature</th>
                 <th className="text-left px-6 py-4 sc-fb text-[0.63rem] font-bold uppercase tracking-[0.15em] text-[#a891b0]">Availability</th>
               </tr>

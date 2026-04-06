@@ -1,4 +1,6 @@
 export function CTASection({ navigate }) {
+  const CALENDLY = "https://calendly.com/sangameswaran-vmaxhealthtech/30min";
+
   return (
     <section className="py-16 px-4">
       <div className="max-w-4xl mx-auto">
@@ -39,7 +41,7 @@ export function CTASection({ navigate }) {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-              <button className="px-6 py-3 rounded-xl bg-gradient-to-r from-purple-400 to-pink-400 text-black font-semibold shadow-lg hover:scale-105 transition">
+              <button onClick={() => window.open(CALENDLY, "_blank")} className="px-6 py-3 rounded-xl bg-gradient-to-r from-purple-400 to-pink-400 text-black font-semibold shadow-lg hover:scale-105 transition">
                 Book Free Demo
               </button>
 

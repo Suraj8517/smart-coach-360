@@ -91,7 +91,6 @@ export default function Support() {
               : "bg-brand-lilac border-brand-silver-xl hover:border-brand-lilac-300"
           }`}
         >
-          {/* Top accent line */}
           <div
             className="absolute top-0 left-0 right-0 h-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-t-2xl"
             style={{ background: s.highlight ? "linear-gradient(90deg, #47294c, #9b6dbd)" : "linear-gradient(90deg, #9b6dbd, #c49ad6)" }}

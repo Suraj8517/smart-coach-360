@@ -26,12 +26,17 @@ import telephony from './assets/integrations/call.png'
 import lab from './assets/integrations/lab.png'
 import web from './assets/integrations/web.png'
 import largeorg from './assets/who it for/large-org.jpg';
+import fb from './assets/footer/fb.svg'
+import insta from './assets/footer/insta.svg'
+import linkedin from './assets/footer/linkedin.svg'
+import bg1 from './assets/bg1.png'
 
 
 
 
 export const IMAGES = {
   // Hero & large banners
+  background:bg1,
   logo: logo,
   heroCoach: bg,
   heroTrainer: problem,
@@ -83,5 +88,10 @@ export const IMAGES = {
   telephony:telephony,
   lab:lab,
   web:web,
-  largeorg:largeorg
+  largeorg:largeorg,
+
+  // social
+  fb: fb,
+  insta: insta,
+  linkedin: linkedin,
 };
