@@ -1,6 +1,6 @@
 import React from 'react'
 export default function hero({DARK_BG,IMAGES,navigate}) {
-    const CALENDLY = "https://calendly.com/sangameswaran-vmaxhealthtech/30min";
+  const url =import.meta.env.VITE_CALENDLY_LINK;
   return (
           <section
       className="relative min-h-[92vh] flex items-center overflow-hidden"
@@ -100,7 +100,7 @@ export default function hero({DARK_BG,IMAGES,navigate}) {
     
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-3.5 mb-14 fade-up fade-up-3">
-              <button onClick={() => window.open(CALENDLY, "_blank")}
+              <button onClick={() => window.open(url, "_blank")}
                 className="btn-cream font-bold text-base shadow-2xl group relative overflow-hidden"
                 style={{ paddingLeft: "1.75rem", paddingRight: "1.75rem" }}
               >

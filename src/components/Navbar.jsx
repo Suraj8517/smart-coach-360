@@ -4,17 +4,18 @@ import { IMAGES } from "../images";
 
 const NAV = [
   { label: "About Us",     path: "/about-us" },
-  { label: "Solutions",    path: "/usecases" },
+  { label: "Solutions",    path: "/solutions" },
   { label: "Integrations", path: "/integrations" },
-  { label: "Case Studies", path: "/case-studies" },
+  { label: "Success Stories", path: "/success-stories" },
   { label: "Compare",      path: "/comparison" },
   { label: "Blogs",        path: "/blogs" },
   
 ];
 
-const CALENDLY = "https://calendly.com/sangameswaran-vmaxhealthtech/30min";
+const url =import.meta.env.VITE_CALENDLY_LINK;
 
-export default function Navbar({ onOpenForm, onOpenContactForm }) {
+
+export default function Navbar({ onOpenContactForm }) {
   const [open,      setOpen]      = useState(false);
   const [scrolled,  setScrolled]  = useState(false);
   const [indicator, setIndicator] = useState({ left: 0, width: 0, opacity: 0 });
@@ -122,14 +123,13 @@ export default function Navbar({ onOpenForm, onOpenContactForm }) {
                 Contact Us
               </button>
               <button
-                onClick={() => window.open(CALENDLY, "_blank")}
+                onClick={() => window.open(url, "_blank")}
                 className="text-[13.5px] font-semibold text-white bg-gradient-to-br from-[#a06cb0] to-[#47294c] border-none cursor-pointer px-[18px] py-2 rounded-[10px] whitespace-nowrap shadow-[0_3px_12px_rgba(71,41,76,0.28)] transition-all duration-200 hover:shadow-[0_6px_20px_rgba(71,41,76,0.38)] hover:-translate-y-px active:translate-y-0 active:opacity-90"
               >
                 Book a Demo →
               </button>
             </div>
 
-            {/* ── Mobile hamburger ── */}
             <button
               onClick={() => setOpen(!open)}
               aria-label="Toggle menu"
@@ -149,11 +149,7 @@ export default function Navbar({ onOpenForm, onOpenContactForm }) {
         </div>
       </nav>
 
-      {/* ═══════════════════════════════════════
-          MOBILE DRAWER
-      ═══════════════════════════════════════ */}
-
-      {/* Backdrop */}
+   
       <div
         onClick={() => setOpen(false)}
         className={`fixed inset-0 z-[49] bg-[rgba(28,15,31,0.45)] backdrop-blur-[4px] transition-opacity duration-300 md:hidden ${
@@ -161,13 +157,13 @@ export default function Navbar({ onOpenForm, onOpenContactForm }) {
         }`}
       />
 
-      {/* Slide-in panel */}
+   
       <div
         className={`fixed top-0 right-0 bottom-0 z-[49] w-[280px] bg-[#fdf9ff] border-l border-[#e8e0ed] shadow-[-8px_0_48px_rgba(71,41,76,0.12)] flex flex-col px-4 py-5 overflow-y-auto transition-transform duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] md:hidden ${
           open ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        {/* Panel header */}
+        
         <div className="flex items-center justify-between mb-7 px-1">
           <span className="font-display text-base text-[#1c0f1f]">
             SmartCoach<span className="text-[#a06cb0]">360</span>
@@ -183,7 +179,7 @@ export default function Navbar({ onOpenForm, onOpenContactForm }) {
           </button>
         </div>
 
-        {/* Nav links */}
+      
         <nav className="flex flex-col gap-0.5 flex-1">
           {NAV.map((n) => {
             const active = location.pathname === n.path;
@@ -204,10 +200,10 @@ export default function Navbar({ onOpenForm, onOpenContactForm }) {
           })}
         </nav>
 
-        {/* Divider */}
+       
         <div className="h-px bg-[#e8e0ed] my-4 mx-1" />
 
-        {/* Bottom actions */}
+        
         <div className="flex flex-col gap-2 px-1">
           <button
             onClick={() => { setOpen(false); onOpenContactForm?.(); }}

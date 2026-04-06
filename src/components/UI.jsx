@@ -6,7 +6,6 @@ export function CTASection({ navigate }) {
       <div className="max-w-4xl mx-auto">
         <div className="relative overflow-hidden rounded-3xl px-6 sm:px-10 py-14 text-center backdrop-blur-xl border border-white/10 bg-gradient-to-br from-[#2e1a32] to-[#3c2442] shadow-2xl">
 
-          {/* Background Image */}
           <div
             className="absolute inset-0 opacity-10"
             style={{
@@ -17,14 +16,11 @@ export function CTASection({ navigate }) {
             }}
           />
 
-          {/* Gradient Overlay */}
           <div className="absolute inset-0 bg-gradient-to-br from-black/40 to-transparent" />
 
-          {/* Glow Effect */}
           <div className="absolute -top-16 right-10 w-40 h-40 bg-purple-400/20 blur-3xl rounded-full" />
           <div className="absolute -bottom-16 left-10 w-52 h-52 bg-pink-300/10 blur-3xl rounded-full" />
 
-          {/* Content */}
           <div className="relative z-10">
             <span className="inline-block text-xs tracking-wide px-4 py-1.5 rounded-full bg-white/10 text-purple-200 mb-5">
               Get Started Today
@@ -45,7 +41,7 @@ export function CTASection({ navigate }) {
                 Book Free Demo
               </button>
 
-              <button className="px-6 py-3 rounded-xl border border-white/20 text-white hover:bg-white/10 transition flex items-center gap-2">
+              <button onClick={()=> navigate("/comparison")} className="px-6 py-3 rounded-xl border border-white/20 text-white hover:bg-white/10 transition flex items-center gap-2">
                 Explore Platform
                 <svg
                   className="w-4 h-4"

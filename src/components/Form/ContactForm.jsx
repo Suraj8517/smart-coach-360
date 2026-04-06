@@ -520,7 +520,7 @@ export default function ContactForm({ onClose }) {
                 {/* Privacy note */}
                 <p style={{ margin: 0, fontSize: 11, color: B.muted, textAlign: "center", lineHeight: 1.5 }}>
                   By submitting you agree to our{" "}
-                  <span style={{ color: B.mid, cursor: "pointer", textDecoration: "underline" }}>Privacy Policy</span>.
+                  <span style={{ color: B.mid, cursor: "pointer" }}>Privacy Policy</span>.
                   We never share your data.
                 </p>
               </div>

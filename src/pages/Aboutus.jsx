@@ -7,7 +7,7 @@ import { Values } from "../components/aboutus/Values";
 import { Milestones } from "../components/aboutus/Milestones";
 import { CTA } from "../components/aboutus/CTA";
 
-export default function AboutUs() {
+export default function AboutUs({ onOpenContactForm }) {
   return (
     <div className="sc-fb antialiased bg-white text-[#1c0f1f]">
       <FontLoader />
@@ -15,7 +15,7 @@ export default function AboutUs() {
       <Story />
       <Values />
       <Milestones />
-      <CTA />
+      <CTA onOpenContactForm={() => onOpenContactForm()} />
     </div>
   );
 }

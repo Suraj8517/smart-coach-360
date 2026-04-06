@@ -214,7 +214,7 @@ export default function ContactPage({ onOpenContactForm }) {
                   Book a free 20-minute demo and we'll tailor the walkthrough to your workflow.
                 </p>
 
-                <button
+                <button 
                   className="self-start inline-flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-semibold px-3 sm:px-5 py-2 sm:py-2.5 rounded-full transition-all duration-200 hover:opacity-90 active:scale-95"
                   style={{
                     backgroundColor: "rgba(255,255,255,0.12)",
@@ -263,7 +263,7 @@ export default function ContactPage({ onOpenContactForm }) {
                 </p>
 
                 <button
-                  onClick={onOpenContactForm}
+                                  onClick={onOpenContactForm}
                   className="self-start inline-flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-semibold px-3 sm:px-5 py-2 sm:py-2.5 rounded-full transition-all duration-200 hover:opacity-90 active:scale-95"
                   style={{
                     backgroundColor: "rgba(255,255,255,0.12)",

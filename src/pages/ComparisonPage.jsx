@@ -364,8 +364,6 @@ export default function ComparisonPage({ navigate }) {
           </div>
         </div>
       </section>
-
-      <CTASection />
     </div>
   );
 }

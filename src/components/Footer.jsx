@@ -9,26 +9,29 @@ const socialLinks = [
 ];
 
 const LINKS = {
-  Product: [
-    { label: "Features",     path: "/" },
+  Platform: [
+    { label: "Home",     path: "/" },
     { label: "Integrations", path: "/integrations" },
     { label: "Contact Us",   path: "/contact-us" },
-    { label: "Security",     path: "/security" },
+
   ],
-  Solutions: [
-    { label: "Personal Trainers",  path: "/personal-trainers" },
-    { label: "Gym Owners",         path: "/gym-owners" },
-    { label: "Nutrition Coaches",  path: "/nutrition-coaches" },
-    { label: "Enterprise",         path: "/enterprise" },
+
+  Company: [
+    { label: "About Us",     path: "/about-us" },
+    { label: "Solutions",   path: "/solutions" },
+    { label: "Comparison",   path: "/comparison" },
+     { label: "Security",     path: "/security" },
   ],
-  Resources: [
-    { label: "Case Studies", path: "/case-studies" },
+
+  Learn: [
+    { label: "Success Stories", path: "/success-stories" },
     { label: "Blog",         path: "/blogs" },
     { label: "Help Centre",  path: "/help-centre" },
   ],
-  "Get In Touch": [
-    { label: "sales@smartcoach360.ai", path: "sales@smartcoach360.ai" },
-    { label: "No 9/14, Bharathi Street, Vellakinar, Coimbatore, Tamil Nadu, 641029", path: "/contact-us" },
+
+  Contact: [
+    { label: "sales@smartcoach360.ai", path: "mailto:sales@smartcoach360.ai" },
+    { label: "No 9/14, Bharathi Street, Vellakinar, Coimbatore, Tamil Nadu, 641029",   path: "/contact-us" },
   ],
 };
 

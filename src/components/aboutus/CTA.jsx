@@ -1,4 +1,5 @@
-export const CTA = () => (
+const url =import.meta.env.VITE_CALENDLY_LINK;
+export const CTA = ({onOpenContactForm}) => (
   <section className="relative overflow-hidden bg-[#1c0f1f] py-24">
     <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[360px] pointer-events-none"
       style={{ background: "radial-gradient(ellipse at 50% 0%,rgba(71,41,76,.55) 0%,transparent 70%)", filter: "blur(52px)" }} />
@@ -17,11 +18,11 @@ export const CTA = () => (
         Every fitness coach—whether you're training your first client or managing a team of fifty—deserves enterprise-quality tools that are genuinely easy to use. SmartCoach360 will always be shaped by the people who use it.
       </p>
       <div className="flex flex-wrap gap-3.5 justify-center">
-        <button className="px-7 py-3.5 rounded-xl bg-[#a06cb0] text-white text-[0.875rem] font-semibold border-none cursor-pointer transition-all duration-200 hover:opacity-90 hover:-translate-y-0.5"
+        <button onClick={() => window.open(url, "_blank")} className="px-7 py-3.5 rounded-xl bg-[#a06cb0] text-white text-[0.875rem] font-semibold border-none cursor-pointer transition-all duration-200 hover:opacity-90 hover:-translate-y-0.5"
           style={{ boxShadow: "0 4px 20px rgba(160,108,176,.35)" }}>
-          Get Started Free
+          Book a Demo
         </button>
-        <button className="px-7 py-3.5 rounded-xl bg-transparent text-[#c9a8d6] text-[0.875rem] font-semibold border border-white/15 cursor-pointer transition-all duration-200 hover:border-[rgba(160,108,176,0.5)] hover:-translate-y-0.5">
+        <button onClick={onOpenContactForm} className="px-7 py-3.5 rounded-xl bg-transparent text-[#c9a8d6] text-[0.875rem] font-semibold border border-white/15 cursor-pointer transition-all duration-200 hover:border-[rgba(160,108,176,0.5)] hover:-translate-y-0.5">
           Talk to Our Team
         </button>
       </div>

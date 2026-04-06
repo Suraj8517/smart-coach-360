@@ -14,6 +14,7 @@ import AboutUs from "./pages/Aboutus";
 import Security from "./pages/Security";
 import ContactForm from "./components/Form/ContactForm";
 import { useState } from "react";
+import NotFound from "./pages/NotFound";
 
 export default function LandingPage() {  
       const [openContactForm, setOpenContactForm] = useState(false);
@@ -26,16 +27,16 @@ export default function LandingPage() {
         <main>
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/usecases" element={<UseCasesPage />} />
+            <Route path="/solutions" element={<UseCasesPage />} />
             <Route path="/integrations" element={<IntegrationsPage />} />
-            <Route path="/case-studies" element={<CaseStudiesPage />} />
+            <Route path="/success-stories" element={<CaseStudiesPage />} />
             <Route path="/comparison" element={<ComparisonPage />} />
             <Route path="/blogs" element={<Blogs />} />
             <Route path="/blogs/:slug" element={<BlogsPost />} />
-            <Route path="/contact-us" element={<ContactPage />} />
-            <Route path="/about-us" element={<AboutUs />} />
+            <Route path="/contact-us" element={<ContactPage onOpenContactForm={() => setOpenContactForm(true)} />} />
+            <Route path="/about-us" element={<AboutUs onOpenContactForm={() => setOpenContactForm(true)} />} />
             <Route path="/security" element={<Security />} />
-
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
 
