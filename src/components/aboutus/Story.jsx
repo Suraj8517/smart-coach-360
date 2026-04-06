@@ -38,7 +38,7 @@ export const Story = () => (
     </div>
 
     {/* Mission strip */}
-    <div className="relative z-[2] border-t border-white/[0.07] bg-[rgba(71,41,76,0.18)]">
+    <div className="relative z-[2] border-t border-white/[0.07] ">
       <div className="max-w-[1200px] mx-auto px-12 py-12 grid grid-cols-1 md:grid-cols-[auto_1px_auto] gap-6 md:gap-12 items-center">
         <div>
           <p className="text-[0.67rem] font-bold uppercase tracking-[0.18em] text-[#a06cb0] mb-2.5">Our Mission</p>
