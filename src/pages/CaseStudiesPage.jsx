@@ -44,16 +44,13 @@ function ResultCard({ value, sub }) {
   );
 }
 
-// ── Results grid — 3-col on mobile (3+2 centred), 5-col on md+ ───────────────
 function ResultsGrid({ results }) {
   return (
     <>
-      {/* md and up: single 5-col row */}
       <div className="hidden md:grid grid-cols-5 gap-2">
         {results.map((r, j) => <ResultCard key={j} {...r} />)}
       </div>
 
-      {/* Mobile: 3-col, items 4 & 5 centred in second row */}
       <div className="grid grid-cols-3 gap-2 md:hidden">
         {results.map((r, j) => (
           <div
@@ -76,10 +73,8 @@ export default function CaseStudiesPage() {
   return (
     <div className="pt-16 overflow-hidden">
 
-      {/* ── HERO ── blobs are INSIDE the section, no stray absolute elements outside ── */}
       <section className="relative overflow-hidden bg-[#1c0f1f] flex items-center justify-center min-h-[60vh] py-20">
 
-        {/* Blobs — contained within this section */}
         <div
           className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[380px] pointer-events-none"
           style={{
@@ -94,7 +89,6 @@ export default function CaseStudiesPage() {
             filter: "blur(56px)",
           }}
         />
-        {/* Subtle dot grid */}
         <div
           className="absolute inset-0 pointer-events-none opacity-[0.04]"
           style={{
@@ -124,7 +118,6 @@ export default function CaseStudiesPage() {
         />
       </section>
 
-      {/* ── CASE STUDIES ── */}
       <section className="bg-brand-lilac">
         {studies.map((cs, i) => (
           <div
@@ -137,7 +130,6 @@ export default function CaseStudiesPage() {
                   i % 2 !== 0 ? "lg:grid-flow-col-dense" : ""
                 }`}
               >
-                {/* Image + results */}
                 <div className={`${i % 2 !== 0 ? "lg:col-start-2" : ""} space-y-3`}>
                   <div className="relative rounded-3xl overflow-hidden aspect-[4/3]">
                     <img src={cs.img} alt={cs.type} className="w-full h-full object-cover object-top" />
@@ -145,9 +137,7 @@ export default function CaseStudiesPage() {
                       className="absolute inset-0"
                       style={{ background: "linear-gradient(to top,rgba(46,26,50,0.85) 0%,rgba(71,41,76,0.1) 60%,transparent 100%)" }}
                     />
-                    <div className="absolute top-4 left-4 sm:top-5 sm:left-5">
-                      <span className="text-2xl sm:text-3xl">{cs.emoji}</span>
-                    </div>
+                    
                     <div className="absolute bottom-4 left-4 right-4 sm:bottom-5 sm:left-5 sm:right-5">
                       <span
                         className="text-brand-lilac text-xs font-semibold px-3 py-1.5 rounded-xl"
@@ -161,7 +151,6 @@ export default function CaseStudiesPage() {
                   <ResultsGrid results={cs.results} />
                 </div>
 
-                {/* Text */}
                 <div className={`${i % 2 !== 0 ? "lg:col-start-1" : ""} mt-2 sm:mt-0`}>
                   <span className="section-tag">{cs.type}</span>
                   <blockquote
@@ -197,7 +186,6 @@ export default function CaseStudiesPage() {
         ))}
       </section>
 
-      {/* ── PLATFORM STATS ── */}
       <section className="py-16 sm:py-20 relative overflow-hidden" style={DARK_BG}>
         <div
           className="absolute inset-0"
