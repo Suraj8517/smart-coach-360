@@ -15,11 +15,11 @@ import Security from "./pages/Security";
 import ContactForm from "./components/Form/ContactForm";
 import { useState } from "react";
 import NotFound from "./pages/NotFound";
+import ScrollToTop from "./components/ScrollOnTop";
 
 export default function LandingPage() {  
       const [openContactForm, setOpenContactForm] = useState(false);
   return (
-    
     <Router>
       <div className="min-h-screen bg-brand-lilac">
         <Navbar onOpenContactForm={() => setOpenContactForm(true)} />
