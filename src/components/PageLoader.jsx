@@ -1,8 +1,10 @@
 import { useEffect } from "react";
 import { IMAGES } from "../images";
+
 const FontLoader = () => {
   useEffect(() => {
     if (document.getElementById("sc360-loader-fonts")) return;
+
     const link = document.createElement("link");
     link.id = "sc360-loader-fonts";
     link.rel = "stylesheet";
@@ -65,14 +67,6 @@ const FontLoader = () => {
         88%  { opacity: 1; transform: translateY(0); }
         100% { opacity: 0; transform: translateY(-6px); }
       }
-      @keyframes ldr-grid-fade {
-        from { opacity: 0; }
-        to   { opacity: 0.045; }
-      }
-      @keyframes ldr-page-fade-out {
-        0%   { opacity: 1; }
-        100% { opacity: 0; }
-      }
 
       .ldr-shimmer-text {
         background: linear-gradient(90deg, #a06cb0 0%, #e8c8f0 35%, #a06cb0 55%, #c9a8d6 100%);
@@ -82,35 +76,49 @@ const FontLoader = () => {
         background-clip: text;
         animation: ldr-shimmer-text 5s linear infinite;
       }
+      .ldr-ring-outer {
+        animation: ldr-ring-spin 2.8s cubic-bezier(0.4,0,0.2,1) infinite;
+      }
+      .ldr-ring-mid {
+        animation: ldr-ring-spin-rev 2s cubic-bezier(0.4,0,0.2,1) infinite;
+      }
+      .ldr-ring-inner {
+        animation: ldr-ring-spin 1.4s cubic-bezier(0.4,0,0.2,1) infinite;
+      }
+      .ldr-logo-pop {
+        animation: ldr-logo-pop 0.9s cubic-bezier(0.34,1.56,0.64,1) 0.3s both;
+      }
+      .ldr-logo-pop-late {
+        animation: ldr-logo-pop 0.9s cubic-bezier(0.34,1.56,0.64,1) 0.45s both;
+      }
+      .ldr-fade-up-65 { animation: ldr-fade-up 0.7s ease 0.65s both; }
+      .ldr-fade-up-75 { animation: ldr-fade-up 0.7s ease 0.75s both; }
+      .ldr-fade-up-85 { animation: ldr-fade-up 0.7s ease 0.85s both; }
+      .ldr-fade-up-95 { animation: ldr-fade-up 0.7s ease 0.95s both; }
+      .ldr-blob-1 {
+        animation: ldr-blob-drift-1 7s ease-in-out infinite;
+      }
+      .ldr-blob-2 {
+        animation: ldr-blob-drift-2 9s ease-in-out infinite;
+      }
+      .ldr-blob-3 {
+        animation: ldr-blob-drift-1 11s ease-in-out infinite reverse;
+      }
+      .ldr-bar-fill {
+        background: linear-gradient(90deg, #47294c 0%, #a06cb0 40%, #e8c8f0 60%, #a06cb0 80%, #47294c 100%);
+        background-size: 200% auto;
+        animation: ldr-bar-grow 2.8s cubic-bezier(0.4,0,0.8,1) 0.5s both,
+                   ldr-bar-shimmer 1.8s linear 0.5s infinite;
+      }
+      .ldr-dot-pulse-0 { animation: ldr-dot-pulse 1.4s ease-in-out 0s infinite; }
+      .ldr-dot-pulse-1 { animation: ldr-dot-pulse 1.4s ease-in-out 0.2s infinite; }
+      .ldr-dot-pulse-2 { animation: ldr-dot-pulse 1.4s ease-in-out 0.4s infinite; }
     `;
     document.head.appendChild(style);
   }, []);
+
   return null;
 };
-
-const ShieldIcon = () => (
-  <svg
-    viewBox="0 0 24 24"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    style={{ width: 36, height: 36, animation: "ldr-logo-pop 0.9s cubic-bezier(0.34,1.56,0.64,1) 0.3s both" }}
-  >
-    <path
-      d="M12 2L3 6.5V12c0 4.5 3.5 8.5 9 10 5.5-1.5 9-5.5 9-10V6.5L12 2Z"
-      fill="rgba(71,41,76,0.8)"
-      stroke="#c9a8d6"
-      strokeWidth="1.2"
-      strokeLinejoin="round"
-    />
-    <path
-      d="M8.5 12l2.5 2.5 4.5-4.5"
-      stroke="#c9a8d6"
-      strokeWidth="1.4"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
 
 export default function PageLoader({ onComplete }) {
   useEffect(() => {
@@ -119,226 +127,117 @@ export default function PageLoader({ onComplete }) {
     return () => clearTimeout(t);
   }, [onComplete]);
 
+  const statusMessages = [
+    { text: "Initialising workspace", delay: "0.8s" },
+    { text: "Loading your clients",   delay: "1.9s" },
+    { text: "Almost ready",           delay: "3.0s" },
+  ];
+
   return (
     <>
       <FontLoader />
+
       <div
-        style={{
-          position: "fixed",
-          inset: 0,
-          zIndex: 9999,
-          background: "#1c0f1f",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          overflow: "hidden",
-          fontFamily: "'DM Sans', system-ui, sans-serif",
-        }}
+        className="fixed inset-0 z-[9999] flex flex-col items-center justify-center overflow-hidden"
+        style={{ background: "#1c0f1f", fontFamily: "'DM Sans', system-ui, sans-serif" }}
       >
-        
-
-        {/* Blobs */}
         <div
+          className="ldr-blob-1 pointer-events-none absolute left-1/2 top-[20%] h-[340px] w-[520px] rounded-full"
           style={{
-            position: "absolute",
-            top: "20%",
-            left: "50%",
-            width: 520,
-            height: 340,
-            borderRadius: "50%",
-            background:
-              "radial-gradient(ellipse at center, rgba(71,41,76,0.85) 0%, transparent 70%)",
+            background: "radial-gradient(ellipse at center, rgba(71,41,76,0.85) 0%, transparent 70%)",
             filter: "blur(52px)",
-            animation: "ldr-blob-drift-1 7s ease-in-out infinite",
-            pointerEvents: "none",
           }}
         />
         <div
+          className="ldr-blob-2 pointer-events-none absolute left-[30%] top-[65%] h-[260px] w-[340px] rounded-full"
           style={{
-            position: "absolute",
-            top: "65%",
-            left: "30%",
-            width: 340,
-            height: 260,
-            borderRadius: "50%",
-            background:
-              "radial-gradient(ellipse at center, rgba(129,69,140,0.25) 0%, transparent 70%)",
+            background: "radial-gradient(ellipse at center, rgba(129,69,140,0.25) 0%, transparent 70%)",
             filter: "blur(44px)",
-            animation: "ldr-blob-drift-2 9s ease-in-out infinite",
-            pointerEvents: "none",
           }}
         />
         <div
+          className="ldr-blob-3 pointer-events-none absolute left-[72%] top-[60%] h-[200px] w-[280px] rounded-full"
           style={{
-            position: "absolute",
-            top: "60%",
-            left: "72%",
-            width: 280,
-            height: 200,
-            borderRadius: "50%",
-            background:
-              "radial-gradient(ellipse at center, rgba(71,41,76,0.3) 0%, transparent 70%)",
+            background: "radial-gradient(ellipse at center, rgba(71,41,76,0.3) 0%, transparent 70%)",
             filter: "blur(40px)",
-            animation: "ldr-blob-drift-1 11s ease-in-out infinite reverse",
-            pointerEvents: "none",
           }}
         />
 
-       
+        <div className="relative z-10 flex flex-col items-center">
 
-        {/* Centre content */}
-        <div
-          style={{
-            position: "relative",
-            zIndex: 10,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          {/* Orbital rings */}
-          <div style={{ position: "relative", width: 120, height: 120, marginBottom: 36 }}>
-            {/* Outer ring */}
+          <div className="relative mb-9 h-[120px] w-[120px]">
             <div
+              className="ldr-ring-outer absolute inset-0 rounded-full"
               style={{
-                position: "absolute",
-                inset: 0,
-                borderRadius: "50%",
                 border: "1px solid transparent",
                 borderTopColor: "rgba(160,108,176,0.7)",
                 borderRightColor: "rgba(160,108,176,0.4)",
                 borderBottomColor: "rgba(160,108,176,0.18)",
                 borderLeftColor: "rgba(160,108,176,0.18)",
-                animation: "ldr-ring-spin 2.8s cubic-bezier(0.4,0,0.2,1) infinite",
               }}
             />
-            {/* Mid ring */}
             <div
+              className="ldr-ring-mid absolute rounded-full"
               style={{
-                position: "absolute",
                 inset: 14,
-                borderRadius: "50%",
                 border: "1px solid transparent",
                 borderBottomColor: "rgba(201,168,214,0.6)",
                 borderLeftColor: "rgba(201,168,214,0.3)",
                 borderTopColor: "rgba(201,168,214,0.12)",
                 borderRightColor: "rgba(201,168,214,0.12)",
-                animation: "ldr-ring-spin-rev 2s cubic-bezier(0.4,0,0.2,1) infinite",
               }}
             />
-            {/* Inner ring */}
             <div
+              className="ldr-ring-inner absolute rounded-full"
               style={{
-                position: "absolute",
                 inset: 28,
-                borderRadius: "50%",
                 border: "1px solid transparent",
                 borderTopColor: "rgba(129,69,140,0.7)",
                 borderRightColor: "rgba(129,69,140,0.15)",
                 borderBottomColor: "rgba(129,69,140,0.15)",
                 borderLeftColor: "rgba(129,69,140,0.15)",
-                animation: "ldr-ring-spin 1.4s cubic-bezier(0.4,0,0.2,1) infinite",
               }}
             />
-            {/* Shield icon */}
-            <div
-              style={{
-                position: "absolute",
-                inset: 0,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <img src={IMAGES.logo} alt="Shield" style={{ width: 32, height: 32, animation: "ldr-logo-pop 0.9s cubic-bezier(0.34,1.56,0.64,1) 0.3s both" }} />
-            </div>
-          </div>
-
-          {/* Wordmark */}
-          <div
-            style={{
-              fontFamily: "'DM Serif Display', Georgia, serif",
-              fontSize: 28,
-              color: "#faf4fc",
-              letterSpacing: "-0.02em",
-              marginBottom: 8,
-              animation: "ldr-logo-pop 0.9s cubic-bezier(0.34,1.56,0.64,1) 0.45s both",
-            }}
-          >
-            Smart<span className="ldr-shimmer-text">Coach360</span>
-          </div>
-
-          {/* Tagline */}
-          <div
-            style={{
-              fontSize: 13,
-              fontWeight: 400,
-              color: "rgba(138,116,144,0.9)",
-              letterSpacing: "0.04em",
-              marginBottom: 44,
-              animation: "ldr-fade-up 0.7s ease 0.65s both",
-            }}
-          >
-            #1 Software for Coaches
-          </div>
-
-          {/* Progress bar */}
-          <div
-            style={{
-              width: 220,
-              marginBottom: 24,
-              animation: "ldr-fade-up 0.7s ease 0.75s both",
-            }}
-          >
-            <div
-              style={{
-                width: "100%",
-                height: 3,
-                background: "rgba(255,255,255,0.07)",
-                borderRadius: 99,
-                overflow: "hidden",
-              }}
-            >
-              <div
-                style={{
-                  height: "100%",
-                  borderRadius: 99,
-                  background:
-                    "linear-gradient(90deg, #47294c 0%, #a06cb0 40%, #e8c8f0 60%, #a06cb0 80%, #47294c 100%)",
-                  backgroundSize: "200% auto",
-                  animation:
-                    "ldr-bar-grow 2.8s cubic-bezier(0.4,0,0.8,1) 0.5s both, ldr-bar-shimmer 1.8s linear 0.5s infinite",
-                }}
+            <div className="absolute inset-0 flex items-center justify-center ">
+              <img
+                src={IMAGES.logo}
+                alt="Shield"
+                className="ldr-logo-pop h-16 w-16 bg-white/80 px-3 py-3 rounded-full shadow-[0_4px_12px_rgba(160,108,176,0.3)]"
               />
             </div>
           </div>
 
-          {/* Cycling status messages */}
           <div
-            style={{
-              height: 20,
-              overflow: "hidden",
-              animation: "ldr-fade-up 0.7s ease 0.85s both",
-              position: "relative",
-            }}
+            className="ldr-logo-pop-late mb-2 text-[28px] leading-none tracking-[-0.02em] text-[#faf4fc]"
+            style={{ fontFamily: "'DM Serif Display', Georgia, serif" }}
           >
-            {[
-              { text: "Initialising workspace", delay: "0.8s" },
-              { text: "Loading your clients",   delay: "1.9s" },
-              { text: "Almost ready",           delay: "3.0s" },
-            ].map(({ text, delay }) => (
+            Smart<span className="text-purple-300">Coach360</span>
+          </div>
+
+          <div
+            className="ldr-fade-up-65 mb-11 text-[13px] font-normal tracking-[0.04em]"
+            style={{ color: "rgba(138,116,144,0.9)" }}
+          >
+            #1 Software for Coaches
+          </div>
+
+          <div className="ldr-fade-up-75 mb-6 w-[220px]">
+            <div
+              className="h-[3px] w-full overflow-hidden rounded-full"
+              style={{ background: "rgba(255,255,255,0.07)" }}
+            >
+              <div className="ldr-bar-fill h-full rounded-full" />
+            </div>
+          </div>
+
+          {/* Cycling status messages */}
+          <div className="ldr-fade-up-85 relative h-5 overflow-hidden">
+            {statusMessages.map(({ text, delay }) => (
               <div
                 key={text}
+                className="absolute inset-0 text-center text-[11px] font-medium uppercase tracking-[0.14em]"
                 style={{
-                  position: "absolute",
-                  inset: 0,
-                  fontSize: 11,
-                  fontWeight: 500,
-                  textTransform: "uppercase",
-                  letterSpacing: "0.14em",
                   color: "rgba(160,108,176,0.7)",
-                  textAlign: "center",
                   animation: `ldr-status-cycle 1.1s ease ${delay} both`,
                 }}
               >
@@ -348,29 +247,13 @@ export default function PageLoader({ onComplete }) {
           </div>
         </div>
 
-        {/* Breathing dots */}
-        <div
-          style={{
-            position: "absolute",
-            bottom: 36,
-            left: 0,
-            right: 0,
-            display: "flex",
-            justifyContent: "center",
-            gap: 8,
-            animation: "ldr-fade-up 0.7s ease 0.95s both",
-          }}
-        >
-          {[0, 0.2, 0.4].map((delay, i) => (
+        {/* ── Breathing dots ── */}
+        <div className="ldr-fade-up-95 absolute bottom-9 left-0 right-0 flex justify-center gap-2">
+          {["ldr-dot-pulse-0", "ldr-dot-pulse-1", "ldr-dot-pulse-2"].map((cls, i) => (
             <div
               key={i}
-              style={{
-                width: 5,
-                height: 5,
-                borderRadius: "50%",
-                background: "rgba(160,108,176,0.6)",
-                animation: `ldr-dot-pulse 1.4s ease-in-out ${delay}s infinite`,
-              }}
+              className={`${cls} h-[5px] w-[5px] rounded-full`}
+              style={{ background: "rgba(160,108,176,0.6)" }}
             />
           ))}
         </div>
