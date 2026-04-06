@@ -50,16 +50,7 @@ const MID_BG = { backgroundColor: "#47294c" };
 
 export default function HomePage() {
       const navigate = useNavigate();
-  
-  const [loading,setLoading]=useState(true);
-useEffect(()=>{
-  const timer = setTimeout(()=>{
-    setLoading(false);
-  },3400)
-  return () => clearTimeout(timer);
-})
-  if(loading) return <PageLoader />;
-  return (
+   return (
     <div className="pt-16">
       <Hero DARK_BG={DARK_BG} IMAGES={IMAGES} navigate={navigate} />
       <Problem navigate={navigate}/>

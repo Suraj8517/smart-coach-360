@@ -30,7 +30,7 @@ import fb from './assets/footer/fb.svg'
 import insta from './assets/footer/insta.svg'
 import linkedin from './assets/footer/linkedin.svg'
 import bg1 from './assets/bg1.png'
-
+import ctabg from './assets/cta/ctabg.jpg';
 
 
 
@@ -89,6 +89,7 @@ export const IMAGES = {
   lab:lab,
   web:web,
   largeorg:largeorg,
+  ctabg:ctabg,
 
   // social
   fb: fb,

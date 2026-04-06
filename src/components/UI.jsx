@@ -1,4 +1,5 @@
-export function CTASection({ navigate }) {
+import {IMAGES} from "../images";
+  export function CTASection({ navigate }) {
   const CALENDLY = "https://calendly.com/sangameswaran-vmaxhealthtech/30min";
 
   return (
@@ -10,7 +11,7 @@ export function CTASection({ navigate }) {
             className="absolute inset-0 opacity-10"
             style={{
               backgroundImage:
-                "url(https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1400&q=60&fit=crop)",
+                `url(${IMAGES.ctabg})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
             }}
