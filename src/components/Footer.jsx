@@ -13,6 +13,8 @@ const LINKS = {
     { label: "Home",     path: "/" },
     { label: "Integrations", path: "/integrations" },
     { label: "Contact Us",   path: "/contact-us" },
+    { label: "Features",   path: "/features" },
+
 
   ],
 

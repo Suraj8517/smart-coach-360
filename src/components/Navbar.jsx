@@ -4,12 +4,12 @@ import { IMAGES } from "../images";
 
 const NAV = [
   { label: "About Us",     path: "/about-us" },
+  { label: "Features",        path: "/features" },
   { label: "Solutions",    path: "/solutions" },
   { label: "Integrations", path: "/integrations" },
   { label: "Success Stories", path: "/success-stories" },
   { label: "Compare",      path: "/comparison" },
   { label: "Blogs",        path: "/blogs" },
-  { label: "Features",        path: "/features" },
 ];
 
 const url =import.meta.env.VITE_CALENDLY_LINK;

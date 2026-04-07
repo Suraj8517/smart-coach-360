@@ -1,10 +1,10 @@
 import React from 'react'
 const problems = [
-  "Client details spread across email, spreadsheets, and WhatsApp—follow-ups constantly missed.",
+  "Client details spread across email, spreadsheets, and WhatsApp, follow-ups constantly missed.",
   "Hours every week chasing invoices and manually tracking session packs instead of coaching.",
-  "Scheduling in one app, messaging in another, nutrition in a third—the constant switching drains you.",
+  "Scheduling in one app, messaging in another, nutrition in a third, the constant switching drains you.",
   "Clients drift and cancel because check-ins and progress tracking aren't consistent.",
-  "Growth stalls—not from lack of demand, but because admin has eaten your capacity.",
+  "Growth stalls, not from lack of demand, but because admin has eaten your capacity.",
 ];
 export default function Problem({navigate}) {
   return (
@@ -20,7 +20,7 @@ export default function Problem({navigate}) {
           Does Any of This Sound Familiar?
         </h2>
         <p className="text-brand-fedora text-lg leading-relaxed mb-10">
-          You entered coaching to drive transformation—not to manage a patchwork of tools. As your client base grows, these challenges compound.
+          You entered coaching to drive transformation, not to manage a patchwork of tools. As your client base grows, these challenges compound.
         </p>
         <button onClick={() => navigate("/usecases")} className="btn-primary group">
           See How We Solve It

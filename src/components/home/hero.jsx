@@ -154,7 +154,7 @@ export default function Hero({ DARK_BG, IMAGES, navigate }) {
                 className="leading-relaxed mb-10 max-w-lg"
                 style={{ color: "rgba(180,150,200,0.8)", fontSize: "clamp(0.95rem,1.3vw,1.0625rem)", lineHeight: 1.75 }}
               >
-                Stop juggling apps. Manage clients, programmes, nutrition, payments, and messages—all in one place built for coaches who want to scale.
+                Stop juggling apps. Manage clients, programmes, nutrition, payments, and messages, all in one place built for coaches who want to scale.
               </p>
             </div>
 
