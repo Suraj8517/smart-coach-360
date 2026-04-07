@@ -220,17 +220,16 @@ export default function PageLoader({ onComplete }) {
           >
             #1 Software for Coaches
           </div>
-
-          <div className="ldr-fade-up-75 mb-6 w-[220px]">
+ <div className="ldr-fade-up-95 absolute bottom-9 left-0 right-0 flex justify-center gap-2">
+          {["ldr-dot-pulse-0", "ldr-dot-pulse-1", "ldr-dot-pulse-2"].map((cls, i) => (
             <div
-              className="h-[3px] w-full overflow-hidden rounded-full"
-              style={{ background: "rgba(255,255,255,0.07)" }}
-            >
-              <div className="ldr-bar-fill h-full rounded-full" />
-            </div>
-          </div>
+              key={i}
+              className={`${cls} h-[5px] w-[5px] rounded-full`}
+              style={{ background: "rgba(160,108,176,0.6)" }}
+            />
+          ))}
+        </div>
 
-          {/* Cycling status messages */}
           <div className="ldr-fade-up-85 relative h-5 overflow-hidden">
             {statusMessages.map(({ text, delay }) => (
               <div
@@ -245,17 +244,6 @@ export default function PageLoader({ onComplete }) {
               </div>
             ))}
           </div>
-        </div>
-
-        {/* ── Breathing dots ── */}
-        <div className="ldr-fade-up-95 absolute bottom-9 left-0 right-0 flex justify-center gap-2">
-          {["ldr-dot-pulse-0", "ldr-dot-pulse-1", "ldr-dot-pulse-2"].map((cls, i) => (
-            <div
-              key={i}
-              className={`${cls} h-[5px] w-[5px] rounded-full`}
-              style={{ background: "rgba(160,108,176,0.6)" }}
-            />
-          ))}
         </div>
       </div>
     </>

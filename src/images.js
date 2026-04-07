@@ -31,6 +31,19 @@ import insta from './assets/footer/insta.svg'
 import linkedin from './assets/footer/linkedin.svg'
 import bg1 from './assets/bg1.png'
 import ctabg from './assets/cta/ctabg.jpg';
+import coaching from './assets/crm/coaching.webp';
+import nutri from './assets/crm/nutrition.webp';
+import engage from './assets/crm/engage.webp';
+import workflow from './assets/crm/workflow.webp';
+import payment from './assets/crm/payments.webp';
+import dashboards from './assets/crm/dashboard.webp';
+import teamcrm from './assets/crm/team.webp';
+import crmapp from './assets/crm/mobile.webp';
+
+
+
+
+
 
 
 
@@ -95,4 +108,14 @@ export const IMAGES = {
   fb: fb,
   insta: insta,
   linkedin: linkedin,
+  //crm
+ coaching: coaching,
+ nutri: nutri,
+ engage: engage,
+ workflow: workflow,
+ payments:payment,
+  dashboards:dashboards, 
+  teamcrm:teamcrm,
+  crmapp:crmapp,
+
 };

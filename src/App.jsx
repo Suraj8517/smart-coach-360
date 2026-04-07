@@ -5,11 +5,9 @@ import LandingPage from "./LandingPage";
 export default function App() {
   const [loading, setLoading] = useState(true);
 
+  if (loading) {
+    return <PageLoader onComplete={() => setLoading(false)} />;
+  }
 
-  return (
-    <>
-      {loading && <PageLoader onComplete={() => setLoading(false)} />}
-      <LandingPage />
-    </>
-  );
+  return <LandingPage />;
 }

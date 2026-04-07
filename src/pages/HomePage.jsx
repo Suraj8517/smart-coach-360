@@ -57,8 +57,10 @@ export default function HomePage() {
       <Features />
       <WhoIsIt DARK_BG={DARK_BG} IMAGES={IMAGES} />
       <HowItWorks />
-      <Integration navigate={navigate}/>
-      {/* TESTIMONIALS 
+      {/* 
+            <Integration navigate={navigate}/>
+
+      TESTIMONIALS 
       <section className="py-24 bg-brand-lilac">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader tag="Real Results" title="What Coaches Are Saying" subtitle="From solo trainers to large fitness organisations—hear it in their words." />

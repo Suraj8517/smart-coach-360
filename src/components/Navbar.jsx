@@ -9,7 +9,7 @@ const NAV = [
   { label: "Success Stories", path: "/success-stories" },
   { label: "Compare",      path: "/comparison" },
   { label: "Blogs",        path: "/blogs" },
-  
+  { label: "Features",        path: "/features" },
 ];
 
 const url =import.meta.env.VITE_CALENDLY_LINK;
