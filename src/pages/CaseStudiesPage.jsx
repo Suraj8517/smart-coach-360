@@ -28,12 +28,15 @@ const studies = [
 ];
 
 // ── Result card ───────────────────────────────────────────────────────────────
-function ResultCard({ value, sub }) {
+function ResultCard({ label,value, sub }) {
   return (
     <div
       className="rounded-2xl p-2.5 sm:p-3 text-center flex flex-col justify-center gap-1"
       style={DARK_BG}
     >
+      <p className="text-[6px] sm:text-xs text-brand-silver tracking-wide">
+        {label}
+      </p>
       <p className="font-display text-sm sm:text-lg text-brand-lilac-300 leading-tight">
         {value}
       </p>
