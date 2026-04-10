@@ -3,13 +3,21 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { IMAGES } from "../images";
 
 const NAV = [
-  { label: "About Us",     path: "/about-us" },
-  { label: "Features",        path: "/features" },
-  { label: "Solutions",    path: "/solutions" },
+  { label: "About Us", path: "/about-us" },
+  { label: "Features", path: "/features" },
+  { label: "Solutions", path: "/solutions" },
   { label: "Integrations", path: "/integrations" },
-  { label: "Success Stories", path: "/success-stories" },
-  { label: "Compare",      path: "/comparison" },
-  { label: "Blogs",        path: "/blogs" },
+  { label: "Pricing", path: "/pricing" },
+
+  {
+    label: "Resources",
+    children: [
+      { label: "Blogs", path: "/blogs" },
+      { label: "Success Stories", path: "/success-stories" },
+    ],
+  },
+
+  { label: "Compare", path: "/comparison" },
 ];
 
 const url =import.meta.env.VITE_CALENDLY_LINK;
@@ -25,17 +33,14 @@ export default function Navbar({ onOpenContactForm }) {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Floating pill on scroll
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Close drawer on route change
   useEffect(() => { setOpen(false); }, [location.pathname]);
 
-  // Sliding active indicator — needs inline style since left/width are JS-measured
   useEffect(() => {
     const activeEl = linkRefs.current[location.pathname];
     const navEl    = navRef.current;
@@ -96,22 +101,48 @@ export default function Navbar({ onOpenContactForm }) {
                 }}
               />
               {NAV.map((n) => {
-                const active = location.pathname === n.path;
-                return (
-                  <Link
-                    key={n.path}
-                    to={n.path}
-                    ref={(el) => { if (el) linkRefs.current[n.path] = el; }}
-                    className={`relative z-[1] px-3.5 py-1.5 rounded-lg text-[13.5px] font-medium whitespace-nowrap no-underline transition-colors duration-200 ${
-                      active
-                        ? "text-purple-800 pointer-events-none font-extrabold"
-                        : "text-[#5c4862] hover:text-[#47294c]"
-                    }`}
-                  >
-                    {n.label}
-                  </Link>
-                );
-              })}
+  const isDropdown = !!n.children;
+
+  if (isDropdown) {
+    return (
+      <div key={n.label} className="relative group">
+        <button className="px-3.5 py-1.5 text-[13.5px] font-medium text-[#5c4862] hover:text-[#47294c]">
+          {n.label} ▾
+        </button>
+
+        {/* Dropdown */}
+        <div className="absolute left-0 mt-2 w-[180px] bg-white border border-[#eee] rounded-xl shadow-lg opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-200">
+          {n.children.map((child) => (
+            <Link
+              key={child.path}
+              to={child.path}
+              className="block px-4 py-2 text-sm text-[#5c4862] hover:bg-[#f6f2f8]"
+            >
+              {child.label}
+            </Link>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  const active = location.pathname === n.path;
+
+  return (
+    <Link
+      key={n.path}
+      to={n.path}
+      ref={(el) => { if (el) linkRefs.current[n.path] = el; }}
+      className={`relative z-[1] px-3.5 py-1.5 rounded-lg text-[13.5px] font-medium whitespace-nowrap no-underline transition-colors duration-200 ${
+        active
+          ? "text-purple-800 pointer-events-none font-extrabold"
+          : "text-[#5c4862] hover:text-[#47294c]"
+      }`}
+    >
+      {n.label}
+    </Link>
+  );
+})}
             </div>
 
             {/* ── Desktop CTAs ── */}
@@ -182,22 +213,44 @@ export default function Navbar({ onOpenContactForm }) {
       
         <nav className="flex flex-col gap-0.5 flex-1">
           {NAV.map((n) => {
-            const active = location.pathname === n.path;
-            return (
-              <Link
-                key={n.path}
-                to={n.path}
-                onClick={() => setOpen(false)}
-                className={`block px-4 py-2.5 rounded-[10px] text-sm font-medium no-underline transition-all duration-150 ${
-                  active
-                    ? "bg-gradient-to-br from-[#47294c] to-[#a06cb0] text-white pointer-events-none"
-                    : "text-[#5c4862] hover:bg-[rgba(71,41,76,0.06)] hover:text-[#47294c]"
-                }`}
-              >
-                {n.label}
-              </Link>
-            );
-          })}
+  if (n.children) {
+    return (
+      <div key={n.label} className="px-2">
+        <div className="text-xs text-[#8a7490] px-2 py-2 uppercase">
+          {n.label}
+        </div>
+
+        {n.children.map((child) => (
+          <Link
+            key={child.path}
+            to={child.path}
+            onClick={() => setOpen(false)}
+            className="block px-4 py-2.5 rounded-[10px] text-sm text-[#5c4862] hover:bg-[rgba(71,41,76,0.06)]"
+          >
+            {child.label}
+          </Link>
+        ))}
+      </div>
+    );
+  }
+
+  const active = location.pathname === n.path;
+
+  return (
+    <Link
+      key={n.path}
+      to={n.path}
+      onClick={() => setOpen(false)}
+      className={`block px-4 py-2.5 rounded-[10px] text-sm font-medium ${
+        active
+          ? "bg-gradient-to-br from-[#47294c] to-[#a06cb0] text-white"
+          : "text-[#5c4862] hover:bg-[rgba(71,41,76,0.06)]"
+      }`}
+    >
+      {n.label}
+    </Link>
+  );
+})}
         </nav>
 
        
@@ -212,7 +265,7 @@ export default function Navbar({ onOpenContactForm }) {
             Contact Us
           </button>
           <button
-            onClick={() => { setOpen(false); window.open(CALENDLY, "_blank"); }}
+            onClick={() => { setOpen(false); window.open(url, "_blank"); }}
             className="text-sm font-semibold text-white bg-gradient-to-br from-[#a06cb0] to-[#47294c] border-none cursor-pointer px-4 py-3 rounded-xl text-center shadow-[0_3px_14px_rgba(71,41,76,0.28)] transition-all duration-200 hover:opacity-90 hover:-translate-y-px"
           >
             Book a Demo →
