@@ -39,6 +39,7 @@ import payment from './assets/crm/payments.webp';
 import dashboards from './assets/crm/dashboard.webp';
 import teamcrm from './assets/crm/team.webp';
 import crmapp from './assets/crm/mobile.webp';
+import crmsecurity from './assets/crm/security.webp';
 
 
 
@@ -117,5 +118,6 @@ export const IMAGES = {
   dashboards:dashboards, 
   teamcrm:teamcrm,
   crmapp:crmapp,
+  crmsecurity:crmsecurity,
 
 };
