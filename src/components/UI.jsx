@@ -1,7 +1,9 @@
 import {IMAGES} from "../images";
-  export function CTASection({ navigate }) {
-  const CALENDLY = "https://calendly.com/sangameswaran-vmaxhealthtech/30min";
+import { useNavigate } from "react-router-dom";
 
+  export function CTASection() {
+  const CALENDLY = "https://calendly.com/sangameswaran-vmaxhealthtech/30min";
+const navigate = useNavigate();
   return (
     <section className="py-16 px-4">
       <div className="max-w-4xl mx-auto">

@@ -3,6 +3,7 @@ import {
   MessageSquare, BarChart2, ShieldCheck, Smartphone, Zap,
   MessageCircle, TrendingUp, Link2, Mic, Brain
 } from "lucide-react";
+import { CTASection } from "../components/UI";
 
 const plans = [
   { name: "Starter", clients: "1–25 clients", price: 4999, pop: false, custom: false },
@@ -46,97 +47,116 @@ const appFeatureTags = ["Your Brand & Logo", "Android & iOS", "Client Dashboard"
 
 const fmt = (n) => new Intl.NumberFormat("en-IN").format(n);
 
-const s = {
-  bos: "#47294c",
-  bosm: "#5c3663",
-  bosd: "#2e1a32",
-  fed: "#816f7d",
-  fedl: "#a593a1",
-  fedd: "#5e4f5a",
-  lilac: "#faf4fc",
-  l1: "#f3eaf6",
-  l2: "#e8d9ee",
-  l3: "#d5bade",
-  sl: "#ddd6d4",
-  white: "#ffffff",
-};
-
-export default function PricingPage() {
+export default function PricingPage({ onOpenContactForm }) {
   return (
-    <div style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", background: s.lilac, color: s.bosd, minHeight: "100vh" }}>
-      <style>{`
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        .hov { transition: border-color .2s, box-shadow .2s; }
-        .hov:hover { border-color: #a593a1 !important; box-shadow: 0 4px 18px rgba(71,41,76,0.09) !important; }
-        .btn { cursor: pointer; transition: opacity .15s; }
-        .btn:hover { opacity: 0.87; }
-        .col3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-        @media (max-width: 700px) {
-          .col3 { grid-template-columns: 1fr !important; }
-          .app-grid { grid-template-columns: 1fr !important; }
-          .nav-a { display: none; }
-        }
-      `}</style>
-
-     
+    <div className="min-h-screen font-sans" style={{ background: "#faf4fc", color: "#2e1a32" }}>
 
       {/* Hero */}
-      <div style={{ textAlign: "center", padding: "4.5rem 1.5rem 2.5rem" }}>
-        <span style={{ display: "inline-block", background: s.l2, color: s.bos, borderRadius: 100, padding: "0.3rem 1rem", fontSize: "0.73rem", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 20, fontWeight: 500 }}>Pricing</span>
-        <h1 style={{ fontWeight: 700, fontSize: "clamp(1.9rem,4.5vw,3rem)", lineHeight: 1.15, color: s.bosd, marginBottom: 16 }}>
-          All-in-one platform for coaches,<br /><span style={{ color: s.bos }}>fitness & wellness brands</span>
+      <div className="text-center px-6 pt-20 mt-10 pb-10">
+        <span
+          className="inline-block rounded-full px-4 py-1 text-xs font-medium uppercase tracking-widest mb-5"
+          style={{ background: "#e8d9ee", color: "#47294c" }}
+        >
+          Pricing
+        </span>
+        <h1 className="font-bold leading-tight mb-4" style={{ fontSize: "clamp(1.9rem,4.5vw,3rem)", color: "#2e1a32" }}>
+          All-in-one platform for coaches,<br />
+          <span style={{ color: "#47294c" }}>fitness &amp; wellness brands</span>
         </h1>
-        <p style={{ color: s.fed, fontSize: "0.97rem", maxWidth: 480, margin: "0 auto", lineHeight: 1.65 }}>
-          From 1 client to 500+, Smart Coach 360 scales with your business — nutrition, workouts, payments and CRM, all in one place.
+        <p className="text-sm leading-relaxed max-w-lg mx-auto" style={{ color: "#816f7d" }}>
+          From 1 client to 500+, Smart Coach 360 scales with your business, nutrition, workouts, payments and CRM, all in one place.
         </p>
       </div>
 
-      <div className="col3" style={{ maxWidth: 1100, margin: "0 auto", padding: "0 1.5rem 2rem" }}>
+      <div className="max-w-5xl mx-auto px-6 pb-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {plans.map((p) => (
-          <div key={p.name} className="hov" style={{ background: s.white, border: p.pop ? `1.5px solid ${s.bos}` : `1.5px solid ${s.l2}`, borderRadius: 14, padding: "1.4rem 1.2rem", position: "relative", display: "flex", flexDirection: "column", gap: 12, boxShadow: p.pop ? "0 4px 24px rgba(71,41,76,0.1)" : "none" }}>
-            {p.pop && <div style={{ position: "absolute", top: -11, left: "50%", transform: "translateX(-50%)", background: s.bos, color: s.lilac, borderRadius: 100, padding: "2px 12px", fontSize: "0.68rem", fontWeight: 600, whiteSpace: "nowrap" }}>Most Popular</div>}
-            {p.custom && <div style={{ position: "absolute", top: -11, left: "50%", transform: "translateX(-50%)", background: s.fed, color: s.lilac, borderRadius: 100, padding: "2px 12px", fontSize: "0.68rem", fontWeight: 600, whiteSpace: "nowrap" }}>Custom</div>}
+          <div
+            key={p.name}
+            className="relative flex flex-col gap-3 rounded-2xl p-5 bg-white transition-all duration-200 hover:shadow-lg"
+            style={{
+              border: p.pop ? "1.5px solid #47294c" : "1.5px solid #e8d9ee",
+              boxShadow: p.pop ? "0 4px 24px rgba(71,41,76,0.10)" : undefined,
+            }}
+          >
+            {p.pop && (
+              <div
+                className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full px-3 py-0.5 text-xs font-semibold whitespace-nowrap"
+                style={{ background: "#47294c", color: "#faf4fc" }}
+              >
+                Most Popular
+              </div>
+            )}
+            {p.custom && (
+              <div
+                className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full px-3 py-0.5 text-xs font-semibold whitespace-nowrap"
+                style={{ background: "#816f7d", color: "#faf4fc" }}
+              >
+                Custom
+              </div>
+            )}
             <div>
-              <div style={{ fontWeight: 700, fontSize: "0.92rem", color: s.bosd }}>{p.name}</div>
-              <div style={{ fontSize: "0.75rem", color: s.fedl, marginTop: 3 }}>{p.clients}</div>
+              <div className="font-bold text-sm" style={{ color: "#2e1a32" }}>{p.name}</div>
+              <div className="text-xs mt-1" style={{ color: "#a593a1" }}>{p.clients}</div>
             </div>
             <div>
-              {p.price
-                ? <><span style={{ fontWeight: 700, fontSize: "1.75rem", color: s.bosd }}>₹{fmt(p.price)}</span><span style={{ fontSize: "0.75rem", color: s.fedl, marginLeft: 3 }}>/mo</span></>
-                : <span style={{ fontWeight: 700, fontSize: "1.3rem", color: s.bosd }}>Custom</span>
-              }
+              {p.price ? (
+                <>
+                  <span className="font-bold text-3xl" style={{ color: "#2e1a32" }}>₹{fmt(p.price)}</span>
+                  <span className="text-xs ml-1" style={{ color: "#a593a1" }}>/mo</span>
+                </>
+              ) : (
+                <span className="font-bold text-xl" style={{ color: "#2e1a32" }}>Custom</span>
+              )}
             </div>
-            <button className="btn" style={{ marginTop: "auto", borderRadius: 8, padding: "0.5rem", fontSize: "0.8rem", fontFamily: "inherit", fontWeight: 500, background: p.pop ? s.bos : "transparent", color: p.pop ? s.lilac : s.bos, border: p.pop ? "none" : `1.5px solid ${s.l3}` }}>
+            <button onClick={onOpenContactForm}
+              className="mt-auto rounded-lg py-2 text-sm font-medium cursor-pointer transition-opacity hover:opacity-85"
+              style={{
+                background: p.pop ? "#47294c" : "transparent",
+                color: p.pop ? "#faf4fc" : "#47294c",
+                border: p.pop ? "none" : "1.5px solid #d5bade",
+                fontFamily: "inherit",
+              }}
+            >
               {p.price ? "Get started" : "Contact us"}
             </button>
           </div>
         ))}
       </div>
 
-      {/* Setup note */}
-      <div style={{ maxWidth: 600, margin: "0 auto 3.5rem", textAlign: "center", background: s.l1, border: `1px solid ${s.l2}`, borderRadius: 10, padding: "0.85rem 1.3rem", fontSize: "0.81rem", color: s.fed }}>
-        <b style={{ color: s.bosd }}>Setup fee:</b> ₹8,999–₹14,999 — includes onboarding, initial configuration, training & go-live support
+      <div
+        className="max-w-xl mx-auto mb-14 text-center rounded-xl px-5 py-3 text-xs"
+        style={{ background: "#f3eaf6", border: "1px solid #e8d9ee", color: "#816f7d" }}
+      >
+        <b style={{ color: "#2e1a32" }}>Setup fee:</b> ₹8,999–₹14,999 — includes onboarding, initial configuration, training &amp; go-live support
       </div>
 
-      {/* Features — 3 cols */}
-      <section style={{ maxWidth: 1100, margin: "0 auto", padding: "0 1.5rem 3.5rem" }}>
-        <div style={{ textAlign: "center", marginBottom: 32 }}>
-          <p style={{ color: s.fedl, fontSize: "0.73rem", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 8, fontWeight: 500 }}>Everything included</p>
-          <h2 style={{ fontWeight: 700, fontSize: "clamp(1.5rem,3vw,2.1rem)", color: s.bosd }}>Complete feature set</h2>
+      {/* Features */}
+      <section className="max-w-5xl mx-auto px-6 pb-14">
+        <div className="text-center mb-8">
+          <p className="text-xs font-medium uppercase tracking-widest mb-2" style={{ color: "#a593a1" }}>Everything included</p>
+          <h2 className="font-bold" style={{ fontSize: "clamp(1.5rem,3vw,2.1rem)", color: "#2e1a32" }}>Complete feature set</h2>
         </div>
-        <div className="col3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {features.map(({ Icon, title, items }, i) => (
-            <div key={i} className="hov" style={{ background: s.white, border: `1.5px solid ${s.l2}`, borderRadius: 12, padding: "1.25rem" }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 14 }}>
-                <div style={{ width: 32, height: 32, borderRadius: 8, background: s.l2, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                  <Icon size={16} color={s.bos} />
+            <div
+              key={i}
+              className="bg-white rounded-xl p-5 transition-all duration-200 hover:shadow-md"
+              style={{ border: "1.5px solid #e8d9ee" }}
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <div
+                  className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                  style={{ background: "#e8d9ee" }}
+                >
+                  <Icon size={16} color="#47294c" />
                 </div>
-                <span style={{ fontWeight: 600, fontSize: "0.88rem", color: s.bosd }}>{title}</span>
+                <span className="font-semibold text-sm" style={{ color: "#2e1a32" }}>{title}</span>
               </div>
-              <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 6 }}>
+              <ul className="flex flex-col gap-2">
                 {items.map((item, j) => (
-                  <li key={j} style={{ display: "flex", gap: 7, fontSize: "0.79rem", color: s.fed, lineHeight: 1.5 }}>
-                    <span style={{ color: s.bos, flexShrink: 0, marginTop: 1, fontSize: "0.7rem", fontWeight: 700 }}>✓</span>{item}
+                  <li key={j} className="flex gap-2 text-xs leading-relaxed" style={{ color: "#816f7d" }}>
+                    <span className="flex-shrink-0 mt-0.5 text-xs font-bold" style={{ color: "#47294c" }}>✓</span>
+                    {item}
                   </li>
                 ))}
               </ul>
@@ -145,39 +165,71 @@ export default function PricingPage() {
         </div>
       </section>
 
-      {/* App section */}
-      <section style={{ maxWidth: 1100, margin: "0 auto", padding: "0 1.5rem 3.5rem" }}>
-        <div style={{ textAlign: "center", marginBottom: 32 }}>
-          <p style={{ color: s.fedl, fontSize: "0.73rem", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 8, fontWeight: 500 }}>Mobile App</p>
-          <h2 style={{ fontWeight: 700, fontSize: "clamp(1.5rem,3vw,2.1rem)", color: s.bosd }}>White-label fitness app</h2>
+      <section className="max-w-5xl mx-auto px-6 pb-14">
+        <div className="text-center mb-8">
+          <p className="text-xs font-medium uppercase tracking-widest mb-2" style={{ color: "#a593a1" }}>Mobile App</p>
+          <h2 className="font-bold" style={{ fontSize: "clamp(1.5rem,3vw,2.1rem)", color: "#2e1a32" }}>White-label fitness app</h2>
         </div>
-        <div className="app-grid" style={{ background: s.white, border: `1.5px solid ${s.l2}`, borderRadius: 16, padding: "2.2rem", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32, alignItems: "center" }}>
+        <div
+          className="bg-white rounded-2xl p-8 grid grid-cols-1 md:grid-cols-2 gap-8 items-center"
+          style={{ border: "1.5px solid #e8d9ee" }}
+        >
           <div>
-            <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 14 }}>
-              <div style={{ width: 32, height: 32, borderRadius: 8, background: s.l2, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <Smartphone size={16} color={s.bos} />
+            <div className="flex items-center gap-3 mb-4">
+              <div
+                className="w-8 h-8 rounded-lg flex items-center justify-center"
+                style={{ background: "#e8d9ee" }}
+              >
+                <Smartphone size={16} color="#47294c" />
               </div>
-              <span style={{ background: s.l2, color: s.bos, borderRadius: 100, padding: "0.25rem 0.85rem", fontSize: "0.72rem", textTransform: "uppercase", letterSpacing: "0.07em", fontWeight: 500 }}>Your Brand</span>
+              <span
+                className="rounded-full px-3 py-1 text-xs uppercase tracking-wider font-medium"
+                style={{ background: "#e8d9ee", color: "#47294c" }}
+              >
+                Your Brand
+              </span>
             </div>
-            <h3 style={{ fontWeight: 700, fontSize: "1.4rem", color: s.bosd, marginBottom: 12, lineHeight: 1.25 }}>Launch your own branded Android & iOS app</h3>
-            <p style={{ color: s.fed, fontSize: "0.86rem", lineHeight: 1.65, marginBottom: 16 }}>Put your logo and brand name front and centre. Clients see your brand, not ours.</p>
-            <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: s.l2, borderRadius: 9, padding: "0.5rem 0.9rem", marginBottom: 16 }}>
-              <span style={{ fontWeight: 700, fontSize: "1.1rem", color: s.bosd }}>₹25,000</span>
-              <span style={{ fontSize: "0.78rem", color: s.fed }}>flat setup cost</span>
+            <h3 className="font-bold text-xl leading-snug mb-3" style={{ color: "#2e1a32" }}>
+              Launch your own branded Android &amp; iOS app
+            </h3>
+            <p className="text-sm leading-relaxed mb-4" style={{ color: "#816f7d" }}>
+              Put your logo and brand name front and centre. Clients see your brand, not ours.
+            </p>
+            <div
+              className="inline-flex items-center gap-2 rounded-xl px-4 py-2 mb-4"
+              style={{ background: "#e8d9ee" }}
+            >
+              <span className="font-bold text-lg" style={{ color: "#2e1a32" }}>₹25,000</span>
+              <span className="text-xs" style={{ color: "#816f7d" }}>flat setup cost</span>
             </div>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
-              {appFeatureTags.map(t => (
-                <span key={t} style={{ background: s.l1, border: `1px solid ${s.l2}`, color: s.bos, borderRadius: 100, padding: "0.25rem 0.75rem", fontSize: "0.74rem", fontWeight: 500 }}>{t}</span>
+            <div className="flex flex-wrap gap-2">
+              {appFeatureTags.map((t) => (
+                <span
+                  key={t}
+                  className="rounded-full px-3 py-1 text-xs font-medium"
+                  style={{ background: "#f3eaf6", border: "1px solid #e8d9ee", color: "#47294c" }}
+                >
+                  {t}
+                </span>
               ))}
             </div>
           </div>
           <div>
-            <p style={{ fontWeight: 600, fontSize: "0.8rem", color: s.fedl, textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 14 }}>Built-in client trackers</p>
-            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-              {trackers.map(t => (
-                <div key={t} style={{ display: "flex", alignItems: "center", gap: 10, background: s.l1, border: `1px solid ${s.l2}`, borderRadius: 9, padding: "0.6rem 0.9rem" }}>
-                  <span style={{ width: 6, height: 6, borderRadius: "50%", background: s.bos, flexShrink: 0, display: "inline-block" }} />
-                  <span style={{ fontSize: "0.83rem", color: s.bosd }}>{t}</span>
+            <p className="text-xs font-semibold uppercase tracking-wider mb-4" style={{ color: "#a593a1" }}>
+              Built-in client trackers
+            </p>
+            <div className="flex flex-col gap-2">
+              {trackers.map((t) => (
+                <div
+                  key={t}
+                  className="flex items-center gap-3 rounded-xl px-4 py-3"
+                  style={{ background: "#f3eaf6", border: "1px solid #e8d9ee" }}
+                >
+                  <span
+                    className="w-1.5 h-1.5 rounded-full flex-shrink-0"
+                    style={{ background: "#47294c" }}
+                  />
+                  <span className="text-sm" style={{ color: "#2e1a32" }}>{t}</span>
                 </div>
               ))}
             </div>
@@ -185,40 +237,41 @@ export default function PricingPage() {
         </div>
       </section>
 
-      {/* Add-ons — 3 cols */}
-      <section style={{ maxWidth: 1100, margin: "0 auto", padding: "0 1.5rem 3.5rem" }}>
-        <div style={{ textAlign: "center", marginBottom: 32 }}>
-          <p style={{ color: s.fedl, fontSize: "0.73rem", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 8, fontWeight: 500 }}>Power-ups</p>
-          <h2 style={{ fontWeight: 700, fontSize: "clamp(1.5rem,3vw,2.1rem)", color: s.bosd }}>Add-on features</h2>
+      <section className="max-w-5xl mx-auto px-6 pb-6">
+        <div className="text-center mb-8">
+          <p className="text-xs font-medium uppercase tracking-widest mb-2" style={{ color: "#a593a1" }}>Power-ups</p>
+          <h2 className="font-bold" style={{ fontSize: "clamp(1.5rem,3vw,2.1rem)", color: "#2e1a32" }}>Add-on features</h2>
         </div>
-        <div className="col3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {addons.map(({ Icon, name, price, desc }, i) => (
-            <div key={i} className="hov" style={{ background: s.white, border: `1.5px solid ${s.l2}`, borderRadius: 12, padding: "1.25rem", display: "flex", flexDirection: "column", gap: 10 }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 8 }}>
-                <div style={{ display: "flex", alignItems: "center", gap: 9 }}>
-                  <div style={{ width: 32, height: 32, borderRadius: 8, background: s.l2, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                    <Icon size={16} color={s.bos} />
+            <div
+              key={i}
+              className="bg-white rounded-xl p-5 flex flex-col gap-3 transition-all duration-200 hover:shadow-md"
+              style={{ border: "1.5px solid #e8d9ee" }}
+            >
+              <div className="flex justify-between items-start gap-2">
+                <div className="flex items-center gap-3">
+                  <div
+                    className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                    style={{ background: "#e8d9ee" }}
+                  >
+                    <Icon size={16} color="#47294c" />
                   </div>
-                  <span style={{ fontWeight: 600, fontSize: "0.86rem", color: s.bosd }}>{name}</span>
+                  <span className="font-semibold text-sm" style={{ color: "#2e1a32" }}>{name}</span>
                 </div>
-                <span style={{ background: s.l2, color: s.bos, borderRadius: 6, padding: "2px 9px", fontSize: "0.73rem", fontWeight: 600, whiteSpace: "nowrap", flexShrink: 0 }}>{price}</span>
+                <span
+                  className="rounded-md px-2 py-0.5 text-xs font-semibold whitespace-nowrap flex-shrink-0"
+                  style={{ background: "#e8d9ee", color: "#47294c" }}
+                >
+                  {price}
+                </span>
               </div>
-              <p style={{ fontSize: "0.79rem", color: s.fedl, lineHeight: 1.5, paddingLeft: 41 }}>{desc}</p>
+              <p className="text-xs leading-relaxed pl-11" style={{ color: "#a593a1" }}>{desc}</p>
             </div>
           ))}
         </div>
       </section>
-
-      {/* CTA */}
-      <div style={{ background: s.l1, borderRadius: 20, padding: "3rem 2rem", textAlign: "center", margin: "0 1.5rem 4rem", maxWidth: 1100, marginLeft: "auto", marginRight: "auto" }}>
-        <h2 style={{ fontWeight: 700, fontSize: "clamp(1.5rem,3vw,2.1rem)", color: s.bosd, marginBottom: 14 }}>Ready to grow your coaching business?</h2>
-        <p style={{ color: s.fed, fontSize: "0.92rem", marginBottom: 28, maxWidth: 400, marginLeft: "auto", marginRight: "auto" }}>Join coaches and fitness brands scaling smarter with Smart Coach 360.</p>
-        <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
-          <button className="btn" style={{ background: s.bos, color: s.lilac, border: "none", borderRadius: 9, padding: "0.7rem 1.9rem", fontSize: "0.9rem", fontFamily: "inherit", fontWeight: 500 }}>Get started</button>
-          <button className="btn" style={{ background: "transparent", color: s.bos, border: `1.5px solid ${s.l3}`, borderRadius: 9, padding: "0.7rem 1.9rem", fontSize: "0.9rem", fontFamily: "inherit" }}>Talk to sales</button>
-        </div>
-      </div>
-
+<CTASection/>
     </div>
   );
 }

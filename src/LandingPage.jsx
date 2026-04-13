@@ -38,7 +38,7 @@ export default function LandingPage() {
             <Route path="/contact-us" element={<ContactPage onOpenContactForm={() => setOpenContactForm(true)} />} />
             <Route path="/about-us" element={<AboutUs onOpenContactForm={() => setOpenContactForm(true)} />} />
             <Route path="/security" element={<Security />} />
-            <Route path="/pricing" element={<Pricing />} />
+            <Route path="/pricing" element={<Pricing onOpenContactForm={() => setOpenContactForm(true)} />} />
             <Route path="/help-centre" element={<HelpCentre />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
