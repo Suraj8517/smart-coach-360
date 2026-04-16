@@ -193,14 +193,6 @@ export default function Hero({ DARK_BG, IMAGES, navigate }) {
                   onMouseEnter={e => { e.currentTarget.style.backgroundColor = "rgba(71,41,76,0.4)"; e.currentTarget.style.borderColor = "rgba(120,80,140,0.8)"; }}
                   onMouseLeave={e => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.borderColor = "rgba(120,80,140,0.5)"; }}
                 >
-                  <span
-                    className="flex items-center justify-center w-7 h-7 rounded-full group-hover:scale-110 transition-transform"
-                    style={{ backgroundColor: "rgba(130,80,150,0.3)" }}
-                  >
-                    <svg className="w-3.5 h-3.5 translate-x-px" fill="currentColor" viewBox="0 0 24 24" style={{ color: "#c9a8d6" }}>
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                  </span>
                   See How It Works
                 </button>
               </div>

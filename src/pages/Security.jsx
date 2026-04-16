@@ -4,6 +4,7 @@ import {
   Database, ServerCrash, EarthLock, ChevronDown, ArrowRight,
   CheckCircle2, Globe, Clock4
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 // ── Font + keyframe injector
 const FontLoader = () => {
@@ -469,7 +470,7 @@ const FAQ = () => (
 // ════════════════════════════════════
 // CTA
 // ════════════════════════════════════
-const CTA = () => (
+const CTA = ({ navigate }) => (
   <section className="relative overflow-hidden bg-[#1c0f1f] py-28">
     <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[420px] pointer-events-none"
       style={{ background: "radial-gradient(ellipse at 50% 0%,rgba(71,41,76,.6) 0%,transparent 70%)", filter: "blur(56px)" }} />
@@ -502,13 +503,13 @@ const CTA = () => (
       </div>
 
       <div className="flex flex-wrap gap-4 justify-center">
-        <button
+        <button 
           className="sc-fb flex items-center gap-2 px-7 py-3.5 rounded-xl bg-[#a06cb0] text-white text-[0.875rem] font-semibold border-none cursor-pointer transition-all duration-200 hover:opacity-90 hover:-translate-y-0.5"
           style={{ boxShadow: "0 4px 24px rgba(160,108,176,.4)" }}
         >
           Book a Free Demo <ArrowRight size={16} strokeWidth={2} />
         </button>
-        <button className="sc-fb px-7 py-3.5 rounded-xl bg-transparent text-[#c9a8d6] text-[0.875rem] font-semibold border border-white/15 cursor-pointer transition-all duration-200 hover:border-[rgba(160,108,176,0.5)] hover:-translate-y-0.5">
+        <button onClick={()=> navigate("/pricing")}  className="sc-fb px-7 py-3.5 rounded-xl bg-transparent text-[#c9a8d6] text-[0.875rem] font-semibold border border-white/15 cursor-pointer transition-all duration-200 hover:border-[rgba(160,108,176,0.5)] hover:-translate-y-0.5">
           View Pricing →
         </button>
       </div>
@@ -521,6 +522,8 @@ const CTA = () => (
 
 
 export default function SecurityPage() {
+        const navigate = useNavigate();
+
   return (
     <div className="sc-fb antialiased bg-white text-[#1c0f1f]">
       <FontLoader />
@@ -529,7 +532,7 @@ export default function SecurityPage() {
       <Compliance />
       <SummaryTable />
       <FAQ />
-      <CTA />
+      <CTA navigate={navigate}/>
     </div>
   );
 }

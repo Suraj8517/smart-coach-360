@@ -111,7 +111,7 @@ export default function Navbar({ onOpenContactForm }) {
         </button>
 
         {/* Dropdown */}
-        <div className="absolute left-0 mt-2 w-[180px] bg-white border border-[#eee] rounded-xl shadow-lg opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-200">
+        <div className="absolute left-0 mt-1 w-[180px] bg-white border border-[#eee] rounded-xl shadow-lg opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-200">
           {n.children.map((child) => (
             <Link
               key={child.path}
