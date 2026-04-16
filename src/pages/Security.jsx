@@ -5,6 +5,7 @@ import {
   CheckCircle2, Globe, Clock4
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+const url =import.meta.env.VITE_CALENDLY_LINK;
 
 // ── Font + keyframe injector
 const FontLoader = () => {
@@ -471,6 +472,7 @@ const FAQ = () => (
 // CTA
 // ════════════════════════════════════
 const CTA = ({ navigate }) => (
+  
   <section className="relative overflow-hidden bg-[#1c0f1f] py-28">
     <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[420px] pointer-events-none"
       style={{ background: "radial-gradient(ellipse at 50% 0%,rgba(71,41,76,.6) 0%,transparent 70%)", filter: "blur(56px)" }} />
@@ -503,7 +505,7 @@ const CTA = ({ navigate }) => (
       </div>
 
       <div className="flex flex-wrap gap-4 justify-center">
-        <button 
+        <button    onClick={() => window.open(url, "_blank")} 
           className="sc-fb flex items-center gap-2 px-7 py-3.5 rounded-xl bg-[#a06cb0] text-white text-[0.875rem] font-semibold border-none cursor-pointer transition-all duration-200 hover:opacity-90 hover:-translate-y-0.5"
           style={{ boxShadow: "0 4px 24px rgba(160,108,176,.4)" }}
         >
@@ -532,7 +534,7 @@ export default function SecurityPage() {
       <Compliance />
       <SummaryTable />
       <FAQ />
-      <CTA navigate={navigate}/>
+      <CTA navigate={navigate} />
     </div>
   );
 }
