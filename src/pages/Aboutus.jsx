@@ -285,7 +285,7 @@ export default function AboutUs({ navigate }) {
                 </div>
 
                 {/* dot */}
-                <div className="hidden sm:flex items-start" style={{ width: "0px" }}>
+                <div className="z-10 hidden sm:flex items-start" style={{ width: "0px" }}>
                   <div
                     className="rounded-full flex-shrink-0"
                     style={{
