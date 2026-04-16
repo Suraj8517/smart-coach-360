@@ -299,12 +299,10 @@ export default function AboutUs({ navigate }) {
                   />
                 </div>
 
-                {/* body */}
                 <div
                   className="flex-1 sm:pl-8 pb-10 pt-4"
                   style={{ borderBottom: i < milestones.length - 1 ? "1px solid #f0eaf3" : "none" }}
                 >
-                  {/* mobile only label */}
                   <div
                     className="sm:hidden text-[0.66rem] font-bold uppercase tracking-[0.1em] mb-1"
                     style={{ color: "#a06cb0" }}

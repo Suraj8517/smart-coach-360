@@ -135,7 +135,7 @@ function MarqueeRow({ logos, reverse = false, speed = 7 }) {
         style={{
           display: "flex",
           gap: 10,
-          width: "max-content",
+          width: "90%",
           animation: `${animName} ${duration} linear infinite`,
         }}
       >
@@ -296,7 +296,7 @@ export default function IntegrationsPage({ navigate }) {
         </div>
 
         
-        <div className="relative z-10 flex-1 flex flex-col justify-center gap-3 pb-12 overflow-hidden max-w-3xl mx-auto">
+        <div className="relative z-10 flex-1 flex flex-col justify-center gap-3 pb-12 overflow-hidden md:max-w-3xl mx-auto w-full">
          
           <div
             className="absolute inset-y-0 left-0 z-20 pointer-events-none"
@@ -319,7 +319,6 @@ export default function IntegrationsPage({ navigate }) {
         />
       </section>
 
-      {/* ── INTEGRATION GROUPS ── */}
       {groups.map((group, gi) => (
         <section
           key={gi}

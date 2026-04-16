@@ -216,7 +216,7 @@ export default function Navbar({ onOpenContactForm }) {
   if (n.children) {
     return (
       <div key={n.label} className="px-2">
-        <div className="text-xs text-[#8a7490] px-2 py-2 uppercase">
+        <div className="text-sm text-[#8a7490] px-2 py-2">
           {n.label}
         </div>
 
