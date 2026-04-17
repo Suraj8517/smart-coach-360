@@ -2,6 +2,7 @@ import React from 'react'
 import { SectionHeader } from "../UI";
 import { Link } from 'react-router-dom';
 import {Trophy,Salad,Dumbbell,Building2 } from "lucide-react";
+import { HashLink } from 'react-router-hash-link';
 
 export default function WhoIsIt({DARK_BG,IMAGES}) {
     const audiences = [
@@ -10,28 +11,28 @@ export default function WhoIsIt({DARK_BG,IMAGES}) {
         title: "Personal Trainers",
         desc: "More clients, less admin. Everything in one place.",
         img: IMAGES.ptMale,
-        page: "usecases",
+        id: "personaltrainer",
       },
       {
         icon: <Building2 />,
         title: "Gym Owners & Studios",
         desc: "One platform across your whole location and team.",
         img: IMAGES.gym,
-        page: "usecases",
+        id: "gymowner",
       },
       {
         icon: <Salad />,
         title: "Nutrition Coaches",
         desc: "Personalised plans at scale with real accountability.",
         img: IMAGES.nutritionist,
-        page: "usecases",
+        id: "nutritionist",
       },
       {
         icon: <Trophy />,
         title: "Large Organisations",
         desc: "Enterprise tools for multi-branch, multi-coach teams.",
         img: IMAGES.largeorg,
-        page: "usecases",
+        id: "largeorganisation",
       },
     ];
   return (
@@ -42,7 +43,7 @@ export default function WhoIsIt({DARK_BG,IMAGES}) {
                   <SectionHeader tag="Who It's For" title={"Built for Every Type of\nFitness Professional"} subtitle="SmartCoach360 adapts to the way you work—from solo trainers to large organisations." light />
                   <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
                     {audiences.map((a, i) => (
-                        <Link to={"/usecases"} key={i}> 
+                        <HashLink to={`/solutions#${a.id}`} key={i}>
                          <button key={i}  className="group relative rounded-3xl overflow-hidden text-left hover:scale-[1.02] transition-all duration-300 shadow-xl">
                         <div className="relative aspect-[3/4]">
                           <img src={a.img} loading="lazy" alt={a.title} className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105" />
@@ -57,7 +58,7 @@ export default function WhoIsIt({DARK_BG,IMAGES}) {
                           </div>
                         </div>
                       </button>
-                        </Link>
+                        </HashLink>
                      
                     ))}
                   </div>

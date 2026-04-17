@@ -36,7 +36,7 @@ const navigate = useNavigate();
 
             <p className="text-sm sm:text-base text-gray-300 mb-8 max-w-xl mx-auto leading-relaxed">
               Book a quick 20-minute demo and see exactly how SmartCoach360
-              fits into your workflow—no fluff, no pressure.
+              fits into your workflow, no fluff, no pressure.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">

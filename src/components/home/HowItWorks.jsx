@@ -3,7 +3,7 @@ const steps = [
   { num: "01", title: "Book a Demo",          desc: "A free 20-minute walkthrough tailored to your business." },
   { num: "02", title: "Set Up Your Platform", desc: "Hands-on onboarding—branding, programs, payments configured." },
   { num: "03", title: "Onboard Your Clients", desc: "Invite clients, assign programmes, and start from day one." },
-  { num: "04", title: "Grow Your Business",   desc: "Automations handle ops—you stay focused on coaching." },
+  { num: "04", title: "Grow Your Business",   desc: "Automations handle ops, you stay focused on coaching." },
 ];
 export default function HowItWorks() {
   return (
@@ -29,7 +29,7 @@ export default function HowItWorks() {
           </div>
           <div>
             <p className="text-brand-fedora text-lg leading-relaxed">
-              From your first demo to fully automated operations—our onboarding team is with you every step of the way.
+              From your first demo to fully automated operations our onboarding team is with you every step of the way.
             </p>
            
           </div>

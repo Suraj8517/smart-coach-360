@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { PortableText } from '@portabletext/react'
 import { client, urlFor } from '../sanityclient'
+import { IMAGES } from "../images";
 
 const QUERY = `*[_type == "post" && slug.current == $slug][0]{
   title, publishedAt, mainImage, body,
@@ -183,7 +184,6 @@ function LoadingSkeleton() {
   )
 }
 
-/* ── Not found state ── */
 function NotFound() {
   return (
     <div className="bg-[#f7f3f8] min-h-screen pt-16 flex items-center justify-center">
@@ -249,7 +249,6 @@ export default function BlogsPost() {
       <style>{injectCSS}</style>
       <ProgressBar />
 
-      {/* ── Sticky mini-nav ── */}
       <div
         className="sticky top-16 z-40 flex items-center justify-between px-4 sm:px-10 border-b border-[#f0eaf4]"
         style={{ height: 52, backgroundColor: 'rgba(255,255,255,0.92)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)' }}
