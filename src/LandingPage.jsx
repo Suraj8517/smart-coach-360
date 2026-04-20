@@ -17,6 +17,7 @@ import { useState } from "react";
 import NotFound from "./pages/NotFound";
 import FeaturesPage from "./pages/FeaturePage";
 import Pricing from "./pages/Pricing";
+import TermsAndConditions from "./pages/TermsAndCondition";
 
 export default function LandingPage() {  
       const [openContactForm, setOpenContactForm] = useState(false);
@@ -34,6 +35,7 @@ export default function LandingPage() {
             <Route path="/success-stories" element={<CaseStudiesPage />} />
             <Route path="/comparison" element={<ComparisonPage />} />
             <Route path="/blogs" element={<Blogs />} />
+            <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
             <Route path="/blogs/:slug" element={<BlogsPost />} />
             <Route path="/contact-us" element={<ContactPage onOpenContactForm={() => setOpenContactForm(true)} />} />
             <Route path="/about-us" element={<AboutUs onOpenContactForm={() => setOpenContactForm(true)} />} />
